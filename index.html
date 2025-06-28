@@ -1,133 +1,347 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <title>NikoAd — Заявка на рекламу</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
-      font-family: 'Segoe UI', sans-serif;
-      color: #333;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NikoAd — Реклама в Telegram</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #6a0dad, #12005e);
+    color: #f0f0f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+
+  .channels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 900px;
+    margin-bottom: 40px;
+  }
+
+  .channel-card {
+    background: #2e005e;
+    border-radius: 12px;
+    padding: 20px;
+    width: 220px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(106, 13, 173, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .channel-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(106, 13, 173, 0.8);
+  }
+
+  .channel-name {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .subscribers {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    color: #b0a9e6;
+  }
+
+  .btn-show {
+    align-self: flex-start;
+    background: #8a2be2;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+  }
+
+  .btn-show:hover {
+    background: #bf94ff;
+  }
+
+  /* Статистика */
+  .stats-panel {
+    background: #210044;
+    max-width: 700px;
+    width: 100%;
+    border-radius: 14px;
+    padding: 25px 30px;
+    box-shadow: 0 6px 20px rgba(106, 13, 173, 0.7);
+    color: #e3dbff;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+  }
+
+  .stats-panel.active {
+    opacity: 1;
+    max-height: 600px;
+  }
+
+  .stats-header {
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+
+  .price-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 25px 0;
+  }
+
+  .price-list li {
+    margin-bottom: 8px;
+  }
+
+  .price-list li span {
+    font-weight: 600;
+  }
+
+  /* Форма заявки */
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  form input, form textarea {
+    background: #3c007d;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #eee;
+    resize: vertical;
+    transition: background-color 0.3s ease;
+  }
+
+  form input::placeholder,
+  form textarea::placeholder {
+    color: #b0a9e6;
+  }
+
+  form input:focus, form textarea:focus {
+    outline: none;
+    background-color: #5a00bc;
+  }
+
+  form button {
+    background: #8a2be2;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  form button:hover {
+    background: #bf94ff;
+  }
+
+  #status {
+    margin-top: 10px;
+    min-height: 22px;
+    font-weight: 700;
+  }
+
+  /* Скрыть статистику по умолчанию */
+  .hidden {
+    display: none;
+  }
+
+  /* Адаптив */
+  @media (max-width: 600px) {
+    .channels {
+      flex-direction: column;
+      align-items: center;
     }
 
-    header {
-      background: #111827;
-      color: white;
-      padding: 20px 40px;
-      text-align: center;
+    .channel-card {
+      width: 90%;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 28px;
+    .stats-panel {
+      max-width: 90vw;
+      padding: 20px;
     }
-
-    .container {
-      max-width: 800px;
-      margin: 40px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    }
-
-    form input, form textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 12px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-
-    form button {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      border: none;
-      border-radius: 6px;
-      background-color: #4f46e5;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    form button:hover {
-      background-color: #4338ca;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 30px;
-    }
-
-    th, td {
-      padding: 12px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-
-    th {
-      background-color: #f3f4f6;
-    }
-
-    a {
-      color: #4f46e5;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-<header>
-  <h1>NikoAd — Закажи рекламу в Telegram</h1>
-</header>
+<h1>NikoAd — Реклама в Telegram</h1>
 
-<div class="container">
-  <form action="https://formspree.io/f/xnnvlzor" method="POST">
-    <input type="text" name="Имя" placeholder="Ваше имя" required />
-    <input type="text" name="Telegram" placeholder="@ваш_ник" required />
-    <textarea name="Комментарий" placeholder="Комментарий (необязательно)"></textarea>
-    <button type="submit">Отправить заявку</button>
-  </form>
-
-  <h2 style="margin-top:40px;">📊 Статистика и цены</h2>
-  <table>
-    <tr>
-      <th>Канал</th>
-      <th>Подписчиков</th>
-      <th>Цены</th>
-    </tr>
-    <tr>
-      <td><a href="https://t.me/ищутебятверь" target="_blank">Ищу Тебя Тверь</a></td>
-      <td>10 500</td>
-      <td>24ч – 1550₽, 48ч – 1700₽, навсегда – 2600₽</td>
-    </tr>
-    <tr>
-      <td><a href="https://t.me/ищутебянижневартовск" target="_blank">Ищу Тебя Нижневартовск</a></td>
-      <td>6 000</td>
-      <td>24ч – 1400₽, 48ч – 1600₽, навсегда – 2200₽</td>
-    </tr>
-    <tr>
-      <td><a href="https://t.me/niko_armenia" target="_blank">NIKO 🇦🇲</a></td>
-      <td>3 500</td>
-      <td>24ч – 1000₽, 48ч – 1150₽, история – 800₽</td>
-    </tr>
-    <tr>
-      <td><a href="https://t.me/ищутебякрасноярск" target="_blank">Ищу Тебя Красноярск</a></td>
-      <td>3 000</td>
-      <td>24ч – 800₽, 48ч – 1000₽, навсегда – 1300₽</td>
-    </tr>
-  </table>
+<div class="channels" id="channels">
+  <!-- Карточки каналов добавляются через JS -->
 </div>
+
+<div class="stats-panel" id="statsPanel">
+  <div class="stats-header" id="statsTitle">Статистика канала</div>
+  <ul class="price-list" id="priceList"></ul>
+  <form id="orderForm">
+    <input type="text" id="name" name="name" placeholder="Ваше имя" required />
+    <input type="text" id="tg" name="tg" placeholder="Telegram (@никнейм)" required />
+    <textarea id="msg" name="msg" placeholder="Комментарий (необязательно)" rows="3"></textarea>
+    <button type="submit">Отправить заявку</button>
+    <div id="status"></div>
+  </form>
+</div>
+
+<script>
+  const channelsData = [
+    {
+      id: 'tver',
+      name: 'Ищу Тебя Тверь',
+      subs: 10500,
+      link: 'https://t.me/ищутебятверь',
+      prices: [
+        ['24 часа', '1550₽'],
+        ['48 часов', '1700₽'],
+        ['72 часа', '1900₽'],
+        ['Навсегда', '2600₽'],
+        ['История', '1100₽']
+      ]
+    },
+    {
+      id: 'nizhnevartovsk',
+      name: 'Ищу Тебя Нижневартовск',
+      subs: 6000,
+      link: 'https://t.me/ищутебянижневартовск',
+      prices: [
+        ['24 часа', '1400₽'],
+        ['48 часов', '1600₽'],
+        ['72 часа', '1800₽'],
+        ['Навсегда', '2200₽'],
+        ['История', '1100₽']
+      ]
+    },
+    {
+      id: 'niko',
+      name: 'NIKO 🇦🇲',
+      subs: 3500,
+      link: 'https://t.me/niko_armenia',
+      prices: [
+        ['24 часа', '1000₽'],
+        ['48 часов', '1150₽'],
+        ['72 часа', '1250₽'],
+        ['История', '800₽']
+      ]
+    },
+    {
+      id: 'krasnoyarsk',
+      name: 'Ищу Тебя Красноярск',
+      subs: 3000,
+      link: 'https://t.me/ищутебякрасноярск',
+      prices: [
+        ['24 часа', '800₽'],
+        ['48 часов', '1000₽'],
+        ['72 часа', '1150₽'],
+        ['Навсегда', '1300₽'],
+        ['История', '700₽']
+      ]
+    }
+  ];
+
+  const channelsContainer = document.getElementById('channels');
+  const statsPanel = document.getElementById('statsPanel');
+  const statsTitle = document.getElementById('statsTitle');
+  const priceList = document.getElementById('priceList');
+  const orderForm = document.getElementById('orderForm');
+  const statusDiv = document.getElementById('status');
+
+  // Создать карточки каналов
+  channelsData.forEach(channel => {
+    const card = document.createElement('div');
+    card.className = 'channel-card';
+    card.innerHTML = `
+      <div class="channel-name">${channel.name}</div>
+      <div class="subscribers">Подписчиков: ${channel.subs.toLocaleString()}</div>
+      <button class="btn-show">Показать статистику</button>
+    `;
+    card.querySelector('.btn-show').addEventListener('click', () => {
+      showStats(channel);
+    });
+    channelsContainer.appendChild(card);
+  });
+
+  // Показать статистику и форму заявки
+  function showStats(channel) {
+    statsTitle.innerHTML = `<a href="${channel.link}" target="_blank" style="color:#bf94ff;text-decoration:none;">${channel.name}</a> — Подписчиков: ${channel.subs.toLocaleString()}`;
+    priceList.innerHTML = '';
+    channel.prices.forEach(([desc, price]) => {
+      const li = document.createElement('li');
+      li.innerHTML = `<span>${desc}:</span> ${price}`;
+      priceList.appendChild(li);
+    });
+
+    // Скрыть статус и очистить форму
+    statusDiv.textContent = '';
+    orderForm.reset();
+
+    // Показать панель с анимацией
+    statsPanel.classList.add('active');
+  }
+
+  // Обработка отправки формы
+  orderForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const tg = document.getElementById('tg').value.trim();
+    const msg = document.getElementById('msg').value.trim();
+
+    // Подставь сюда свой бекенд URL
+    const backendUrl = 'https://nikoad-server.onrender.com/api/send';
+
+    try {
+      const res = await fetch(backendUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, tg, msg })
+      });
+      if (res.ok) {
+        statusDiv.textContent = '✅ Заявка отправлена!';
+        statusDiv.style.color = '#8efc8e';
+        orderForm.reset();
+      } else {
+        throw new Error('Ошибка при отправке');
+      }
+    } catch (err) {
+      statusDiv.textContent = '❌ Ошибка сети. Проверьте подключение.';
+      statusDiv.style.color = '#ff8e8e';
+    }
+  });
+</script>
 
 </body>
 </html>
