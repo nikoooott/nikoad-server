@@ -21,11 +21,13 @@ document.getElementById('orderForm').addEventListener('submit', async e => {
       status.style.color = 'green';
       document.getElementById('orderForm').reset();
     } else {
-      status.textContent = '❌ Ошибка при отправке. Попробуйте позже.';
+      const errorText = await res.text();
+      status.textContent = `❌ Ошибка: ${errorText}`;
       status.style.color = 'red';
     }
   } catch (error) {
     status.textContent = '❌ Ошибка сети. Проверьте соединение.';
     status.style.color = 'red';
+    console.error(error);
   }
 });
