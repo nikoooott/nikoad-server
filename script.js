@@ -10,7 +10,7 @@ document.getElementById('orderForm').addEventListener('submit', async e => {
   status.style.color = 'black';
 
   try {
-    const res = await fetch('https://nikoad-backend.fly.dev/api/send', { // <== мой сервер
+    const res = await fetch('https://nikoad-backend.fly.dev/api/send', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, tg, msg }),
