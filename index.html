@@ -1,488 +1,443 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NikoAd — Реклама в Telegram</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NikoAd — Реклама в Telegram</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-    * {
-      box-sizing: border-box;
-    }
+  * {
+    box-sizing: border-box;
+  }
 
-    body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #6a0dad, #12005e);
+    color: #f0f0f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+
+  .channels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 900px;
+    margin-bottom: 40px;
+  }
+
+  .channel-card {
+    background: #2e005e;
+    border-radius: 12px;
+    padding: 20px;
+    width: 220px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(106, 13, 173, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .channel-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(106, 13, 173, 0.8);
+  }
+
+  .channel-name a {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #bf94ff;
+    text-decoration: none;
+  }
+  .channel-name a:hover {
+    text-decoration: underline;
+  }
+
+  .subscribers {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    color: #b0a9e6;
+  }
+
+  .btn-show {
+    align-self: flex-start;
+    background: #8a2be2;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+  }
+
+  .btn-show:hover {
+    background: #bf94ff;
+  }
+
+  /* Модальное окно для статистики */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right:0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .modal.active {
+    display: flex;
+  }
+
+  .modal-content {
+    background: #210044;
+    border-radius: 16px;
+    padding: 30px 40px;
+    max-width: 500px;
+    width: 90%;
+    color: #e3dbff;
+    box-shadow: 0 6px 30px rgba(106, 13, 173, 0.8);
+    position: relative;
+    overflow-y: auto;
+    max-height: 80vh;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: #8a2be2;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  .modal-close:hover {
+    background: #bf94ff;
+  }
+
+  .modal-header {
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .stat-item {
+    margin-bottom: 12px;
+    font-size: 1rem;
+  }
+  .stat-item span {
+    font-weight: 700;
+    color: #bf94ff;
+  }
+
+  /* Форма заявки */
+  form {
+    background: #2e005e;
+    max-width: 700px;
+    width: 100%;
+    border-radius: 14px;
+    padding: 25px 30px;
+    box-shadow: 0 6px 20px rgba(106, 13, 173, 0.7);
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+  }
+
+  form input, form textarea {
+    background: #3c007d;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #eee;
+    resize: vertical;
+    transition: background-color 0.3s ease;
+  }
+
+  form input::placeholder,
+  form textarea::placeholder {
+    color: #b0a9e6;
+  }
+
+  form input:focus, form textarea:focus {
+    outline: none;
+    background-color: #5a00bc;
+  }
+
+  form button {
+    background: #8a2be2;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  form button:hover {
+    background: #bf94ff;
+  }
+
+  #status {
+    margin-top: 10px;
+    min-height: 22px;
+    font-weight: 700;
+    color: #8efc8e;
+  }
+
+  /* Адаптив */
+  @media (max-width: 600px) {
+    .channels {
       flex-direction: column;
       align-items: center;
-      padding: 20px;
-      overflow-x: hidden;
-    }
-
-    h1 {
-      font-weight: 900;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px rgba(0,0,0,0.3);
-      font-size: 2.5rem;
-      user-select: none;
-    }
-
-    /* Карточки каналов */
-    .channels-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      width: 100%;
-      max-width: 1100px;
-      margin-bottom: 40px;
     }
 
     .channel-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      padding: 20px;
-      width: 280px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      user-select: none;
-    }
-    .channel-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 16px 30px rgba(0,0,0,0.4);
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    .channel-title {
-      font-weight: 700;
-      font-size: 1.3rem;
-      margin-bottom: 8px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .channel-subscribers {
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-      color: #ddd;
-    }
-
-    .channel-info {
-      font-size: 0.9rem;
-      line-height: 1.3;
-      margin-bottom: 15px;
-      color: #ccc;
-      height: 72px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .btn-stat {
-      align-self: flex-start;
-      background: #7b5cff;
-      border: none;
-      color: #fff;
-      padding: 10px 18px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      box-shadow: 0 4px 15px #7b5cffcc;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      user-select: none;
-    }
-    .btn-stat:hover {
-      background-color: #6842f5;
-      box-shadow: 0 6px 25px #6842f5cc;
-    }
-
-    /* Выбор каналов + времени + цена */
-    .selection-container {
-      background: rgba(255, 255, 255, 0.12);
-      padding: 25px;
-      border-radius: 15px;
-      max-width: 600px;
-      width: 100%;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      margin-bottom: 40px;
-      user-select: none;
-    }
-    .selection-container h2 {
-      margin-top: 0;
-      font-weight: 700;
-      font-size: 1.7rem;
-      margin-bottom: 20px;
-      color: #eee;
-      text-align: center;
-      text-shadow: 0 0 10px rgba(0,0,0,0.4);
-    }
-
-    label {
-      display: block;
-      margin: 15px 0 7px;
-      font-weight: 600;
-      color: #ddd;
-    }
-    select, input[type="checkbox"] {
-      cursor: pointer;
-    }
-    .channels-checkboxes {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      max-height: 120px;
-      overflow-y: auto;
-      padding: 10px;
-      border-radius: 12px;
-      background: rgba(0,0,0,0.15);
-      box-shadow: inset 0 0 8px rgba(255,255,255,0.1);
-    }
-    .channels-checkboxes label {
-      background: rgba(123, 92, 255, 0.25);
-      padding: 8px 15px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 1rem;
-      color: #fff;
-      user-select: none;
-      transition: background-color 0.3s ease;
-    }
-    .channels-checkboxes input[type="checkbox"]:checked + span {
-      background: #7b5cff;
-      box-shadow: 0 0 10px #7b5cffaa;
-    }
-    .channels-checkboxes input[type="checkbox"] {
-      display: none;
-    }
-
-    select#duration {
-      width: 100%;
-      padding: 12px;
-      border-radius: 12px;
-      border: none;
-      background: rgba(255,255,255,0.2);
-      color: #fff;
-      font-size: 1.1rem;
-      font-weight: 600;
-      user-select: none;
-      transition: background-color 0.3s ease;
-    }
-    select#duration:hover, select#duration:focus {
-      background: rgba(255,255,255,0.35);
-      outline: none;
-    }
-
-    .price-display {
-      margin-top: 20px;
-      font-size: 1.8rem;
-      font-weight: 900;
-      color: #7b5cff;
-      text-align: center;
-      text-shadow: 0 0 20px #7b5cffbb;
-      user-select: none;
-    }
-
-    /* Форма заявки */
-    form#orderForm {
-      background: rgba(255,255,255,0.12);
-      padding: 25px;
-      border-radius: 15px;
-      max-width: 600px;
-      width: 100%;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      user-select: none;
-    }
-    form#orderForm h2 {
-      margin-top: 0;
-      font-weight: 700;
-      font-size: 1.7rem;
-      margin-bottom: 20px;
-      color: #eee;
-      text-align: center;
-      text-shadow: 0 0 10px rgba(0,0,0,0.4);
-    }
-
-    form#orderForm label {
-      color: #ddd;
-      font-weight: 600;
-      margin-top: 15px;
-      display: block;
-    }
-    form#orderForm input,
-    form#orderForm textarea {
-      width: 100%;
-      padding: 12px;
-      border-radius: 12px;
-      border: none;
-      background: rgba(255,255,255,0.25);
-      color: #fff;
-      font-size: 1rem;
-      margin-top: 5px;
-      resize: vertical;
-      font-family: 'Montserrat', sans-serif;
-      transition: background-color 0.3s ease;
-    }
-    form#orderForm input::placeholder,
-    form#orderForm textarea::placeholder {
-      color: #ddd;
-    }
-    form#orderForm input:focus,
-    form#orderForm textarea:focus {
-      background-color: rgba(255,255,255,0.5);
-      outline: none;
-    }
-
-    form#orderForm button {
-      margin-top: 25px;
-      width: 100%;
-      padding: 15px;
-      font-weight: 700;
-      font-size: 1.2rem;
-      border: none;
-      border-radius: 12px;
-      background: #7b5cff;
-      color: #fff;
-      cursor: pointer;
-      box-shadow: 0 6px 25px #7b5cffcc;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      user-select: none;
-    }
-    form#orderForm button:hover {
-      background-color: #6842f5;
-      box-shadow: 0 8px 35px #6842f5cc;
-    }
-
-    #status {
-      margin-top: 15px;
-      font-weight: 600;
-      text-align: center;
-      min-height: 24px;
-      user-select: none;
-    }
-
-    /* Модальное окно статистики */
-    .modal-bg {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(0,0,0,0.7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 999;
-    }
-    .modal-bg.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .modal-content {
-      background: #1f1f3f;
-      border-radius: 20px;
-      max-width: 480px;
       width: 90%;
-      padding: 25px 30px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-      color: #ddd;
-      position: relative;
-      user-select: text;
-      animation: modalFadeIn 0.3s ease forwards;
-    }
-    @keyframes modalFadeIn {
-      from {opacity: 0; transform: translateY(40px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-    .modal-close {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      background: transparent;
-      border: none;
-      font-size: 2rem;
-      color: #aaa;
-      cursor: pointer;
-      user-select: none;
-      transition: color 0.2s ease;
-    }
-    .modal-close:hover {
-      color: #fff;
-    }
-    .modal-title {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 15px;
-      text-align: center;
-      color: #7b5cff;
-      user-select: none;
-    }
-    .modal-stat {
-      font-size: 1rem;
-      line-height: 1.4;
-      margin-bottom: 8px;
-      user-select: text;
-    }
-    .modal-stat strong {
-      color: #fff;
     }
 
-    /* Скролл для чекбоксов каналов */
-    .channels-checkboxes::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+    form {
+      padding: 20px;
     }
-    .channels-checkboxes::-webkit-scrollbar-thumb {
-      background-color: #7b5cffaa;
-      border-radius: 10px;
-    }
-    .channels-checkboxes::-webkit-scrollbar-track {
-      background-color: transparent;
-    }
-
-    /* Responsive */
-    @media (max-width: 700px) {
-      .channels-container {
-        justify-content: center;
-      }
-      .channel-card {
-        width: 90%;
-      }
-      .selection-container, form#orderForm {
-        max-width: 95%;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <h1>NikoAd — Реклама в Telegram</h1>
+<h1>NikoAd — Реклама в Telegram</h1>
 
-  <section class="channels-container" id="channelsContainer">
-    <!-- Карточки каналов вставятся сюда JS -->
-  </section>
+<div class="channels" id="channels">
+  <!-- Карточки каналов -->
+</div>
 
-  <section class="selection-container">
-    <h2>Выберите каналы и длительность рекламы</h2>
-
-    <label>Каналы для рекламы (можно несколько):</label>
-    <div class="channels-checkboxes" id="channelCheckboxes">
-      <!-- JS вставит чекбоксы -->
-    </div>
-
-    <label for="duration">Длительность размещения:</label>
-    <select id="duration" name="duration">
-      <option value="24" data-price="4000">24 часа — 4000 ₽</option>
-      <option value="48" data-price="7000">48 часов — 7000 ₽</option>
-      <option value="72" data-price="9000">72 часа — 9000 ₽</option>
-      <option value="168" data-price="20000">7 дней — 20000 ₽</option>
-    </select>
-
-    <div class="price-display" id="priceDisplay">Итого: 0 ₽</div>
-  </section>
-
-  <form id="orderForm" action="https://formspree.io/f/xnnvlzor" method="POST">
-    <h2>Оставьте заявку</h2>
-
-    <label for="name">Ваше имя</label>
-    <input type="text" id="name" name="Имя" placeholder="Введите имя" required />
-
-    <label for="telegram">Telegram username</label>
-    <input
-      type="text"
-      id="telegram"
-      name="Telegram"
-      placeholder="@username"
-      required
-    />
-
-    <label for="postText">Текст рекламного поста</label>
-    <textarea
-      id="postText"
-      name="Рекламный пост"
-      placeholder="Что хотите опубликовать?"
-      required
-      rows="5"
-    ></textarea>
-
-    <input type="hidden" name="Выбранные каналы" id="selectedChannelsInput" />
-    <input type="hidden" name="Длительность" id="selectedDurationInput" />
-
-    <button type="submit">Отправить заявку</button>
-    <div id="status"></div>
-  </form>
-
-  <!-- Модальное окно -->
-  <div class="modal-bg" id="modalBg">
-    <div class="modal-content" id="modalContent">
-      <button class="modal-close" id="modalClose">&times;</button>
-      <h3 class="modal-title" id="modalTitle">Статистика канала</h3>
-      <div id="modalStats"></div>
-    </div>
+<!-- Модальное окно со статистикой -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <div class="modal-header" id="modalTitle"></div>
+    <div id="modalStats"></div>
   </div>
+</div>
 
-  <script>
-    // Данные каналов, отсортированные по подписчикам (убывание)
-    const channels = [
-      {
-        id: 'channel1',
-        name: 'Ищу Тебя Тверь',
-        subs: 16988,
-        description: 'Возраст: 1 год 7 месяцев. ERR: 26%. Средний охват за 24ч: 2.6k.',
-        stats: {
-          Подписчики: '16988',
-          'ERR (вовлечённость)': '26%',
-          'Средний охват 24ч': '2,600',
-          'Возраст канала': '1 год 7 месяцев',
-          'Реакции за месяц': '183',
-          'Пересылки': '8',
-        }
-      },
-      {
-        id: 'channel2',
-        name: 'Ищу Тебя Нижневартовск',
-        subs: 12594,
-        description: 'Возраст: 2 года 11 месяцев. ERR: 43.7%. Средний охват за 24ч: 2.2k.',
-        stats: {
-          Подписчики: '12,161',
-          'ERR (вовлечённость)': '43.7%',
-          'Средний охват 24ч': '2,200',
-          'Возраст канала': '2 года 11 месяцев',
-          'Реакции за месяц': '6',
-          'Пересылки': '5',
-        }
-      },
-      {
-        id: 'channel3',
-        name: 'NIKO 🇦🇲',
-        subs: 14095,
-        description: 'Возраст: 1 год 5 месяцев. ERR: 38%. Средний охват за 24ч: 574.',
-        stats: {
-          Подписчики: '14,095',
-          'ERR (вовлечённость)': '38%',
-          'Средний охват 24ч': '574',
-          'Возраст канала': '1 год 5 месяцев',
-          'Реакции за месяц': '4',
-          'Пересылки': '2',
-        }
-      },
-      {
-        id: 'channel4',
-        name: 'Ищу Тебя Красноярск',
-        subs: 1134,
-        description: 'Возраст: 1 год 11 месяцев. ERR: 247%. Средний охват за 24ч: 865.',
-        stats: {
-          Подписчики: '1,134',
-          'ERR (вовлечённость)': '247%',
-          'Средний охват 24ч': '865',
-          'Возраст канала': '1 год 
+<form id="orderForm">
+  <input type="text" id="name" name="name" placeholder="Ваше имя" required />
+  <input type="text" id="tg" name="tg" placeholder="Telegram (@никнейм)" required />
+  <textarea id="msg" name="msg" placeholder="Текст рекламного поста" rows="4" required></textarea>
+
+  <label for="duration">Выберите время размещения:</label>
+  <select id="duration" name="duration" required>
+    <option value="24">24 часа - 1550₽</option>
+    <option value="48">48 часов - 1700₽</option>
+    <option value="72">72 часа - 1900₽</option>
+  </select>
+
+  <div style="margin: 10px 0; font-weight: 700; color: #bf94ff;" id="priceCalc">Цена: 1550₽</div>
+
+  <button type="submit">Отправить заявку</button>
+  <div id="status"></div>
+</form>
+
+<script>
+  const channelsData = [
+    {
+      id: 'tver',
+      name: 'Ищу Тебя Тверь',
+      subs: 10500,
+      link: 'https://t.me/ishutebyatverr',
+      prices: {24: 1550, 48: 1700, 72: 1900},
+      stats: {
+        "Подписчики": "10,500",
+        "Средний охват за 24 часа": "2,600",
+        "Вовлеченность (ERR)": "26%",
+        "Возраст канала": "1 год 7 месяцев",
+        "Реакции": "183",
+        "Пересылки": "8"
+      }
+    },
+    {
+      id: 'nizhnevartovsk',
+      name: 'Ищу Тебя Нижневартовск',
+      subs: 6000,
+      link: 'https://t.me/nizhnevartovsk_dtp',
+      prices: {24: 1400, 48: 1600, 72: 1800},
+      stats: {
+        "Подписчики": "6,000",
+        "Средний охват за 24 часа": "574",
+        "Вовлеченность (ERR)": "38%",
+        "Возраст канала": "1 год 5 месяцев",
+        "Реакции": "4",
+        "Пересылки": "2"
+      }
+    },
+    {
+      id: 'niko',
+      name: 'NIKO 🇦🇲',
+      subs: 3500,
+      link: 'https://t.me/nikotver',
+      prices: {24: 1000, 48: 1150, 72: 1250},
+      stats: {
+        "Подписчики": "3,500",
+        "Средний охват за 24 часа": "773",
+        "Вовлеченность (ERR)": "247%",
+        "Возраст канала": "1 год 11 месяцев",
+        "Реакции": "40",
+        "Пересылки": "11"
+      }
+    },
+    {
+      id: 'krasnoyarsk',
+      name: 'Ищу Тебя Красноярск',
+      subs: 3000,
+      link: 'https://t.me/ishutebyakrasnoyarsk',
+      prices: {24: 800, 48: 1000, 72: 1150},
+      stats: {
+        "Подписчики": "3,000",
+        "Средний охват за 24 часа": "649",
+        "Вовлеченность (ERR)": "37%",
+        "Возраст канала": "1 год 6 месяцев",
+        "Реакции": "4",
+        "Пересылки": "4"
+      }
+    }
+  ];
+
+  const channelsContainer = document.getElementById('channels');
+  const modal = document.getElementById('modal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalStats = document.getElementById('modalStats');
+  const modalClose = document.getElementById('modalClose');
+  const orderForm = document.getElementById('orderForm');
+  const priceCalc = document.getElementById('priceCalc');
+  const durationSelect = document.getElementById('duration');
+  const statusDiv = document.getElementById('status');
+
+  let selectedChannel = null;
+
+  // Создаем карточки с ссылками и кнопками
+  channelsData.forEach(channel => {
+    const card = document.createElement('div');
+    card.className = 'channel-card';
+    card.innerHTML = `
+      <div class="channel-name"><a href="${channel.link}" target="_blank">${channel.name}</a></div>
+      <div class="subscribers">Подписчиков: ${channel.subs.toLocaleString()}</div>
+      <button class="btn-show">Показать статистику</button>
+    `;
+    card.querySelector('.btn-show').addEventListener('click', () => {
+      openModal(channel);
+    });
+    channelsContainer.appendChild(card);
+  });
+
+  // Открыть модальное окно со статистикой
+  function openModal(channel) {
+    selectedChannel = channel;
+    modalTitle.textContent = channel.name;
+    modalStats.innerHTML = '';
+    for (const [key, value] of Object.entries(channel.stats)) {
+      const div = document.createElement('div');
+      div.className = 'stat-item';
+      div.innerHTML = `<span>${key}:</span> ${value}`;
+      modalStats.appendChild(div);
+    }
+    modal.classList.add('active');
+
+    // Обновляем цену по умолчанию
+    durationSelect.value = '24';
+    updatePrice();
+  }
+
+  // Закрыть модальное окно
+  modalClose.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+
+  // Обновление цены при смене времени
+  durationSelect.addEventListener('change', updatePrice);
+
+  function updatePrice() {
+    if (!selectedChannel) return;
+    const val = durationSelect.value;
+    const price = selectedChannel.prices[val] || 0;
+    priceCalc.textContent = `Цена: ${price}₽`;
+  }
+
+  // Отправка формы
+  orderForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = orderForm.name.value.trim();
+    const tg = orderForm.tg.value.trim();
+    const msg = orderForm.msg.value.trim();
+    const duration = orderForm.duration.value;
+    if (!selectedChannel) {
+      statusDiv.textContent = '❌ Пожалуйста, выберите канал и посмотрите статистику.';
+      statusDiv.style.color = '#ff8e8e';
+      return;
+    }
+
+    const price = selectedChannel.prices[duration];
+
+    // Твой backend URL
+    const backendUrl = 'https://nikoad-server.onrender.com/api/send';
+
+    const data = {
+      name,
+      tg,
+      msg,
+      duration,
+      channel: selectedChannel.name,
+      price
+    };
+
+    try {
+      const res = await fetch(backendUrl, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+      });
+      if (res.ok) {
+        statusDiv.textContent = '✅ Заявка отправлена!';
+        statusDiv.style.color = '#8efc8e';
+        orderForm.reset();
+      } else {
+        throw new Error('Ошибка отправки');
+      }
+    } catch (err) {
+      statusDiv.textContent = '❌ Ошибка сети. Проверьте подключение.';
+      statusDiv.style.color = '#ff8e8e';
+    }
+  });
+</script>
+
+</body>
+</html>
