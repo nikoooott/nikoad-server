@@ -5,91 +5,362 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NikoAd — Реклама в Telegram</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
       color: #fff;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       padding: 20px;
+      overflow-x: hidden;
     }
+
     h1 {
-      margin-bottom: 10px;
       font-weight: 900;
+      margin-bottom: 20px;
       text-shadow: 0 0 10px rgba(0,0,0,0.3);
+      font-size: 2.5rem;
+      user-select: none;
     }
-    .form-container {
-      background: rgba(255,255,255,0.1);
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-      max-width: 420px;
+
+    /* Карточки каналов */
+    .channels-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
       width: 100%;
-      backdrop-filter: blur(10px);
-      animation: fadeIn 1s ease forwards;
+      max-width: 1100px;
+      margin-bottom: 40px;
     }
-    label {
-      display: block;
-      margin: 15px 0 5px;
-      font-weight: 600;
+
+    .channel-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      width: 280px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      user-select: none;
     }
-    input[type="text"],
-    textarea,
-    select {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
-      background: rgba(255,255,255,0.2);
-      color: #fff;
+    .channel-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 16px 30px rgba(0,0,0,0.4);
+      background: rgba(255, 255, 255, 0.2);
     }
-    input[type="text"]::placeholder,
-    textarea::placeholder {
+
+    .channel-title {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .channel-subscribers {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
       color: #ddd;
     }
-    input[type="text"]:focus,
-    textarea:focus,
-    select:focus {
-      background-color: rgba(255,255,255,0.4);
+
+    .channel-info {
+      font-size: 0.9rem;
+      line-height: 1.3;
+      margin-bottom: 15px;
+      color: #ccc;
+      height: 72px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
-    button {
-      margin-top: 20px;
-      width: 100%;
-      padding: 14px;
+
+    .btn-stat {
+      align-self: flex-start;
       background: #7b5cff;
       border: none;
+      color: #fff;
+      padding: 10px 18px;
       border-radius: 10px;
       font-weight: 700;
-      font-size: 18px;
-      color: #fff;
+      font-size: 1rem;
       cursor: pointer;
       box-shadow: 0 4px 15px #7b5cffcc;
       transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
     }
-    button:hover {
+    .btn-stat:hover {
       background-color: #6842f5;
       box-shadow: 0 6px 25px #6842f5cc;
     }
+
+    /* Выбор каналов + времени + цена */
+    .selection-container {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 25px;
+      border-radius: 15px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      margin-bottom: 40px;
+      user-select: none;
+    }
+    .selection-container h2 {
+      margin-top: 0;
+      font-weight: 700;
+      font-size: 1.7rem;
+      margin-bottom: 20px;
+      color: #eee;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 7px;
+      font-weight: 600;
+      color: #ddd;
+    }
+    select, input[type="checkbox"] {
+      cursor: pointer;
+    }
+    .channels-checkboxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      max-height: 120px;
+      overflow-y: auto;
+      padding: 10px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.15);
+      box-shadow: inset 0 0 8px rgba(255,255,255,0.1);
+    }
+    .channels-checkboxes label {
+      background: rgba(123, 92, 255, 0.25);
+      padding: 8px 15px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #fff;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    .channels-checkboxes input[type="checkbox"]:checked + span {
+      background: #7b5cff;
+      box-shadow: 0 0 10px #7b5cffaa;
+    }
+    .channels-checkboxes input[type="checkbox"] {
+      display: none;
+    }
+
+    select#duration {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    select#duration:hover, select#duration:focus {
+      background: rgba(255,255,255,0.35);
+      outline: none;
+    }
+
+    .price-display {
+      margin-top: 20px;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #7b5cff;
+      text-align: center;
+      text-shadow: 0 0 20px #7b5cffbb;
+      user-select: none;
+    }
+
+    /* Форма заявки */
+    form#orderForm {
+      background: rgba(255,255,255,0.12);
+      padding: 25px;
+      border-radius: 15px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      user-select: none;
+    }
+    form#orderForm h2 {
+      margin-top: 0;
+      font-weight: 700;
+      font-size: 1.7rem;
+      margin-bottom: 20px;
+      color: #eee;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    form#orderForm label {
+      color: #ddd;
+      font-weight: 600;
+      margin-top: 15px;
+      display: block;
+    }
+    form#orderForm input,
+    form#orderForm textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      background: rgba(255,255,255,0.25);
+      color: #fff;
+      font-size: 1rem;
+      margin-top: 5px;
+      resize: vertical;
+      font-family: 'Montserrat', sans-serif;
+      transition: background-color 0.3s ease;
+    }
+    form#orderForm input::placeholder,
+    form#orderForm textarea::placeholder {
+      color: #ddd;
+    }
+    form#orderForm input:focus,
+    form#orderForm textarea:focus {
+      background-color: rgba(255,255,255,0.5);
+      outline: none;
+    }
+
+    form#orderForm button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 15px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 12px;
+      background: #7b5cff;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 6px 25px #7b5cffcc;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    form#orderForm button:hover {
+      background-color: #6842f5;
+      box-shadow: 0 8px 35px #6842f5cc;
+    }
+
     #status {
       margin-top: 15px;
       font-weight: 600;
       text-align: center;
-      min-height: 20px;
+      min-height: 24px;
+      user-select: none;
     }
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
+
+    /* Модальное окно статистики */
+    .modal-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 999;
+    }
+    .modal-bg.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-content {
+      background: #1f1f3f;
+      border-radius: 20px;
+      max-width: 480px;
+      width: 90%;
+      padding: 25px 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+      color: #ddd;
+      position: relative;
+      user-select: text;
+      animation: modalFadeIn 0.3s ease forwards;
+    }
+    @keyframes modalFadeIn {
+      from {opacity: 0; transform: translateY(40px);}
       to {opacity: 1; transform: translateY(0);}
+    }
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      font-size: 2rem;
+      color: #aaa;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.2s ease;
+    }
+    .modal-close:hover {
+      color: #fff;
+    }
+    .modal-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      text-align: center;
+      color: #7b5cff;
+      user-select: none;
+    }
+    .modal-stat {
+      font-size: 1rem;
+      line-height: 1.4;
+      margin-bottom: 8px;
+      user-select: text;
+    }
+    .modal-stat strong {
+      color: #fff;
+    }
+
+    /* Скролл для чекбоксов каналов */
+    .channels-checkboxes::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .channels-checkboxes::-webkit-scrollbar-thumb {
+      background-color: #7b5cffaa;
+      border-radius: 10px;
+    }
+    .channels-checkboxes::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .channels-container {
+        justify-content: center;
+      }
+      .channel-card {
+        width: 90%;
+      }
+      .selection-container, form#orderForm {
+        max-width: 95%;
+      }
     }
   </style>
 </head>
@@ -97,82 +368,121 @@
 
   <h1>NikoAd — Реклама в Telegram</h1>
 
-  <form
-    class="form-container"
-    id="orderForm"
-    action="https://formspree.io/f/xnnvlzor" 
-    method="POST"
-  >
-    <label for="name">Имя</label>
-    <input type="text" id="name" name="Имя" placeholder="Ваше имя" required />
+  <section class="channels-container" id="channelsContainer">
+    <!-- Карточки каналов вставятся сюда JS -->
+  </section>
 
-    <label for="tg">Telegram username</label>
+  <section class="selection-container">
+    <h2>Выберите каналы и длительность рекламы</h2>
+
+    <label>Каналы для рекламы (можно несколько):</label>
+    <div class="channels-checkboxes" id="channelCheckboxes">
+      <!-- JS вставит чекбоксы -->
+    </div>
+
+    <label for="duration">Длительность размещения:</label>
+    <select id="duration" name="duration">
+      <option value="24" data-price="4000">24 часа — 4000 ₽</option>
+      <option value="48" data-price="7000">48 часов — 7000 ₽</option>
+      <option value="72" data-price="9000">72 часа — 9000 ₽</option>
+      <option value="168" data-price="20000">7 дней — 20000 ₽</option>
+    </select>
+
+    <div class="price-display" id="priceDisplay">Итого: 0 ₽</div>
+  </section>
+
+  <form id="orderForm" action="https://formspree.io/f/xnnvlzor" method="POST">
+    <h2>Оставьте заявку</h2>
+
+    <label for="name">Ваше имя</label>
+    <input type="text" id="name" name="Имя" placeholder="Введите имя" required />
+
+    <label for="telegram">Telegram username</label>
     <input
       type="text"
-      id="tg"
+      id="telegram"
       name="Telegram"
       placeholder="@username"
       required
     />
 
-    <label for="msg">Текст рекламного поста</label>
+    <label for="postText">Текст рекламного поста</label>
     <textarea
-      id="msg"
+      id="postText"
       name="Рекламный пост"
-      placeholder="Что вы хотите рекламировать?"
+      placeholder="Что хотите опубликовать?"
       required
+      rows="5"
     ></textarea>
 
-    <label for="channel">Выберите канал(ы) для рекламы</label>
-    <select id="channel" name="Канал" multiple required size="4">
-      <option value="Ищу Тебя Тверь">Ищу Тебя Тверь</option>
-      <option value="Ищу Тебя Нижневартовск">Ищу Тебя Нижневартовск</option>
-      <option value="NIKO 🇦🇲">NIKO 🇦🇲</option>
-      <option value="Ищу Тебя Красноярск">Ищу Тебя Красноярск</option>
-    </select>
-
-    <label for="duration">Выберите длительность рекламы</label>
-    <select id="duration" name="Длительность" required>
-      <option value="24 часа">24 часа</option>
-      <option value="48 часов">48 часов</option>
-      <option value="72 часа">72 часа</option>
-      <option value="Навсегда">Навсегда</option>
-      <option value="История">История</option>
-    </select>
+    <input type="hidden" name="Выбранные каналы" id="selectedChannelsInput" />
+    <input type="hidden" name="Длительность" id="selectedDurationInput" />
 
     <button type="submit">Отправить заявку</button>
     <div id="status"></div>
   </form>
 
+  <!-- Модальное окно -->
+  <div class="modal-bg" id="modalBg">
+    <div class="modal-content" id="modalContent">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <h3 class="modal-title" id="modalTitle">Статистика канала</h3>
+      <div id="modalStats"></div>
+    </div>
+  </div>
+
   <script>
-    const orderForm = document.getElementById('orderForm');
-    const status = document.getElementById('status');
-
-    orderForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(orderForm);
-
-      try {
-        const response = await fetch(orderForm.action, {
-          method: 'POST',
-          headers: { Accept: 'application/json' },
-          body: formData,
-        });
-
-        if (response.ok) {
-          status.textContent = '✅ Заявка отправлена!';
-          status.style.color = '#00ff7f';
-          orderForm.reset();
-        } else {
-          status.textContent = '❌ Ошибка при отправке. Попробуйте позже.';
-          status.style.color = '#ff4c4c';
+    // Данные каналов, отсортированные по подписчикам (убывание)
+    const channels = [
+      {
+        id: 'channel1',
+        name: 'Ищу Тебя Тверь',
+        subs: 16988,
+        description: 'Возраст: 1 год 7 месяцев. ERR: 26%. Средний охват за 24ч: 2.6k.',
+        stats: {
+          Подписчики: '16988',
+          'ERR (вовлечённость)': '26%',
+          'Средний охват 24ч': '2,600',
+          'Возраст канала': '1 год 7 месяцев',
+          'Реакции за месяц': '183',
+          'Пересылки': '8',
         }
-      } catch (error) {
-        status.textContent = '❌ Ошибка сети. Проверьте подключение.';
-        status.style.color = '#ff4c4c';
-      }
-    });
-  </script>
-</body>
-</html>
+      },
+      {
+        id: 'channel2',
+        name: 'Ищу Тебя Нижневартовск',
+        subs: 12594,
+        description: 'Возраст: 2 года 11 месяцев. ERR: 43.7%. Средний охват за 24ч: 2.2k.',
+        stats: {
+          Подписчики: '12,161',
+          'ERR (вовлечённость)': '43.7%',
+          'Средний охват 24ч': '2,200',
+          'Возраст канала': '2 года 11 месяцев',
+          'Реакции за месяц': '6',
+          'Пересылки': '5',
+        }
+      },
+      {
+        id: 'channel3',
+        name: 'NIKO 🇦🇲',
+        subs: 14095,
+        description: 'Возраст: 1 год 5 месяцев. ERR: 38%. Средний охват за 24ч: 574.',
+        stats: {
+          Подписчики: '14,095',
+          'ERR (вовлечённость)': '38%',
+          'Средний охват 24ч': '574',
+          'Возраст канала': '1 год 5 месяцев',
+          'Реакции за месяц': '4',
+          'Пересылки': '2',
+        }
+      },
+      {
+        id: 'channel4',
+        name: 'Ищу Тебя Красноярск',
+        subs: 1134,
+        description: 'Возраст: 1 год 11 месяцев. ERR: 247%. Средний охват за 24ч: 865.',
+        stats: {
+          Подписчики: '1,134',
+          'ERR (вовлечённость)': '247%',
+          'Средний охват 24ч': '865',
+          'Возраст канала': '1 год 
