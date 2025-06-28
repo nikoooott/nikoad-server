@@ -1,65 +1,133 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>NikoAd — Заявка</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>NikoAd — Заявка на рекламу</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
-      font-family: sans-serif;
-      background: #f8f8f8;
-      padding: 40px;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
     }
 
-    form {
-      max-width: 500px;
-      margin: auto;
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    header {
+      background: #111827;
+      color: white;
+      padding: 20px 40px;
+      text-align: center;
     }
 
     h1 {
-      text-align: center;
-      margin-bottom: 20px;
+      margin: 0;
+      font-size: 28px;
     }
 
-    input, textarea {
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    form input, form textarea {
       width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-
-    button {
-      background-color: #4CAF50;
-      color: white;
       padding: 12px;
-      border: none;
-      border-radius: 5px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
       font-size: 16px;
-      cursor: pointer;
-      width: 100%;
-      margin-top: 10px;
     }
 
-    button:hover {
-      background-color: #45a049;
+    form button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      background-color: #4f46e5;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: #4338ca;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f3f4f6;
+    }
+
+    a {
+      color: #4f46e5;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
+<header>
+  <h1>NikoAd — Закажи рекламу в Telegram</h1>
+</header>
+
+<div class="container">
   <form action="https://formspree.io/f/xnnvlzor" method="POST">
-    <h1>Оставьте заявку</h1>
-    <input type="text" name="Имя" placeholder="Ваше имя" required>
-    <input type="text" name="Telegram" placeholder="@ваш_ник" required>
+    <input type="text" name="Имя" placeholder="Ваше имя" required />
+    <input type="text" name="Telegram" placeholder="@ваш_ник" required />
     <textarea name="Комментарий" placeholder="Комментарий (необязательно)"></textarea>
-    <button type="submit">Отправить</button>
+    <button type="submit">Отправить заявку</button>
   </form>
+
+  <h2 style="margin-top:40px;">📊 Статистика и цены</h2>
+  <table>
+    <tr>
+      <th>Канал</th>
+      <th>Подписчиков</th>
+      <th>Цены</th>
+    </tr>
+    <tr>
+      <td><a href="https://t.me/ищутебятверь" target="_blank">Ищу Тебя Тверь</a></td>
+      <td>10 500</td>
+      <td>24ч – 1550₽, 48ч – 1700₽, навсегда – 2600₽</td>
+    </tr>
+    <tr>
+      <td><a href="https://t.me/ищутебянижневартовск" target="_blank">Ищу Тебя Нижневартовск</a></td>
+      <td>6 000</td>
+      <td>24ч – 1400₽, 48ч – 1600₽, навсегда – 2200₽</td>
+    </tr>
+    <tr>
+      <td><a href="https://t.me/niko_armenia" target="_blank">NIKO 🇦🇲</a></td>
+      <td>3 500</td>
+      <td>24ч – 1000₽, 48ч – 1150₽, история – 800₽</td>
+    </tr>
+    <tr>
+      <td><a href="https://t.me/ищутебякрасноярск" target="_blank">Ищу Тебя Красноярск</a></td>
+      <td>3 000</td>
+      <td>24ч – 800₽, 48ч – 1000₽, навсегда – 1300₽</td>
+    </tr>
+  </table>
+</div>
 
 </body>
 </html>
