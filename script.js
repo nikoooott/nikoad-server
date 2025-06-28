@@ -1,33 +1,69 @@
-document.getElementById('orderForm').addEventListener('submit', async e => {
-  e.preventDefault();
-
-  const name = document.getElementById('name').value.trim();
-  const tg = document.getElementById('tg').value.trim();
-  const msg = document.getElementById('msg').value.trim();
-
-  const status = document.getElementById('status');
-  status.textContent = '⏳ Отправляем заявку...';
-  status.style.color = 'black';
-
-  try {
-    const res = await fetch('https://nikoad-backend.fly.dev/api/send', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, tg, msg }),
-    });
-
-    if (res.ok) {
-      status.textContent = '✅ Заявка отправлена!';
-      status.style.color = 'green';
-      document.getElementById('orderForm').reset();
-    } else {
-      const errorText = await res.text();
-      status.textContent = `❌ Ошибка: ${errorText}`;
-      status.style.color = 'red';
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NikoAd — Заявка</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f4f4f4;
     }
-  } catch (error) {
-    status.textContent = '❌ Ошибка сети. Проверьте соединение.';
-    status.style.color = 'red';
-    console.error(error);
-  }
-});
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 12px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #status {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Оставьте заявку</h1>
+
+  <form action="https://formspree.io/f/xnnvlzor" method="POST" id="orderForm">
+    <input type="text" name="Имя" placeholder="Ваше имя" required>
+    <input type="text" name="Telegram" placeholder="@ваш_ник" required>
+    <textarea name="Комментарий" placeholder="Комментарий (необязательно)"></textarea>
+    <button type="submit">Отправить</button>
+  </form>
+
+</body>
+</html>
