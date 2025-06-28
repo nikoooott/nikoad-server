@@ -2,26 +2,210 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NikoAd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NikoAd — Реклама Телеграм каналов</title>
   <style>
-    body { font-family: sans-serif; padding: 2rem; background: #f5f5f5; }
-    form { background: #fff; padding: 1.5rem; border-radius: 10px; max-width: 400px; margin: auto; }
-    input, textarea { width: 100%; margin-bottom: 1rem; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
-    button { padding: 10px 20px; background: #0088cc; color: white; border: none; border-radius: 5px; cursor: pointer; }
-    #status { text-align: center; margin-top: 1rem; font-weight: bold; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    header {
+      padding: 20px;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    main {
+      background: rgba(0,0,0,0.3);
+      padding: 25px 30px;
+      border-radius: 15px;
+      max-width: 450px;
+      width: 90%;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+    h2 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-weight: 600;
+      text-align: center;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    input, textarea {
+      padding: 10px 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      resize: vertical;
+    }
+    input:focus, textarea:focus {
+      box-shadow: 0 0 8px #ffd700;
+      background-color: #fff;
+      color: #333;
+    }
+    button {
+      background: #ffd700;
+      color: #333;
+      border: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #ffca00cc;
+    }
+    .prices {
+      margin-bottom: 25px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      background: #1e1e2fcc;
+      padding: 15px;
+      border-radius: 12px;
+      white-space: pre-line;
+    }
+    #status {
+      margin-top: 15px;
+      font-weight: 600;
+      text-align: center;
+      min-height: 20px;
+    }
+    footer {
+      color: #ddd;
+      margin-bottom: 20px;
+      font-size: 0.8rem;
+      text-align: center;
+      user-select: none;
+    }
+    a {
+      color: #ffd700;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <h2 style="text-align:center">Заказать рекламу — NikoAd</h2>
-  <form id="orderForm">
-    <input type="text" id="name" placeholder="Ваше имя" required />
-    <input type="text" id="tg" placeholder="Ваш Telegram @username" required />
-    <textarea id="msg" placeholder="Комментарий или вопрос..." required></textarea>
-    <button type="submit">Отправить заявку</button>
-    <div id="status"></div>
-  </form>
+  <header>NikoAd — Реклама Телеграм каналов</header>
 
-  <script src="script.js"></script>
+  <main>
+    <div class="prices">
+      <strong>Актуальные цены:</strong>
+
+      <br><br>Ищу Тебя Тверь (10.500 подписчиков)
+      <br>24 часа - 1550₽
+      <br>48 часов - 1700₽
+      <br>72 часа - 1900₽
+      <br>Навсегда - 2600₽
+      <br>История - 1100₽
+      <hr style="border-color: #444;" />
+
+      <br>Ищу тебя Нижневартовск (6000 подписчиков)
+      <br>24 часа - 1400₽
+      <br>48 часов - 1600₽
+      <br>72 часа - 1800₽
+      <br>Навсегда - 2200₽
+      <br>История - 1100₽
+      <hr style="border-color: #444;" />
+
+      <br>NIKO 🇦🇲 (3500 подписчиков)
+      <br>24 часа - 1000₽
+      <br>48 часов - 1150₽
+      <br>72 часа - 1250₽
+      <br>История - 800₽
+      <hr style="border-color: #444;" />
+
+      <br>Ищу Тебя Красноярск (3000 подписчиков)
+      <br>24 часа - 800₽
+      <br>48 часов - 1000₽
+      <br>72 часа - 1150₽
+      <br>Навсегда - 1300₽
+      <br>История - 700₽
+
+      <br><br>Купить — <a href="https://t.me/nikoitt" target="_blank">@nikoitt</a>
+      <br><br><small>Цена может измениться в соответствии с характером рекламы</small>
+    </div>
+
+    <h2>Оставить заявку</h2>
+    <form id="orderForm">
+      <label for="name">Имя*</label>
+      <input type="text" id="name" name="name" required placeholder="Ваше имя" />
+
+      <label for="tg">Telegram*</label>
+      <input type="text" id="tg" name="tg" required placeholder="@username или номер" />
+
+      <label for="msg">Комментарий</label>
+      <textarea id="msg" name="msg" rows="3" placeholder="Дополнительная информация (необязательно)"></textarea>
+
+      <button type="submit">Отправить заявку</button>
+
+      <div id="status"></div>
+    </form>
+  </main>
+
+  <footer>© 2025 NikoAd. Все права защищены.</footer>
+
+  <script>
+    const form = document.getElementById('orderForm');
+    const status = document.getElementById('status');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = form.name.value.trim();
+      const tg = form.tg.value.trim();
+      const msg = form.msg.value.trim();
+
+      if (!name || !tg) {
+        status.textContent = 'Пожалуйста, заполните обязательные поля.';
+        status.style.color = 'red';
+        return;
+      }
+
+      try {
+        const response = await fetch('https://nikoad-server.onrender.com/api/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, tg, msg }),
+        });
+
+        if (response.ok) {
+          status.textContent = '✅ Заявка отправлена!';
+          status.style.color = 'limegreen';
+          form.reset();
+        } else {
+          status.textContent = '❌ Ошибка при отправке. Попробуйте позже.';
+          status.style.color = 'red';
+        }
+      } catch (error) {
+        status.textContent = '❌ Ошибка сети. Проверьте подключение.';
+        status.style.color = 'red';
+      }
+    });
+  </script>
 </body>
 </html>
