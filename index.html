@@ -3,73 +3,176 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NikoAd — Реклама Telegram каналов</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>NikoAd — Реклама в Telegram</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 10px;
+      font-weight: 900;
+      text-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    .form-container {
+      background: rgba(255,255,255,0.1);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      max-width: 420px;
+      width: 100%;
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1s ease forwards;
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: 600;
+    }
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+    input[type="text"]::placeholder,
+    textarea::placeholder {
+      color: #ddd;
+    }
+    input[type="text"]:focus,
+    textarea:focus,
+    select:focus {
+      background-color: rgba(255,255,255,0.4);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 14px;
+      background: #7b5cff;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 18px;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 15px #7b5cffcc;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    button:hover {
+      background-color: #6842f5;
+      box-shadow: 0 6px 25px #6842f5cc;
+    }
+    #status {
+      margin-top: 15px;
+      font-weight: 600;
+      text-align: center;
+      min-height: 20px;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>NikoAd</h1>
-    <p>Размещение рекламы в Telegram-каналах</p>
-  </header>
 
-  <main>
-    <section id="channels">
-      <h2>Каналы для рекламы</h2>
-      <div class="channel" data-name="Ищу Тебя Тверь" data-prices='{"24":1550,"48":1700,"72":1900,"navsegda":2600}'>
-        <h3>Ищу Тебя Тверь</h3>
-        <p>Подписчиков: ~10 500</p>
-        <p>Охват: 2.5k, ERR: 24%</p>
-      </div>
-      <div class="channel" data-name="Ищу тебя Нижневартовск" data-prices='{"24":1400,"48":1600,"72":1800,"navsegda":2200}'>
-        <h3>Ищу тебя Нижневартовск</h3>
-        <p>Подписчиков: ~6 000</p>
-        <p>Охват: 2.1k, ERR: 36%</p>
-      </div>
-      <div class="channel" data-name="NIKO 🇦🇲" data-prices='{"24":1000,"48":1150,"72":1250}'>
-        <h3>NIKO 🇦🇲</h3>
-        <p>Подписчиков: ~3 500</p>
-        <p>Охват: 773, ERR: 21%</p>
-      </div>
-      <div class="channel" data-name="Ищу Тебя Красноярск" data-prices='{"24":800,"48":1000,"72":1150,"navsegda":1300}'>
-        <h3>Ищу Тебя Красноярск</h3>
-        <p>Подписчиков: ~3 000</p>
-        <p>Охват: 574, ERR: 19%</p>
-      </div>
-    </section>
+  <h1>NikoAd — Реклама в Telegram</h1>
 
-    <section id="order-form-section">
-      <h2>Оставить заявку на рекламу</h2>
-      <form id="orderForm" action="https://formspree.io/f/xnnvlzor" method="POST">
-        <label for="name">Ваше имя</label>
-        <input type="text" id="name" name="name" placeholder="Иван Иванов" required />
+  <form
+    class="form-container"
+    id="orderForm"
+    action="https://formspree.io/f/xnnvlzor" 
+    method="POST"
+  >
+    <label for="name">Имя</label>
+    <input type="text" id="name" name="Имя" placeholder="Ваше имя" required />
 
-        <label for="tg">Ваш Telegram (юзернейм)</label>
-        <input type="text" id="tg" name="tg" placeholder="@ivanivanov" required />
+    <label for="tg">Telegram username</label>
+    <input
+      type="text"
+      id="tg"
+      name="Telegram"
+      placeholder="@username"
+      required
+    />
 
-        <label for="msg">Текст рекламного поста</label>
-        <textarea id="msg" name="msg" rows="4" placeholder="Опишите вашу рекламу" required></textarea>
+    <label for="msg">Текст рекламного поста</label>
+    <textarea
+      id="msg"
+      name="Рекламный пост"
+      placeholder="Что вы хотите рекламировать?"
+      required
+    ></textarea>
 
-        <fieldset id="channel-selection">
-          <legend>Выберите каналы для размещения</legend>
-          <!-- Каналы подставятся через JS -->
-        </fieldset>
+    <label for="channel">Выберите канал(ы) для рекламы</label>
+    <select id="channel" name="Канал" multiple required size="4">
+      <option value="Ищу Тебя Тверь">Ищу Тебя Тверь</option>
+      <option value="Ищу Тебя Нижневартовск">Ищу Тебя Нижневартовск</option>
+      <option value="NIKO 🇦🇲">NIKO 🇦🇲</option>
+      <option value="Ищу Тебя Красноярск">Ищу Тебя Красноярск</option>
+    </select>
 
-        <label for="duration">Выберите длительность рекламы</label>
-        <select id="duration" name="duration" required>
-          <option value="24">24 часа</option>
-          <option value="48">48 часов</option>
-          <option value="72">72 часа</option>
-          <option value="navsegda">Навсегда</option>
-        </select>
+    <label for="duration">Выберите длительность рекламы</label>
+    <select id="duration" name="Длительность" required>
+      <option value="24 часа">24 часа</option>
+      <option value="48 часов">48 часов</option>
+      <option value="72 часа">72 часа</option>
+      <option value="Навсегда">Навсегда</option>
+      <option value="История">История</option>
+    </select>
 
-        <p>Итоговая цена: <strong><span id="totalPrice">0</span>₽</strong></p>
+    <button type="submit">Отправить заявку</button>
+    <div id="status"></div>
+  </form>
 
-        <button type="submit">Отправить заявку</button>
-        <p id="status"></p>
-      </form>
-    </section>
-  </main>
+  <script>
+    const orderForm = document.getElementById('orderForm');
+    const status = document.getElementById('status');
 
-  <script src="script.js"></script>
+    orderForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(orderForm);
+
+      try {
+        const response = await fetch(orderForm.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: formData,
+        });
+
+        if (response.ok) {
+          status.textContent = '✅ Заявка отправлена!';
+          status.style.color = '#00ff7f';
+          orderForm.reset();
+        } else {
+          status.textContent = '❌ Ошибка при отправке. Попробуйте позже.';
+          status.style.color = '#ff4c4c';
+        }
+      } catch (error) {
+        status.textContent = '❌ Ошибка сети. Проверьте подключение.';
+        status.style.color = '#ff4c4c';
+      }
+    });
+  </script>
 </body>
 </html>
