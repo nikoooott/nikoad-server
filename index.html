@@ -2,156 +2,132 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NikoAd — Реклама в Telegram</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #6a0dad, #2e004f);
-      color: #f0f0f5;
-      padding: 30px 20px;
+      background: linear-gradient(135deg, #6a0dad, #12005e);
+      color: #fff;
+      padding: 20px;
     }
-
     h1 {
       text-align: center;
-      font-weight: 700;
-      font-size: 2rem;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
     .channels {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: 20px;
-      margin-bottom: 60px;
+      justify-content: center;
     }
 
     .channel-card {
-      background: #37006d;
-      border-radius: 14px;
+      background: #2e005e;
+      border-radius: 12px;
       padding: 20px;
-      width: 260px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-      transition: transform 0.3s;
+      width: 240px;
+      box-shadow: 0 4px 15px rgba(106, 13, 173, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .channel-card:hover {
       transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(106, 13, 173, 0.8);
     }
 
     .channel-name {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
     }
 
-    .channel-subs {
-      color: #d0c9f5;
-      margin-bottom: 12px;
+    .subscribers {
+      color: #b0a9e6;
+      margin-bottom: 10px;
     }
 
     .btn-stats {
       background: #8a2be2;
       border: none;
-      padding: 10px 16px;
-      color: white;
-      font-weight: 600;
       border-radius: 8px;
+      padding: 8px 14px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .stats-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .stats-content {
+      background: #210044;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      color: #fff;
+    }
+
+    .close-btn {
+      float: right;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .form-section {
+      margin-top: 50px;
+      background: #210044;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 700px;
+      margin-inline: auto;
+    }
+
+    form input, form textarea, select {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      background: #3c007d;
+      color: #fff;
+    }
+
+    form button {
+      background: #8a2be2;
+      border: none;
+      padding: 14px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #fff;
+      border-radius: 10px;
       cursor: pointer;
       transition: background 0.3s;
     }
 
-    .btn-stats:hover {
-      background: #a060ff;
+    form button:hover {
+      background: #bf94ff;
     }
 
-    /* Модальное окно */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background: #2e004f;
-      padding: 30px;
-      border-radius: 12px;
-      max-width: 500px;
-      width: 90%;
-      color: #fff;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-      position: relative;
-    }
-
-    .modal h2 {
-      margin-top: 0;
-    }
-
-    .modal p {
-      margin: 10px 0;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 20px;
-      cursor: pointer;
-      color: #aaa;
-    }
-
-    .close-btn:hover {
-      color: #fff;
-    }
-
-    /* Заявка */
-    .form-block {
-      background: #2e004f;
-      padding: 30px;
-      border-radius: 14px;
-      max-width: 600px;
-      margin: 0 auto;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
-
-    .form-block input, .form-block textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 16px;
-      background: #470080;
-      border: none;
-      border-radius: 10px;
-      color: #fff;
-    }
-
-    .form-block button {
-      background: #8a2be2;
-      border: none;
-      padding: 14px;
-      width: 100%;
-      border-radius: 10px;
-      color: white;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    .form-block button:hover {
-      background: #a060ff;
-    }
-
-    #status {
-      text-align: center;
+    #totalPrice {
       margin-top: 10px;
-      font-weight: 600;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .channel-card { width: 100%; }
     }
   </style>
 </head>
@@ -161,107 +137,153 @@
 
 <div class="channels" id="channels"></div>
 
-<!-- Модалка -->
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <span class="close-btn" id="closeModal">&times;</span>
-    <h2 id="modalTitle">Статистика</h2>
-    <p id="modalStats"></p>
+<div class="stats-modal" id="statsModal">
+  <div class="stats-content">
+    <span class="close-btn" onclick="closeStats()">✖</span>
+    <div id="statsContent"></div>
   </div>
 </div>
 
-<!-- Форма заявки -->
-<div class="form-block">
-  <h2>Оставить заявку</h2>
+<div class="form-section">
+  <h2>Оформление заявки</h2>
   <form id="orderForm">
-    <input type="text" id="name" placeholder="Ваше имя" required>
-    <input type="text" id="tg" placeholder="Telegram (@username)" required>
-    <textarea id="msg" placeholder="Текст рекламного поста" rows="4" required></textarea>
+    <label>Выберите каналы:</label>
+    <select multiple id="selectedChannels">
+      <option value="tver">Ищу Тебя Тверь</option>
+      <option value="nizhnevartovsk">Ищу тебя Нижневартовск</option>
+      <option value="niko">NIKO 🇦🇲</option>
+      <option value="krasnoyarsk">Ищу Тебя Красноярск</option>
+    </select>
+
+    <label>Время размещения:</label>
+    <select id="duration">
+      <option value="24">24 часа</option>
+      <option value="48">48 часов</option>
+      <option value="72">72 часа</option>
+      <option value="forever">Навсегда</option>
+      <option value="story">История</option>
+    </select>
+
+    <div id="totalPrice">Общая цена: 0₽</div>
+
+    <input type="text" id="name" placeholder="Ваше имя" required />
+    <input type="text" id="tg" placeholder="Telegram @юзернейм" required />
+    <textarea id="msg" rows="4" placeholder="Текст рекламного поста" required></textarea>
     <button type="submit">Отправить заявку</button>
     <div id="status"></div>
   </form>
 </div>
 
 <script>
-  const channels = [
-    {
-      name: 'NIKO 🇦🇲',
-      subs: 3500,
-      views: 7600,
-      stats: 'Подписчиков: 3,500\nПросмотры: 7,600\nERR: 247%\nER: 2.67%\nОхват за 24ч: 773',
+  const prices = {
+    tver: { "24": 1550, "48": 1700, "72": 1900, "forever": 2600, "story": 1100 },
+    nizhnevartovsk: { "24": 1400, "48": 1600, "72": 1800, "forever": 2200, "story": 1100 },
+    niko: { "24": 1000, "48": 1150, "72": 1250, "story": 800 },
+    krasnoyarsk: { "24": 800, "48": 1000, "72": 1150, "forever": 1300, "story": 700 }
+  };
+
+  const channelsData = {
+    tver: {
+      name: "Ищу Тебя Тверь",
+      subs: "10 500",
+      link: "https://t.me/ishutebyatverr",
+      views: 3200
     },
-    {
-      name: 'Ищу Тебя Тверь',
-      subs: 10500,
-      views: 3200,
-      stats: 'Подписчиков: 10,500\nПросмотры: 3,200\nERR: 26%\nER: 0.49%\nОхват за 24ч: 2,573',
+    nizhnevartovsk: {
+      name: "Ищу тебя Нижневартовск",
+      subs: "6 000",
+      link: "https://t.me/nizhnevartovsk_dtp",
+      views: 2600
     },
-    {
-      name: 'Ищу Тебя Нижневартовск',
-      subs: 6000,
-      views: 2600,
-      stats: 'Подписчиков: 6,000\nПросмотры: 2,600\nERR: 43.7%\nER: 0.73%\nОхват за 24ч: 2,156',
+    niko: {
+      name: "NIKO 🇦🇲",
+      subs: "3 500",
+      link: "https://t.me/nikotver",
+      views: 7600
     },
-    {
-      name: 'Ищу Тебя Красноярск',
-      subs: 3000,
-      views: 700,
-      stats: 'Подписчиков: 3,000\nПросмотры: 700\nERR: 38%\nER: 0.98%\nОхват за 24ч: 574',
+    krasnoyarsk: {
+      name: "Ищу Тебя Красноярск",
+      subs: "3 000",
+      link: "https://t.me/ishutebyakrasnoyarsk",
+      views: 700
     }
-  ];
+  };
 
-  const container = document.getElementById('channels');
-  const modal = document.getElementById('modal');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalStats = document.getElementById('modalStats');
-  const closeModal = document.getElementById('closeModal');
-
-  channels.forEach(channel => {
+  const channelsEl = document.getElementById('channels');
+  Object.keys(channelsData).forEach(id => {
+    const ch = channelsData[id];
     const card = document.createElement('div');
     card.className = 'channel-card';
     card.innerHTML = `
-      <div class="channel-name">${channel.name}</div>
-      <div class="channel-subs">Подписчиков: ${channel.subs}</div>
-      <button class="btn-stats">Показать статистику</button>
+      <div class="channel-name">${ch.name}</div>
+      <div class="subscribers">Подписчиков: ${ch.subs}</div>
+      <button class="btn-stats" onclick="showStats('${id}')">Показать статистику</button>
     `;
-    card.querySelector('button').onclick = () => {
-      modalTitle.textContent = channel.name;
-      modalStats.textContent = channel.stats;
-      modal.style.display = 'flex';
-    };
-    container.appendChild(card);
+    channelsEl.appendChild(card);
   });
 
-  closeModal.onclick = () => modal.style.display = 'none';
-  window.onclick = e => {
-    if (e.target === modal) modal.style.display = 'none';
-  };
+  function showStats(id) {
+    const ch = channelsData[id];
+    const modal = document.getElementById('statsModal');
+    const content = document.getElementById('statsContent');
+    content.innerHTML = `
+      <h2>${ch.name}</h2>
+      <p><strong>Подписчиков:</strong> ${ch.subs}</p>
+      <p><strong>Средний охват:</strong> ${ch.views} просмотров</p>
+      <p><a href="${ch.link}" target="_blank" style="color:#a6d3ff">Ссылка на канал</a></p>
+    `;
+    modal.style.display = 'flex';
+  }
 
-  // Форма заявки
-  document.getElementById('orderForm').addEventListener('submit', async e => {
+  function closeStats() {
+    document.getElementById('statsModal').style.display = 'none';
+  }
+
+  const selectedChannels = document.getElementById('selectedChannels');
+  const duration = document.getElementById('duration');
+  const totalPrice = document.getElementById('totalPrice');
+
+  function updatePrice() {
+    const dur = duration.value;
+    const selected = Array.from(selectedChannels.selectedOptions).map(o => o.value);
+    let sum = 0;
+    selected.forEach(id => {
+      if (prices[id] && prices[id][dur]) {
+        sum += prices[id][dur];
+      }
+    });
+    totalPrice.textContent = `Общая цена: ${sum}₽`;
+  }
+
+  selectedChannels.addEventListener('change', updatePrice);
+  duration.addEventListener('change', updatePrice);
+
+  const form = document.getElementById('orderForm');
+  const statusDiv = document.getElementById('status');
+
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     const name = document.getElementById('name').value.trim();
     const tg = document.getElementById('tg').value.trim();
     const msg = document.getElementById('msg').value.trim();
+    const channels = Array.from(selectedChannels.selectedOptions).map(o => o.text).join(', ');
+    const time = duration.options[duration.selectedIndex].text;
+
+    const fullMessage = `Заявка от ${name} (${tg})\nКаналы: ${channels}\nВремя: ${time}\nПост:\n${msg}`;
 
     try {
-      const res = await fetch('https://nikoad-server.onrender.com/api/send', {
-        method: 'POST',
+      await fetch("https://formspree.io/f/xnnvlzor", {
+        method: "POST",
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, tg, msg })
+        body: JSON.stringify({ message: fullMessage })
       });
-
-      const statusDiv = document.getElementById('status');
-      if (res.ok) {
-        statusDiv.textContent = '✅ Заявка отправлена!';
-        statusDiv.style.color = '#8efc8e';
-        document.getElementById('orderForm').reset();
-      } else {
-        statusDiv.textContent = '❌ Ошибка при отправке';
-        statusDiv.style.color = '#ff8e8e';
-      }
+      statusDiv.textContent = '✅ Заявка отправлена!';
+      statusDiv.style.color = '#8efc8e';
+      form.reset();
+      updatePrice();
     } catch {
-      document.getElementById('status').textContent = '❌ Ошибка сети. Проверьте соединение.';
+      statusDiv.textContent = '❌ Ошибка при отправке';
+      statusDiv.style.color = '#ff8e8e';
     }
   });
 </script>
