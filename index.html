@@ -6,19 +6,16 @@
   <title>NikoAd — Реклама в Telegram</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
       background: linear-gradient(135deg, #6a0dad, #12005e);
       color: #f0f0f5;
-      min-height: 100vh;
       padding: 20px;
-      text-align: center;
     }
 
     h1 {
-      font-size: 2rem;
+      text-align: center;
       margin-bottom: 30px;
     }
 
@@ -31,102 +28,153 @@
 
     .channel-card {
       background: #2e005e;
-      border-radius: 14px;
+      border-radius: 12px;
       padding: 20px;
-      width: 230px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
+      width: 240px;
+      box-shadow: 0 4px 15px rgba(106, 13, 173, 0.5);
+      transition: transform 0.3s ease;
     }
 
     .channel-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 25px rgba(106, 13, 173, 0.7);
+      transform: translateY(-8px);
     }
 
     .channel-name {
-      font-weight: 700;
+      font-weight: bold;
       font-size: 1.1rem;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .subscribers {
+      font-size: 0.9rem;
+      margin-bottom: 12px;
       color: #b0a9e6;
-      margin-bottom: 14px;
     }
 
-    .btn-show {
+    .btn-stat {
       background: #8a2be2;
       border: none;
-      border-radius: 8px;
-      padding: 8px 12px;
       color: white;
-      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 8px;
       cursor: pointer;
     }
 
-    .btn-show:hover {
-      background: #bf94ff;
-    }
-
-    /* Modal */
-    .modal {
+    .stats-modal {
       display: none;
       position: fixed;
-      z-index: 1000;
-      left: 0; top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background: rgba(0, 0, 0, 0.7);
-    }
-
-    .modal-content {
-      background-color: #240057;
-      margin: 10% auto;
-      padding: 30px;
-      border-radius: 14px;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
       width: 90%;
       max-width: 600px;
-      text-align: left;
-      color: #fff;
-      position: relative;
-      animation: fadeIn 0.3s ease;
+      background: #210044;
+      border-radius: 14px;
+      padding: 20px;
+      z-index: 1000;
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .stats-modal.active {
+      display: block;
     }
 
-    .close {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 22px;
-      color: #aaa;
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 999;
+      display: none;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    .form-block {
+      margin-top: 40px;
+      background: #2e005e;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .form-block h2 {
+      margin-top: 0;
+    }
+
+    form input, form textarea, form select {
+      width: 100%;
+      padding: 10px 14px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #3c007d;
+      color: white;
+    }
+
+    form button {
+      width: 100%;
+      background: #8a2be2;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      color: white;
+      font-weight: bold;
       cursor: pointer;
     }
 
-    .close:hover {
-      color: #fff;
+    #price {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-top: 10px;
+      font-weight: bold;
     }
 
-    @media (max-width: 600px) {
-      .channel-card { width: 90%; }
-    }
   </style>
 </head>
 <body>
 
 <h1>NikoAd — Реклама в Telegram</h1>
-<div class="channels" id="channels"></div>
 
-<!-- Модалка -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <div id="modalText"></div>
-  </div>
+<div class="channels" id="channelsContainer"></div>
+
+<!-- Статистика -->
+<div class="overlay" id="overlay"></div>
+<div class="stats-modal" id="statsModal">
+  <h2 id="statsTitle"></h2>
+  <p id="statsContent"></p>
+  <button onclick="closeStats()">Назад</button>
+</div>
+
+<!-- Форма -->
+<div class="form-block">
+  <h2>Оформить заявку</h2>
+  <form id="orderForm">
+    <label>Выберите каналы:</label>
+    <select id="channelSelect" multiple required></select>
+
+    <label>Выберите время размещения:</label>
+    <select id="durationSelect" required>
+      <option value="24">24 часа</option>
+      <option value="48">48 часов</option>
+      <option value="72">72 часа</option>
+      <option value="forever">Навсегда</option>
+      <option value="story">История</option>
+    </select>
+
+    <div id="price">Цена: 0 ₽</div>
+
+    <input type="text" name="name" placeholder="Ваше имя" required>
+    <input type="text" name="telegram" placeholder="Ваш Telegram (@username)" required>
+    <textarea name="message" placeholder="Текст рекламного поста" required></textarea>
+
+    <button type="submit">Отправить</button>
+    <div id="statusMsg"></div>
+  </form>
 </div>
 
 <script>
@@ -134,89 +182,117 @@
     {
       id: 'tver',
       name: 'Ищу Тебя Тверь',
+      link: 'https://t.me/ishutebyatverr',
       subs: 10500,
-      stats: `
-        Средний охват 1 публикации: 2.6k<br>
-        ERR: 26%<br>
-        ERR24: 24%<br>
-        Возраст канала: 1 год 7 месяцев<br>
-        Подписчиков: 16,988<br>
-        ER: 0.49%
-      `
+      stats: 'СРЕДНИЙ ОХВАТ: 2573 / ERR: 26% / ER: 0.49%',
+      prices: { "24": 1550, "48": 1700, "72": 1900, "forever": 2600, "story": 1100 }
     },
     {
       id: 'nizhnevartovsk',
-      name: 'Ищу тебя Нижневартовск',
+      name: 'Ищу Тебя Нижневартовск',
+      link: 'https://t.me/nizhnevartovsk_dtp',
       subs: 6000,
-      stats: `
-        Средний охват 1 публикации: 2.2k<br>
-        ERR: 44%<br>
-        ERR24: 37%<br>
-        Возраст канала: 2 года 11 месяцев<br>
-        Подписчиков: 12,161<br>
-        ER: 0.73%
-      `
+      stats: 'СРЕДНИЙ ОХВАТ: 2156 / ERR: 43.7% / ER: 0.73%',
+      prices: { "24": 1400, "48": 1600, "72": 1800, "forever": 2200, "story": 1100 }
     },
     {
       id: 'niko',
       name: 'NIKO 🇦🇲',
+      link: 'https://t.me/nikotver',
       subs: 3500,
-      stats: `
-        Средний охват 1 публикации: 773<br>
-        ERR: 247%<br>
-        ERR24: 22%<br>
-        Возраст канала: 1 год 11 месяцев<br>
-        Подписчиков: 23<br>
-        ER: 2.67%
-      `
+      stats: 'СРЕДНИЙ ОХВАТ: 773 / ERR: 247% / ER: 2.67%',
+      prices: { "24": 1000, "48": 1150, "72": 1250, "story": 800 }
     },
     {
       id: 'krasnoyarsk',
       name: 'Ищу Тебя Красноярск',
+      link: 'https://t.me/ishutebyakrasnoyarsk',
       subs: 3000,
-      stats: `
-        Средний охват 1 публикации: 574<br>
-        ERR: 38%<br>
-        ERR24: 20%<br>
-        Возраст канала: 1 год 5 месяцев<br>
-        Подписчиков: 14,095<br>
-        ER: 0.98%
-      `
+      stats: 'СРЕДНИЙ ОХВАТ: 574 / ERR: 37.8% / ER: 0.98%',
+      prices: { "24": 800, "48": 1000, "72": 1150, "forever": 1300, "story": 700 }
     }
   ];
 
-  const container = document.getElementById('channels');
-  const modal = document.getElementById('modal');
-  const modalText = document.getElementById('modalText');
+  const channelsContainer = document.getElementById('channelsContainer');
+  const channelSelect = document.getElementById('channelSelect');
+  const durationSelect = document.getElementById('durationSelect');
+  const priceDisplay = document.getElementById('price');
+  const statsModal = document.getElementById('statsModal');
+  const overlay = document.getElementById('overlay');
 
-  channels.forEach(channel => {
-    const card = document.createElement('div');
-    card.className = 'channel-card';
-    card.innerHTML = `
-      <div class="channel-name">${channel.name}</div>
-      <div class="subscribers">Подписчиков: ${channel.subs.toLocaleString()}</div>
-      <button class="btn-show" onclick="showStats('${channel.id}')">Показать статистику</button>
+  // Рендер карточек
+  channels.forEach(ch => {
+    // Карточка
+    const div = document.createElement('div');
+    div.className = 'channel-card';
+    div.innerHTML = `
+      <div class="channel-name"><a href="${ch.link}" target="_blank" style="color:#bf94ff;text-decoration:none;">${ch.name}</a></div>
+      <div class="subscribers">Подписчиков: ${ch.subs}</div>
+      <button class="btn-stat" onclick="showStats('${ch.id}')">Показать статистику</button>
     `;
-    container.appendChild(card);
+    channelsContainer.appendChild(div);
+
+    // Добавить в select
+    const opt = document.createElement('option');
+    opt.value = ch.id;
+    opt.textContent = ch.name;
+    channelSelect.appendChild(opt);
   });
 
+  // Статистика
   function showStats(id) {
     const ch = channels.find(c => c.id === id);
-    if (ch) {
-      modalText.innerHTML = `<strong>${ch.name}</strong><br><br>${ch.stats}`;
-      modal.style.display = 'block';
-    }
+    document.getElementById('statsTitle').textContent = ch.name;
+    document.getElementById('statsContent').textContent = ch.stats;
+    statsModal.classList.add('active');
+    overlay.classList.add('active');
   }
 
-  function closeModal() {
-    modal.style.display = 'none';
+  function closeStats() {
+    statsModal.classList.remove('active');
+    overlay.classList.remove('active');
   }
 
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = 'none';
+  // Цена
+  function updatePrice() {
+    const selected = Array.from(channelSelect.selectedOptions).map(opt => opt.value);
+    const duration = durationSelect.value;
+    let total = 0;
+    selected.forEach(id => {
+      const ch = channels.find(c => c.id === id);
+      if (ch && ch.prices[duration]) {
+        total += ch.prices[duration];
+      }
+    });
+    priceDisplay.textContent = `Цена: ${total} ₽`;
+  }
+
+  channelSelect.addEventListener('change', updatePrice);
+  durationSelect.addEventListener('change', updatePrice);
+
+  // Отправка заявки (через Formspree)
+  document.getElementById('orderForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const data = new FormData(this);
+    const statusMsg = document.getElementById('statusMsg');
+
+    try {
+      const res = await fetch("https://formspree.io/f/xnnvlzor", {
+        method: "POST",
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        statusMsg.textContent = "✅ Заявка успешно отправлена!";
+        this.reset();
+        priceDisplay.textContent = "Цена: 0 ₽";
+      } else {
+        statusMsg.textContent = "❌ Ошибка отправки.";
+      }
+    } catch {
+      statusMsg.textContent = "❌ Ошибка сети.";
     }
-  };
+  });
 </script>
 
 </body>
