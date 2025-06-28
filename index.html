@@ -1,347 +1,75 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>NikoAd — Реклама в Telegram</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg, #6a0dad, #12005e);
-    color: #f0f0f5;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-
-  h1 {
-    margin-bottom: 20px;
-    text-align: center;
-    font-weight: 700;
-    letter-spacing: 2px;
-  }
-
-  .channels {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    max-width: 900px;
-    margin-bottom: 40px;
-  }
-
-  .channel-card {
-    background: #2e005e;
-    border-radius: 12px;
-    padding: 20px;
-    width: 220px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(106, 13, 173, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .channel-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 25px rgba(106, 13, 173, 0.8);
-  }
-
-  .channel-name {
-    font-weight: 700;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-
-  .subscribers {
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-    color: #b0a9e6;
-  }
-
-  .btn-show {
-    align-self: flex-start;
-    background: #8a2be2;
-    border: none;
-    border-radius: 8px;
-    padding: 8px 14px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.25s ease;
-  }
-
-  .btn-show:hover {
-    background: #bf94ff;
-  }
-
-  /* Статистика */
-  .stats-panel {
-    background: #210044;
-    max-width: 700px;
-    width: 100%;
-    border-radius: 14px;
-    padding: 25px 30px;
-    box-shadow: 0 6px 20px rgba(106, 13, 173, 0.7);
-    color: #e3dbff;
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease, opacity 0.5s ease;
-  }
-
-  .stats-panel.active {
-    opacity: 1;
-    max-height: 600px;
-  }
-
-  .stats-header {
-    font-weight: 700;
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-  }
-
-  .price-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 25px 0;
-  }
-
-  .price-list li {
-    margin-bottom: 8px;
-  }
-
-  .price-list li span {
-    font-weight: 600;
-  }
-
-  /* Форма заявки */
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-
-  form input, form textarea {
-    background: #3c007d;
-    border: none;
-    border-radius: 10px;
-    padding: 12px 14px;
-    margin-bottom: 15px;
-    font-size: 1rem;
-    color: #eee;
-    resize: vertical;
-    transition: background-color 0.3s ease;
-  }
-
-  form input::placeholder,
-  form textarea::placeholder {
-    color: #b0a9e6;
-  }
-
-  form input:focus, form textarea:focus {
-    outline: none;
-    background-color: #5a00bc;
-  }
-
-  form button {
-    background: #8a2be2;
-    border: none;
-    border-radius: 10px;
-    padding: 15px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  form button:hover {
-    background: #bf94ff;
-  }
-
-  #status {
-    margin-top: 10px;
-    min-height: 22px;
-    font-weight: 700;
-  }
-
-  /* Скрыть статистику по умолчанию */
-  .hidden {
-    display: none;
-  }
-
-  /* Адаптив */
-  @media (max-width: 600px) {
-    .channels {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .channel-card {
-      width: 90%;
-    }
-
-    .stats-panel {
-      max-width: 90vw;
-      padding: 20px;
-    }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NikoAd — Реклама Telegram каналов</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header>
+    <h1>NikoAd</h1>
+    <p>Размещение рекламы в Telegram-каналах</p>
+  </header>
 
-<h1>NikoAd — Реклама в Telegram</h1>
+  <main>
+    <section id="channels">
+      <h2>Каналы для рекламы</h2>
+      <div class="channel" data-name="Ищу Тебя Тверь" data-prices='{"24":1550,"48":1700,"72":1900,"navsegda":2600}'>
+        <h3>Ищу Тебя Тверь</h3>
+        <p>Подписчиков: ~10 500</p>
+        <p>Охват: 2.5k, ERR: 24%</p>
+      </div>
+      <div class="channel" data-name="Ищу тебя Нижневартовск" data-prices='{"24":1400,"48":1600,"72":1800,"navsegda":2200}'>
+        <h3>Ищу тебя Нижневартовск</h3>
+        <p>Подписчиков: ~6 000</p>
+        <p>Охват: 2.1k, ERR: 36%</p>
+      </div>
+      <div class="channel" data-name="NIKO 🇦🇲" data-prices='{"24":1000,"48":1150,"72":1250}'>
+        <h3>NIKO 🇦🇲</h3>
+        <p>Подписчиков: ~3 500</p>
+        <p>Охват: 773, ERR: 21%</p>
+      </div>
+      <div class="channel" data-name="Ищу Тебя Красноярск" data-prices='{"24":800,"48":1000,"72":1150,"navsegda":1300}'>
+        <h3>Ищу Тебя Красноярск</h3>
+        <p>Подписчиков: ~3 000</p>
+        <p>Охват: 574, ERR: 19%</p>
+      </div>
+    </section>
 
-<div class="channels" id="channels">
-  <!-- Карточки каналов добавляются через JS -->
-</div>
+    <section id="order-form-section">
+      <h2>Оставить заявку на рекламу</h2>
+      <form id="orderForm" action="https://formspree.io/f/xnnvlzor" method="POST">
+        <label for="name">Ваше имя</label>
+        <input type="text" id="name" name="name" placeholder="Иван Иванов" required />
 
-<div class="stats-panel" id="statsPanel">
-  <div class="stats-header" id="statsTitle">Статистика канала</div>
-  <ul class="price-list" id="priceList"></ul>
-  <form id="orderForm">
-    <input type="text" id="name" name="name" placeholder="Ваше имя" required />
-    <input type="text" id="tg" name="tg" placeholder="Telegram (@никнейм)" required />
-    <textarea id="msg" name="msg" placeholder="Комментарий (необязательно)" rows="3"></textarea>
-    <button type="submit">Отправить заявку</button>
-    <div id="status"></div>
-  </form>
-</div>
+        <label for="tg">Ваш Telegram (юзернейм)</label>
+        <input type="text" id="tg" name="tg" placeholder="@ivanivanov" required />
 
-<script>
-  const channelsData = [
-    {
-      id: 'tver',
-      name: 'Ищу Тебя Тверь',
-      subs: 10500,
-      link: 'https://t.me/ищутебятверь',
-      prices: [
-        ['24 часа', '1550₽'],
-        ['48 часов', '1700₽'],
-        ['72 часа', '1900₽'],
-        ['Навсегда', '2600₽'],
-        ['История', '1100₽']
-      ]
-    },
-    {
-      id: 'nizhnevartovsk',
-      name: 'Ищу Тебя Нижневартовск',
-      subs: 6000,
-      link: 'https://t.me/ищутебянижневартовск',
-      prices: [
-        ['24 часа', '1400₽'],
-        ['48 часов', '1600₽'],
-        ['72 часа', '1800₽'],
-        ['Навсегда', '2200₽'],
-        ['История', '1100₽']
-      ]
-    },
-    {
-      id: 'niko',
-      name: 'NIKO 🇦🇲',
-      subs: 3500,
-      link: 'https://t.me/niko_armenia',
-      prices: [
-        ['24 часа', '1000₽'],
-        ['48 часов', '1150₽'],
-        ['72 часа', '1250₽'],
-        ['История', '800₽']
-      ]
-    },
-    {
-      id: 'krasnoyarsk',
-      name: 'Ищу Тебя Красноярск',
-      subs: 3000,
-      link: 'https://t.me/ищутебякрасноярск',
-      prices: [
-        ['24 часа', '800₽'],
-        ['48 часов', '1000₽'],
-        ['72 часа', '1150₽'],
-        ['Навсегда', '1300₽'],
-        ['История', '700₽']
-      ]
-    }
-  ];
+        <label for="msg">Текст рекламного поста</label>
+        <textarea id="msg" name="msg" rows="4" placeholder="Опишите вашу рекламу" required></textarea>
 
-  const channelsContainer = document.getElementById('channels');
-  const statsPanel = document.getElementById('statsPanel');
-  const statsTitle = document.getElementById('statsTitle');
-  const priceList = document.getElementById('priceList');
-  const orderForm = document.getElementById('orderForm');
-  const statusDiv = document.getElementById('status');
+        <fieldset id="channel-selection">
+          <legend>Выберите каналы для размещения</legend>
+          <!-- Каналы подставятся через JS -->
+        </fieldset>
 
-  // Создать карточки каналов
-  channelsData.forEach(channel => {
-    const card = document.createElement('div');
-    card.className = 'channel-card';
-    card.innerHTML = `
-      <div class="channel-name">${channel.name}</div>
-      <div class="subscribers">Подписчиков: ${channel.subs.toLocaleString()}</div>
-      <button class="btn-show">Показать статистику</button>
-    `;
-    card.querySelector('.btn-show').addEventListener('click', () => {
-      showStats(channel);
-    });
-    channelsContainer.appendChild(card);
-  });
+        <label for="duration">Выберите длительность рекламы</label>
+        <select id="duration" name="duration" required>
+          <option value="24">24 часа</option>
+          <option value="48">48 часов</option>
+          <option value="72">72 часа</option>
+          <option value="navsegda">Навсегда</option>
+        </select>
 
-  // Показать статистику и форму заявки
-  function showStats(channel) {
-    statsTitle.innerHTML = `<a href="${channel.link}" target="_blank" style="color:#bf94ff;text-decoration:none;">${channel.name}</a> — Подписчиков: ${channel.subs.toLocaleString()}`;
-    priceList.innerHTML = '';
-    channel.prices.forEach(([desc, price]) => {
-      const li = document.createElement('li');
-      li.innerHTML = `<span>${desc}:</span> ${price}`;
-      priceList.appendChild(li);
-    });
+        <p>Итоговая цена: <strong><span id="totalPrice">0</span>₽</strong></p>
 
-    // Скрыть статус и очистить форму
-    statusDiv.textContent = '';
-    orderForm.reset();
+        <button type="submit">Отправить заявку</button>
+        <p id="status"></p>
+      </form>
+    </section>
+  </main>
 
-    // Показать панель с анимацией
-    statsPanel.classList.add('active');
-  }
-
-  // Обработка отправки формы
-  orderForm.addEventListener('submit', async e => {
-    e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const tg = document.getElementById('tg').value.trim();
-    const msg = document.getElementById('msg').value.trim();
-
-    // Подставь сюда свой бекенд URL
-    const backendUrl = 'https://nikoad-server.onrender.com/api/send';
-
-    try {
-      const res = await fetch(backendUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, tg, msg })
-      });
-      if (res.ok) {
-        statusDiv.textContent = '✅ Заявка отправлена!';
-        statusDiv.style.color = '#8efc8e';
-        orderForm.reset();
-      } else {
-        throw new Error('Ошибка при отправке');
-      }
-    } catch (err) {
-      statusDiv.textContent = '❌ Ошибка сети. Проверьте подключение.';
-      statusDiv.style.color = '#ff8e8e';
-    }
-  });
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
