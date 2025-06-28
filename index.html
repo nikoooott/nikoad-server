@@ -59,15 +59,54 @@
       color: #b0a9e6;
     }
 
-    .channel-card .price {
-      margin: 10px 0;
-      font-size: 0.9rem;
-    }
-
     .channel-card a {
       color: #bf94ff;
       font-size: 0.85rem;
       text-decoration: none;
+    }
+
+    .channel-card button {
+      margin-top: 10px;
+      background: #8a2be2;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .channel-card button:hover {
+      background: #a658f5;
+    }
+
+    .stats {
+      background: #210044;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(106, 13, 173, 0.5);
+      display: none;
+    }
+
+    .stats.active {
+      display: block;
+    }
+
+    .stats h3 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .stats ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .stats ul li {
+      margin-bottom: 5px;
     }
 
     form {
@@ -126,6 +165,11 @@
 <h1>NikoAd — Реклама в Telegram</h1>
 
 <div class="channels" id="channels"></div>
+
+<div class="stats" id="statsPanel">
+  <h3 id="statsTitle">Статистика канала</h3>
+  <ul id="statsPrices"></ul>
+</div>
 
 <form id="orderForm">
   <input type="text" id="name" placeholder="Ваше имя" required />
@@ -206,32 +250,51 @@
   ];
 
   const channelsContainer = document.getElementById('channels');
+  const statsPanel = document.getElementById('statsPanel');
+  const statsTitle = document.getElementById('statsTitle');
+  const statsPrices = document.getElementById('statsPrices');
   const channelSelect = document.getElementById('channelSelect');
   const durationSelect = document.getElementById('durationSelect');
   const priceResult = document.getElementById('priceResult');
   const statusDiv = document.getElementById('status');
 
-  // Показ карточек и опций
   channels.forEach(ch => {
-    // карточка
+    // Карточка канала
     const card = document.createElement('div');
     card.className = 'channel-card';
     card.innerHTML = `
       <h3>${ch.name}</h3>
       <div class="subs">Подписчиков: ${ch.subs.toLocaleString()}</div>
-      <div class="price">Пример: 24ч — ${ch.prices["24"]}₽</div>
-      <a href="${ch.link}" target="_blank">Открыть канал</a>
+      <a href="${ch.link}" target="_blank">Ссылка на канал</a><br>
+      <button onclick="showStats('${ch.id}')">Показать статистику</button>
     `;
     channelsContainer.appendChild(card);
 
-    // опции
+    // Опции в форме
     const opt = document.createElement('option');
     opt.value = ch.id;
     opt.textContent = ch.name;
     channelSelect.appendChild(opt);
   });
 
-  // Пересчёт цены
+  function showStats(channelId) {
+    const ch = channels.find(c => c.id === channelId);
+    if (!ch) return;
+
+    statsTitle.textContent = ch.name + ' — подписчиков: ' + ch.subs.toLocaleString();
+    statsPrices.innerHTML = '';
+    for (const [key, price] of Object.entries(ch.prices)) {
+      let label = key === "24" ? "24 часа" :
+                  key === "48" ? "48 часов" :
+                  key === "72" ? "72 часа" :
+                  key === "forever" ? "Навсегда" : "История";
+      statsPrices.innerHTML += `<li>${label}: ${price}₽</li>`;
+    }
+
+    statsPanel.classList.add('active');
+    window.scrollTo({ top: statsPanel.offsetTop - 20, behavior: 'smooth' });
+  }
+
   function calculatePrice() {
     const selectedChannels = Array.from(channelSelect.selectedOptions).map(o => o.value);
     const duration = durationSelect.value;
@@ -248,16 +311,15 @@
   channelSelect.addEventListener('change', calculatePrice);
   durationSelect.addEventListener('change', calculatePrice);
 
-  // Обработка формы
   document.getElementById('orderForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = document.getElementById('name').value.trim();
     const tg = document.getElementById('tg').value.trim();
     const post = document.getElementById('post').value.trim();
-    const channels = Array.from(channelSelect.selectedOptions).map(o => o.textContent).join(', ');
+    const channelsList = Array.from(channelSelect.selectedOptions).map(o => o.textContent).join(', ');
     const duration = durationSelect.options[durationSelect.selectedIndex].text;
 
-    const message = `📝 Новая заявка:\n👤 Имя: ${name}\n📱 Telegram: ${tg}\n📢 Каналы: ${channels}\n🕒 Время: ${duration}\n📄 Пост: ${post}`;
+    const message = `📝 Новая заявка:\n👤 Имя: ${name}\n📱 Telegram: ${tg}\n📢 Каналы: ${channelsList}\n🕒 Время: ${duration}\n📄 Пост: ${post}`;
 
     try {
       const res = await fetch("https://formspree.io/f/xnnvlzor", {
