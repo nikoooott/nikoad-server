@@ -1,292 +1,62 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NikoAd — Реклама в Telegram</title>
+  <meta charset="UTF-8">
+  <title>Профиль игрока – RTT</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #6a0dad, #12005e);
-      color: #fff;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .channels {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .channel-card {
-      background: #2e005e;
-      border-radius: 12px;
-      padding: 20px;
-      width: 240px;
-      box-shadow: 0 4px 15px rgba(106, 13, 173, 0.5);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .channel-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 25px rgba(106, 13, 173, 0.8);
-    }
-
-    .channel-name {
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
-
-    .subscribers {
-      color: #b0a9e6;
-      margin-bottom: 10px;
-    }
-
-    .btn-stats {
-      background: #8a2be2;
-      border: none;
-      border-radius: 8px;
-      padding: 8px 14px;
-      color: white;
-      cursor: pointer;
-    }
-
-    .stats-modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.7);
-      justify-content: center;
-      align-items: center;
-      z-index: 100;
-    }
-
-    .stats-content {
-      background: #210044;
-      padding: 30px;
-      border-radius: 12px;
-      max-width: 600px;
-      width: 90%;
-      color: #fff;
-    }
-
-    .close-btn {
-      float: right;
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    .form-section {
-      margin-top: 50px;
-      background: #210044;
-      padding: 30px;
-      border-radius: 12px;
-      max-width: 700px;
-      margin-inline: auto;
-    }
-
-    form input, form textarea, select {
-      width: 100%;
-      margin-bottom: 15px;
-      padding: 12px;
-      border-radius: 8px;
-      border: none;
-      font-size: 1rem;
-      background: #3c007d;
-      color: #fff;
-    }
-
-    form button {
-      background: #8a2be2;
-      border: none;
-      padding: 14px;
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: #fff;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    form button:hover {
-      background: #bf94ff;
-    }
-
-    #totalPrice {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-      .channel-card { width: 100%; }
-    }
+    body { font-family: Arial, sans-serif; background-color: #f5f5f5; margin: 0; padding: 20px; }
+    .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 6px; }
+    .header { text-align: center; margin-bottom: 20px; }
+    .header h1 { margin: 0; }
+    .profile { display: flex; align-items: center; }
+    .avatar { width: 150px; height: 150px; border-radius: 50%; background: #ddd; margin-right: 20px; }
+    .info { flex: 1; }
+    .field { margin: 8px 0; }
+    .field span.label { font-weight: bold; }
+    .rating { font-size: 32px; color: #2a9df4; font-weight: bold; }
   </style>
 </head>
 <body>
-
-<h1>NikoAd — Реклама в Telegram</h1>
-
-<div class="channels" id="channels"></div>
-
-<div class="stats-modal" id="statsModal">
-  <div class="stats-content">
-    <span class="close-btn" onclick="closeStats()">✖</span>
-    <div id="statsContent"></div>
+  <div class="container">
+    <div class="header">
+      <h1>Ник Бабаян</h1>
+      <p>Страница профиля RTT</p>
+    </div>
+    <div class="profile">
+      <div class="avatar"></div>
+      <div class="info">
+        <div class="field">
+          <span class="label">Страна:</span> Армения
+        </div>
+        <div class="field">
+          <span class="label">Возраст:</span> 28 лет
+        </div>
+        <div class="field">
+          <span class="label">Рейтинг в RTT:</span>
+          <span class="rating">1</span>
+        </div>
+        <div class="field">
+          <span class="label">Матчей сыграно:</span> 50
+        </div>
+        <div class="field">
+          <span class="label">Побед / Поражений:</span> 30 / 20
+        </div>
+      </div>
+    </div>
+    <hr>
+    <h2>История выступлений</h2>
+    <table width="100%" border="1" cellspacing="0" cellpadding="6">
+      <thead>
+        <tr>
+          <th>Турнир</th><th>Год</th><th>Результат</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Ростов‑on‑Don Open</td><td>2024</td><td>Финал</td></tr>
+        <tr><td>Ереван Челленджер</td><td>2025</td><td>Победа</td></tr>
+        <tr><td>Баку Измир Тур</td><td>2023</td><td>Полуфинал</td></tr>
+      </tbody>
+    </table>
   </div>
-</div>
-
-<div class="form-section">
-  <h2>Оформление заявки</h2>
-  <form id="orderForm">
-    <label>Выберите каналы:</label>
-    <select multiple id="selectedChannels">
-      <option value="tver">Ищу Тебя Тверь</option>
-      <option value="nizhnevartovsk">Ищу тебя Нижневартовск</option>
-      <option value="niko">NIKO 🇦🇲</option>
-      <option value="krasnoyarsk">Ищу Тебя Красноярск</option>
-    </select>
-
-    <label>Время размещения:</label>
-    <select id="duration">
-      <option value="24">24 часа</option>
-      <option value="48">48 часов</option>
-      <option value="72">72 часа</option>
-      <option value="forever">Навсегда</option>
-      <option value="story">История</option>
-    </select>
-
-    <div id="totalPrice">Общая цена: 0₽</div>
-
-    <input type="text" id="name" placeholder="Ваше имя" required />
-    <input type="text" id="tg" placeholder="Telegram @юзернейм" required />
-    <textarea id="msg" rows="4" placeholder="Текст рекламного поста" required></textarea>
-    <button type="submit">Отправить заявку</button>
-    <div id="status"></div>
-  </form>
-</div>
-
-<script>
-  const prices = {
-    tver: { "24": 1550, "48": 1700, "72": 1900, "forever": 2600, "story": 1100 },
-    nizhnevartovsk: { "24": 1400, "48": 1600, "72": 1800, "forever": 2200, "story": 1100 },
-    niko: { "24": 1000, "48": 1150, "72": 1250, "story": 800 },
-    krasnoyarsk: { "24": 800, "48": 1000, "72": 1150, "forever": 1300, "story": 700 }
-  };
-
-  const channelsData = {
-    tver: {
-      name: "Ищу Тебя Тверь",
-      subs: "10 500",
-      link: "https://t.me/ishutebyatverr",
-      views: 3200
-    },
-    nizhnevartovsk: {
-      name: "Ищу тебя Нижневартовск",
-      subs: "6 000",
-      link: "https://t.me/nizhnevartovsk_dtp",
-      views: 2600
-    },
-    niko: {
-      name: "NIKO 🇦🇲",
-      subs: "3 500",
-      link: "https://t.me/nikotver",
-      views: 7600
-    },
-    krasnoyarsk: {
-      name: "Ищу Тебя Красноярск",
-      subs: "3 000",
-      link: "https://t.me/ishutebyakrasnoyarsk",
-      views: 700
-    }
-  };
-
-  const channelsEl = document.getElementById('channels');
-  Object.keys(channelsData).forEach(id => {
-    const ch = channelsData[id];
-    const card = document.createElement('div');
-    card.className = 'channel-card';
-    card.innerHTML = `
-      <div class="channel-name">${ch.name}</div>
-      <div class="subscribers">Подписчиков: ${ch.subs}</div>
-      <button class="btn-stats" onclick="showStats('${id}')">Показать статистику</button>
-    `;
-    channelsEl.appendChild(card);
-  });
-
-  function showStats(id) {
-    const ch = channelsData[id];
-    const modal = document.getElementById('statsModal');
-    const content = document.getElementById('statsContent');
-    content.innerHTML = `
-      <h2>${ch.name}</h2>
-      <p><strong>Подписчиков:</strong> ${ch.subs}</p>
-      <p><strong>Средний охват:</strong> ${ch.views} просмотров</p>
-      <p><a href="${ch.link}" target="_blank" style="color:#a6d3ff">Ссылка на канал</a></p>
-    `;
-    modal.style.display = 'flex';
-  }
-
-  function closeStats() {
-    document.getElementById('statsModal').style.display = 'none';
-  }
-
-  const selectedChannels = document.getElementById('selectedChannels');
-  const duration = document.getElementById('duration');
-  const totalPrice = document.getElementById('totalPrice');
-
-  function updatePrice() {
-    const dur = duration.value;
-    const selected = Array.from(selectedChannels.selectedOptions).map(o => o.value);
-    let sum = 0;
-    selected.forEach(id => {
-      if (prices[id] && prices[id][dur]) {
-        sum += prices[id][dur];
-      }
-    });
-    totalPrice.textContent = `Общая цена: ${sum}₽`;
-  }
-
-  selectedChannels.addEventListener('change', updatePrice);
-  duration.addEventListener('change', updatePrice);
-
-  const form = document.getElementById('orderForm');
-  const statusDiv = document.getElementById('status');
-
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const tg = document.getElementById('tg').value.trim();
-    const msg = document.getElementById('msg').value.trim();
-    const channels = Array.from(selectedChannels.selectedOptions).map(o => o.text).join(', ');
-    const time = duration.options[duration.selectedIndex].text;
-
-    const fullMessage = `Заявка от ${name} (${tg})\nКаналы: ${channels}\nВремя: ${time}\nПост:\n${msg}`;
-
-    try {
-      await fetch("https://formspree.io/f/xnnvlzor", {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: fullMessage })
-      });
-      statusDiv.textContent = '✅ Заявка отправлена!';
-      statusDiv.style.color = '#8efc8e';
-      form.reset();
-      updatePrice();
-    } catch {
-      statusDiv.textContent = '❌ Ошибка при отправке';
-      statusDiv.style.color = '#ff8e8e';
-    }
-  });
-</script>
-
 </body>
 </html>
