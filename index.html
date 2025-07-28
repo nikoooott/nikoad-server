@@ -2,61 +2,114 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Профиль игрока – RTT</title>
+  <title>Ника Бабаян | Рейтинг в теннисе</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; background-color: #f5f5f5; margin: 0; padding: 20px; }
-    .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 6px; }
-    .header { text-align: center; margin-bottom: 20px; }
-    .header h1 { margin: 0; }
-    .profile { display: flex; align-items: center; }
-    .avatar { width: 150px; height: 150px; border-radius: 50%; background: #ddd; margin-right: 20px; }
-    .info { flex: 1; }
-    .field { margin: 8px 0; }
-    .field span.label { font-weight: bold; }
-    .rating { font-size: 32px; color: #2a9df4; font-weight: bold; }
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f6f6f6;
+    }
+    header {
+      background: #00174b;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .rating-box {
+      background: #0a0a0a;
+      color: #00ff99;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      text-align: center;
+      border-radius: 8px;
+    }
+    .rating-box h2 {
+      margin-bottom: 10px;
+    }
+    .section {
+      max-width: 800px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .section h3 {
+      margin-top: 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    footer {
+      background: #00174b;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>Ник Бабаян</h1>
-      <p>Страница профиля RTT</p>
-    </div>
-    <div class="profile">
-      <div class="avatar"></div>
-      <div class="info">
-        <div class="field">
-          <span class="label">Страна:</span> Армения
-        </div>
-        <div class="field">
-          <span class="label">Возраст:</span> 28 лет
-        </div>
-        <div class="field">
-          <span class="label">Рейтинг в RTT:</span>
-          <span class="rating">1</span>
-        </div>
-        <div class="field">
-          <span class="label">Матчей сыграно:</span> 50
-        </div>
-        <div class="field">
-          <span class="label">Побед / Поражений:</span> 30 / 20
-        </div>
-      </div>
-    </div>
-    <hr>
-    <h2>История выступлений</h2>
-    <table width="100%" border="1" cellspacing="0" cellpadding="6">
-      <thead>
-        <tr>
-          <th>Турнир</th><th>Год</th><th>Результат</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Ростов‑on‑Don Open</td><td>2024</td><td>Финал</td></tr>
-        <tr><td>Ереван Челленджер</td><td>2025</td><td>Победа</td></tr>
-        <tr><td>Баку Измир Тур</td><td>2023</td><td>Полуфинал</td></tr>
-      </tbody>
-    </table>
-  </div>
+
+<header>
+  <h1>Ника Бабаян — Рейтинг в Теннисе</h1>
+</header>
+
+<div class="rating-box">
+  <h2>Рейтинг активен с даты:</h2>
+  <p><strong>03.07.2025</strong></p>
+  <h2>Следующее обновление:</h2>
+  <p><strong>06.08.2025</strong></p>
+</div>
+
+<div class="section">
+  <h3>Информация об игроке</h3>
+  <p><strong>ФИО:</strong> Бабаян Ника (Nika Babayan)</p>
+  <p><strong>ПИН:</strong> 51784</p>
+  <p><strong>Страна:</strong> Армения</p>
+  <p><strong>Рейтинг RTT:</strong> 1</p>
+</div>
+
+<div class="section">
+  <h3>История матчей</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Дата</th>
+        <th>Турнир</th>
+        <th>Результат</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>21.07.2025</td><td>Khinkhi Kids Open</td><td>Финал</td></tr>
+      <tr><td>03.07.2025</td><td>Тестовый Турнир</td><td>Победа</td></tr>
+      <tr><td>12.06.2025</td><td>Турнир на Кубок</td><td>Полуфинал</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <h3>Информация об игроке</h3>
+  <p><strong>ФИО:</strong> Бабаян Ника (Nika Babayan)</p>
+  <p><strong>ПИН:</strong> 51784</p>
+  <p><strong>Страна:</strong> Армения</p>
+  <p><strong style="color: green; font-size: 24px;">Рейтинг RTT: 1</strong></p>
+</div>
+
+<footer>
+  <p>© 2025 Теннисный Рейтинг RTT</p>
+</footer>
+
 </body>
 </html>
