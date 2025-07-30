@@ -1,115 +1,152 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Ника Бабаян | Рейтинг в теннисе</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background-color: #f6f6f6;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Нико Бабаян — Digital-предприниматель</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #fff;
+    color: #2c2c2c;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .container {
+    max-width: 700px;
+    margin: 50px auto 70px;
+    padding: 0 20px;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-weight: 700;
+    font-size: 3rem;
+    color: #5b2ca6;
+    margin: 0;
+    letter-spacing: 0.03em;
+  }
+  header p.birthdate {
+    margin: 6px 0 0;
+    color: #888;
+    font-style: italic;
+    font-size: 1rem;
+  }
+  section.bio {
+    margin-bottom: 40px;
+  }
+  section.bio h2 {
+    color: #5b2ca6;
+    border-bottom: 3px solid #5b2ca6;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 1.8rem;
+  }
+  section.bio p {
+    font-size: 1.1rem;
+    color: #444;
+  }
+  section.contacts h2 {
+    color: #5b2ca6;
+    border-bottom: 3px solid #5b2ca6;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 1.8rem;
+  }
+  ul.contacts-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+  }
+  ul.contacts-list li {
+    margin-bottom: 14px;
+    font-size: 1.1rem;
+  }
+  ul.contacts-list a {
+    color: #5b2ca6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  ul.contacts-list a:hover {
+    color: #8f5fde;
+    text-decoration: underline;
+  }
+  .btn-telegram {
+    display: inline-block;
+    background-color: #5b2ca6;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    box-shadow: 0 6px 12px rgba(91,44,166,0.4);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .btn-telegram:hover {
+    background-color: #8f5fde;
+    box-shadow: 0 8px 18px rgba(143,95,222,0.5);
+  }
+  footer {
+    text-align: center;
+    margin-top: 80px;
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+  @media (max-width: 480px) {
+    header h1 {
+      font-size: 2.2rem;
     }
-    header {
-      background: #00174b;
-      color: white;
-      padding: 20px;
-      text-align: center;
+    section.bio h2, section.contacts h2 {
+      font-size: 1.4rem;
     }
-    .rating-box {
-      background: #0a0a0a;
-      color: #00ff99;
-      padding: 20px;
-      margin: 20px auto;
-      max-width: 600px;
-      text-align: center;
-      border-radius: 8px;
+    .btn-telegram {
+      padding: 12px 22px;
+      font-size: 1rem;
     }
-    .rating-box h2 {
-      margin-bottom: 10px;
-    }
-    .section {
-      max-width: 800px;
-      margin: 20px auto;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-    }
-    .section h3 {
-      margin-top: 0;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
-    table, th, td {
-      border: 1px solid #ccc;
-    }
-    th, td {
-      padding: 10px;
-      text-align: left;
-    }
-    footer {
-      background: #00174b;
-      color: white;
-      padding: 20px;
-      text-align: center;
-      margin-top: 40px;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
+  <div class="container">
+    <header>
+      <h1>Нико Бабаян</h1>
+      <p class="birthdate">Родился 21 марта 2008 года</p>
+    </header>
 
-<header>
-  <h1>Ника Бабаян — Рейтинг в Теннисе</h1>
-</header>
+    <section class="bio">
+      <h2>О себе</h2>
+      <p><strong>Нико Бабаян</strong> — армянский digital-предприниматель, автор Telegram-каналов формата «Ищу тебя», веб-разработчик, AI-энтузиаст и креативный продюсер. Известен благодаря созданию локальных Telegram-комьюнити и оригинальному подходу к продвижению в digital-среде.</p>
+      <p>Занимается запуском и развитием Telegram-проектов, веб-разработкой и использованием искусственного интеллекта для автоматизации и создания контента.</p>
+    </section>
 
-<div class="rating-box">
-  <h2>Рейтинг активен с даты:</h2>
-  <p><strong>03.07.2025</strong></p>
-  <h2>Следующее обновление:</h2>
-  <p><strong>06.08.2025</strong></p>
-</div>
+    <section class="contacts">
+      <h2>Контакты и проекты</h2>
+      <ul class="contacts-list">
+        <li>Telegram: <a href="https://t.me/nikoitt" target="_blank" rel="noopener noreferrer">@nikoitt</a></li>
+        <li>Каналы:
+          <ul>
+            <li><a href="https://t.me/ishutebyatverr" target="_blank" rel="noopener noreferrer">Ищу тебя Тверь</a></li>
+            <li><a href="https://t.me/nikotver" target="_blank" rel="noopener noreferrer">Niko Tver</a></li>
+            <li><a href="https://t.me/nizhnevartovsk_dtp" target="_blank" rel="noopener noreferrer">Ищу тебя Нижневартовск</a></li>
+            <li><a href="https://t.me/ishutebyakrasnoyarsk" target="_blank" rel="noopener noreferrer">Ищу тебя Красноярск</a></li>
+          </ul>
+        </li>
+        <li>Бот по продажам: <a href="https://t.me/niko_st_bot" target="_blank" rel="noopener noreferrer">Niko ST Bot</a></li>
+      </ul>
+      <a href="https://t.me/nikoitt" target="_blank" rel="noopener noreferrer" class="btn-telegram">Написать в Telegram</a>
+    </section>
 
-<div class="section">
-  <h3>Информация об игроке</h3>
-  <p><strong>ФИО:</strong> Бабаян Ника (Nika Babayan)</p>
-  <p><strong>ПИН:</strong> 51784</p>
-  <p><strong>Страна:</strong> Армения</p>
-  <p><strong>Рейтинг RTT:</strong> 1</p>
-</div>
-
-<div class="section">
-  <h3>История матчей</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Дата</th>
-        <th>Турнир</th>
-        <th>Результат</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>21.07.2025</td><td>Khinkhi Kids Open</td><td>Финал</td></tr>
-      <tr><td>03.07.2025</td><td>Тестовый Турнир</td><td>Победа</td></tr>
-      <tr><td>12.06.2025</td><td>Турнир на Кубок</td><td>Полуфинал</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="section">
-  <h3>Информация об игроке</h3>
-  <p><strong>ФИО:</strong> Бабаян Ника (Nika Babayan)</p>
-  <p><strong>ПИН:</strong> 51784</p>
-  <p><strong>Страна:</strong> Армения</p>
-  <p><strong style="color: green; font-size: 24px;">Рейтинг RTT: 1</strong></p>
-</div>
-
-<footer>
-  <p>© 2025 Теннисный Рейтинг RTT</p>
-</footer>
-
+    <footer>
+      &copy; 2025 Нико Бабаян
+    </footer>
+  </div>
 </body>
 </html>
