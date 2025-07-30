@@ -3,150 +3,217 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Нико Бабаян — Digital-предприниматель</title>
+<title>Нико Бабаян — Digital-предприниматель & AI-энтузиаст</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+  :root {
+    --color-primary: #6a4bcd;
+    --color-primary-light: #8f6fee;
+    --color-bg: #f5f5f9;
+    --color-text: #2a2a2a;
+    --color-accent: #a772ff;
+    --transition-speed: 0.3s;
+  }
+  * {
+    box-sizing: border-box;
+  }
   body {
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: #fff;
-    color: #2c2c2c;
-    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .container {
-    max-width: 700px;
-    margin: 50px auto 70px;
-    padding: 0 20px;
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+  }
+  a:hover {
+    color: var(--color-accent);
   }
   header {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+    color: white;
+    padding: 50px 20px 70px;
     text-align: center;
-    margin-bottom: 40px;
+    box-shadow: 0 8px 15px rgba(106,75,205,0.4);
   }
   header h1 {
+    margin: 0 0 10px;
     font-weight: 700;
-    font-size: 3rem;
-    color: #5b2ca6;
+    font-size: 3.2rem;
+    letter-spacing: 0.05em;
+  }
+  header p {
     margin: 0;
-    letter-spacing: 0.03em;
+    font-weight: 300;
+    font-size: 1.2rem;
+    opacity: 0.85;
   }
-  header p.birthdate {
-    margin: 6px 0 0;
-    color: #888;
-    font-style: italic;
-    font-size: 1rem;
+  main {
+    max-width: 900px;
+    margin: -70px auto 50px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(106,75,205,0.15);
+    padding: 40px 40px 60px;
   }
-  section.bio {
-    margin-bottom: 40px;
+  section {
+    margin-bottom: 50px;
   }
-  section.bio h2 {
-    color: #5b2ca6;
-    border-bottom: 3px solid #5b2ca6;
-    padding-bottom: 8px;
-    margin-bottom: 20px;
+  h2 {
     font-weight: 700;
-    font-size: 1.8rem;
-  }
-  section.bio p {
-    font-size: 1.1rem;
-    color: #444;
-  }
-  section.contacts h2 {
-    color: #5b2ca6;
-    border-bottom: 3px solid #5b2ca6;
-    padding-bottom: 8px;
+    font-size: 2rem;
     margin-bottom: 20px;
-    font-weight: 700;
-    font-size: 1.8rem;
+    color: var(--color-primary);
+    border-bottom: 3px solid var(--color-primary-light);
+    padding-bottom: 8px;
   }
-  ul.contacts-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 30px 0;
-  }
-  ul.contacts-list li {
-    margin-bottom: 14px;
+  p {
     font-size: 1.1rem;
+    color: #3a3a3a;
   }
-  ul.contacts-list a {
-    color: #5b2ca6;
-    text-decoration: none;
-    transition: color 0.3s ease;
+  ul {
+    padding-left: 20px;
+    margin-top: 15px;
   }
-  ul.contacts-list a:hover {
-    color: #8f5fde;
-    text-decoration: underline;
+  ul li {
+    margin-bottom: 10px;
+    font-size: 1.05rem;
   }
-  .btn-telegram {
+  /* Buttons */
+  .btn {
     display: inline-block;
-    background-color: #5b2ca6;
-    color: #fff;
+    padding: 15px 30px;
+    background: var(--color-primary);
+    color: white;
     font-weight: 700;
-    text-decoration: none;
-    padding: 14px 28px;
-    border-radius: 8px;
     font-size: 1.1rem;
-    box-shadow: 0 6px 12px rgba(91,44,166,0.4);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 50px;
+    box-shadow: 0 10px 20px rgba(106,75,205,0.3);
+    cursor: pointer;
+    border: none;
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
   }
-  .btn-telegram:hover {
-    background-color: #8f5fde;
-    box-shadow: 0 8px 18px rgba(143,95,222,0.5);
+  .btn:hover {
+    background-color: var(--color-accent);
+    box-shadow: 0 12px 25px rgba(167,114,255,0.5);
   }
+  /* Info cards */
+  .card {
+    background: #faf9ff;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(106,75,205,0.1);
+    padding: 25px 30px;
+    margin-bottom: 25px;
+    transition: transform 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(106,75,205,0.2);
+  }
+  .card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: var(--color-primary);
+  }
+  /* Grid for skills/projects */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 20px;
+  }
+  /* Footer */
   footer {
     text-align: center;
-    margin-top: 80px;
+    color: #888;
+    margin-top: 40px;
     font-size: 0.9rem;
-    color: #aaa;
   }
-  @media (max-width: 480px) {
+  /* Responsive */
+  @media (max-width: 600px) {
     header h1 {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
     }
-    section.bio h2, section.contacts h2 {
-      font-size: 1.4rem;
+    main {
+      margin: -50px 15px 30px;
+      padding: 30px 20px 40px;
     }
-    .btn-telegram {
-      padding: 12px 22px;
+    .btn {
+      padding: 13px 25px;
       font-size: 1rem;
     }
   }
 </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Нико Бабаян</h1>
-      <p class="birthdate">Родился 21 марта 2008 года</p>
-    </header>
 
-    <section class="bio">
-      <h2>О себе</h2>
-      <p><strong>Нико Бабаян</strong> — армянский digital-предприниматель, автор Telegram-каналов формата «Ищу тебя», веб-разработчик, AI-энтузиаст и креативный продюсер. Известен благодаря созданию локальных Telegram-комьюнити и оригинальному подходу к продвижению в digital-среде.</p>
-      <p>Занимается запуском и развитием Telegram-проектов, веб-разработкой и использованием искусственного интеллекта для автоматизации и создания контента.</p>
-    </section>
+<header>
+  <h1>Нико Бабаян</h1>
+  <p>Родился 21 марта 2008 года</p>
+</header>
 
-    <section class="contacts">
-      <h2>Контакты и проекты</h2>
-      <ul class="contacts-list">
-        <li>Telegram: <a href="https://t.me/nikoitt" target="_blank" rel="noopener noreferrer">@nikoitt</a></li>
-        <li>Каналы:
-          <ul>
-            <li><a href="https://t.me/ishutebyatverr" target="_blank" rel="noopener noreferrer">Ищу тебя Тверь</a></li>
-            <li><a href="https://t.me/nikotver" target="_blank" rel="noopener noreferrer">Niko Tver</a></li>
-            <li><a href="https://t.me/nizhnevartovsk_dtp" target="_blank" rel="noopener noreferrer">Ищу тебя Нижневартовск</a></li>
-            <li><a href="https://t.me/ishutebyakrasnoyarsk" target="_blank" rel="noopener noreferrer">Ищу тебя Красноярск</a></li>
-          </ul>
-        </li>
-        <li>Бот по продажам: <a href="https://t.me/niko_st_bot" target="_blank" rel="noopener noreferrer">Niko ST Bot</a></li>
-      </ul>
-      <a href="https://t.me/nikoitt" target="_blank" rel="noopener noreferrer" class="btn-telegram">Написать в Telegram</a>
-    </section>
+<main>
+  <section id="about">
+    <h2>О себе</h2>
+    <p><strong>Нико Бабаян</strong> — армянский digital-предприниматель, автор Telegram-каналов формата «Ищу тебя», веб-разработчик, AI-энтузиаст и креативный продюсер.</p>
+    <p>Известен благодаря созданию локальных Telegram-комьюнити и оригинальному подходу к продвижению в digital-среде.</p>
+    <p>Увлечён использованием современных технологий и искусственного интеллекта для автоматизации и креатива.</p>
+  </section>
 
-    <footer>
-      &copy; 2025 Нико Бабаян
-    </footer>
-  </div>
+  <section id="projects">
+    <h2>Проекты и каналы</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Telegram-каналы</h3>
+        <ul>
+          <li><a href="https://t.me/ishutebyatverr" target="_blank" rel="noopener noreferrer">Ищу тебя Тверь</a></li>
+          <li><a href="https://t.me/nikotver" target="_blank" rel="noopener noreferrer">Niko Tver</a></li>
+          <li><a href="https://t.me/nizhnevartovsk_dtp" target="_blank" rel="noopener noreferrer">Ищу тебя Нижневартовск</a></li>
+          <li><a href="https://t.me/ishutebyakrasnoyarsk" target="_blank" rel="noopener noreferrer">Ищу тебя Красноярск</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Telegram-бот</h3>
+        <p><a href="https://t.me/niko_st_bot" target="_blank" rel="noopener noreferrer">Niko ST Bot</a> — бот по продажам и рекламе в Telegram.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Навыки и технологии</h2>
+    <ul>
+      <li>Веб-разработка: HTML, CSS, JavaScript</li>
+      <li>Работа с GitHub и Render</li>
+      <li>AI-инструменты для генерации контента и дизайна</li>
+      <li>Telegram API и бот-разработка</li>
+      <li>Digital-маркетинг и продвижение в соцсетях</li>
+      <li>Создание и ведение Telegram-сообществ</li>
+    </ul>
+  </section>
+
+  <section id="goals">
+    <h2>Цели и миссия</h2>
+    <p>Нико стремится доказать, что можно изменить свою жизнь за 60 дней, создав успешный digital-бизнес, влияя на аудиторию и реализуя свой потенциал.</p>
+    <p>В работе использует креативность, технологии и целеустремленность для достижения результатов.</p>
+  </section>
+
+  <section id="contacts">
+    <h2>Контакты</h2>
+    <p>Связаться со мной можно через Telegram:</p>
+    <a href="https://t.me/nikoitt" target="_blank" rel="noopener noreferrer" class="btn">Написать в Telegram</a>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Нико Бабаян
+</footer>
+
 </body>
 </html>
