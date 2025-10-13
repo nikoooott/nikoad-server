@@ -180,4 +180,1704 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200 120L0 16.48 0 0 1200
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" fill="white"/></svg>');
+            background-size: 100% 100px;
+            background-repeat: no-repeat;
+            background-position: bottom;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-buttons .btn {
+            background: white;
+            color: var(--primary);
+        }
+
+        .hero-buttons .btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            color: #6c757d;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* Events Section */
+        .events {
+            background: var(--light);
+        }
+
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .event-image {
+            height: 200px;
+            background: var(--gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-date {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: white;
+            padding: 10px 15px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .event-date .day {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .event-date .month {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .event-content {
+            padding: 25px;
+        }
+
+        .event-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .event-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .event-meta i {
+            margin-right: 5px;
+            color: var(--primary);
+        }
+
+        /* Team Section */
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            text-align: center;
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px 20px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .member-role {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .member-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .member-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--light);
+            color: var(--dark);
+            transition: all 0.3s;
+        }
+
+        .member-social a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: var(--light);
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            height: 250px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Blog Section */
+        .blog-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-post {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .blog-image {
+            height: 200px;
+            background: var(--gradient);
+        }
+
+        .blog-content {
+            padding: 25px;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .blog-meta i {
+            margin-right: 5px;
+            color: var(--primary);
+        }
+
+        .blog-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .blog-content p {
+            margin-bottom: 15px;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            margin-bottom: 5px;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-family: 'Raleway', sans-serif;
+            transition: border 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 70px 0 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 25px 0;
+            text-align: center;
+            color: #adb5bd;
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-top: 50px;
+            display: none;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .admin-tab {
+            padding: 10px 20px;
+            background: var(--light);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .admin-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .admin-content {
+            display: none;
+        }
+
+        .admin-content.active {
+            display: block;
+        }
+
+        .post-form, .event-form, .team-form, .gallery-form {
+            background: var(--light);
+            padding: 25px;
+            border-radius: var(--radius);
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .posts-list, .events-list, .team-list, .gallery-list {
+            background: var(--light);
+            padding: 25px;
+            border-radius: var(--radius);
+        }
+
+        .post-item, .event-item, .team-item, .gallery-item-admin {
+            background: white;
+            padding: 20px;
+            border-radius: var(--radius);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .post-actions, .event-actions, .team-actions, .gallery-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .edit-btn {
+            background: var(--warning);
+            color: var(--dark);
+        }
+
+        .delete-btn {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Edit Mode */
+        .edit-mode .editable {
+            position: relative;
+            outline: 2px dashed rgba(58, 134, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .edit-mode .editable:hover {
+            background: rgba(58, 134, 255, 0.1);
+        }
+
+        .edit-mode .editable::after {
+            content: '✎';
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: var(--primary);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .edit-mode .editable:hover::after {
+            opacity: 1;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6c757d;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content, .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 200px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="navbar">
+                <a href="#" class="logo editable" data-type="text">
+                    <i class="fas fa-rocket"></i>
+                    <span class="editable-text">Прогресс</span>
+                </a>
+                <div class="nav-links">
+                    <a href="#about" class="editable" data-type="text">О нас</a>
+                    <a href="#events" class="editable" data-type="text">Мероприятия</a>
+                    <a href="#team" class="editable" data-type="text">Команда</a>
+                    <a href="#gallery" class="editable" data-type="text">Галерея</a>
+                    <a href="#blog" class="editable" data-type="text">Блог</a>
+                    <a href="#contact" class="editable" data-type="text">Контакты</a>
+                </div>
+                <div class="auth-buttons">
+                    <button class="btn btn-outline" id="editModeToggle">Режим редактирования</button>
+                    <button class="btn btn-primary" id="adminToggle">Админ-панель</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1 class="editable" data-type="text">Создаём будущее вместе!</h1>
+                <p class="editable" data-type="text">Мы - молодежная организация, которая объединяет активных и талантливых людей для реализации социальных проектов, развития лидерских качеств и создания позитивных изменений в обществе.</p>
+                <div class="hero-buttons">
+                    <a href="#events" class="btn editable" data-type="text">Участвовать</a>
+                    <a href="#about" class="btn editable" data-type="text">Узнать больше</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="editable" data-type="text">О нашей организации</h2>
+                <p class="editable" data-type="text">Мы работаем с 2015 года и за это время реализовали более 100 проектов, провели 250+ мероприятий и объединили более 5000 участников.</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 class="editable" data-type="text">Наша миссия - развитие молодёжного потенциала</h3>
+                    <p class="editable" data-type="text">Мы создаем пространство для самореализации, обучения и обмена опытом между активными молодыми людьми. Наша цель - помочь каждому раскрыть свой потенциал и внести вклад в развитие общества.</p>
+                    <p class="editable" data-type="text">Мы организуем образовательные программы, форумы, волонтерские акции, культурные мероприятия и многое другое. Присоединяйтесь к нам!</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <div class="stat-number editable" data-type="text">5000+</div>
+                            <div class="stat-label editable" data-type="text">Участников</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number editable" data-type="text">100+</div>
+                            <div class="stat-label editable" data-type="text">Проектов</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number editable" data-type="text">8</div>
+                            <div class="stat-label editable" data-type="text">Лет работы</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Наша команда" class="editable" data-type="image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="editable" data-type="text">Ближайшие мероприятия</h2>
+                <p class="editable" data-type="text">Присоединяйтесь к нашим событиям - от образовательных мастер-классов до масштабных фестивалей.</p>
+            </div>
+            <div class="events-container" id="eventsContainer">
+                <!-- Events will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="editable" data-type="text">Наша команда</h2>
+                <p class="editable" data-type="text">Знакомьтесь с лидерами и организаторами, которые делают нашу работу возможной.</p>
+            </div>
+            <div class="team-container" id="teamContainer">
+                <!-- Team members will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="editable" data-type="text">Галерея</h2>
+                <p class="editable" data-type="text">Взгляд на наши мероприятия и проекты через объектив фотокамеры.</p>
+            </div>
+            <div class="gallery-container" id="galleryContainer">
+                <!-- Gallery items will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="editable" data-type="text">Последние новости</h2>
+                <p class="editable" data-type="text">Следите за нашими обновлениями, событиями и интересными материалами.</p>
+            </div>
+            <div class="blog-container" id="blogContainer">
+                <!-- Blog posts will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="editable" data-type="text">Свяжитесь с нами</h2>
+                <p class="editable" data-type="text">Есть вопросы или предложения? Мы всегда рады услышать вас!</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4 class="editable" data-type="text">Адрес</h4>
+                            <p class="editable" data-type="text">г. Москва, ул. Молодежная, д. 15</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4 class="editable" data-type="text">Телефон</h4>
+                            <p class="editable" data-type="text">+7 (495) 123-45-67</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4 class="editable" data-type="text">Email</h4>
+                            <p class="editable" data-type="text">info@progress.org</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4 class="editable" data-type="text">Режим работы</h4>
+                            <p class="editable" data-type="text">Пн-Пт: 9:00 - 18:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" class="editable" data-type="text">Ваше имя</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="editable" data-type="text">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" class="editable" data-type="text">Тема</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="editable" data-type="text">Сообщение</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary editable" data-type="text">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Panel -->
+    <section class="admin-section">
+        <div class="container">
+            <div class="admin-panel" id="adminPanel">
+                <div class="admin-header">
+                    <h2>Панель администратора</h2>
+                    <button class="btn btn-outline" id="closeAdmin">Закрыть</button>
+                </div>
+                <div class="admin-tabs">
+                    <div class="admin-tab active" data-tab="posts">Управление постами</div>
+                    <div class="admin-tab" data-tab="events">Управление мероприятиями</div>
+                    <div class="admin-tab" data-tab="team">Управление командой</div>
+                    <div class="admin-tab" data-tab="gallery">Управление галереей</div>
+                    <div class="admin-tab" data-tab="settings">Настройки сайта</div>
+                </div>
+                
+                <div class="admin-content active" id="posts-tab">
+                    <div class="post-form">
+                        <h3>Добавить новый пост</h3>
+                        <form id="addPostForm">
+                            <div class="form-group">
+                                <label for="postTitle">Заголовок</label>
+                                <input type="text" id="postTitle" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="postContent">Содержание</label>
+                                <textarea id="postContent" class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="postImage">URL изображения</label>
+                                <input type="text" id="postImage" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Опубликовать</button>
+                        </form>
+                    </div>
+                    <div class="posts-list">
+                        <h3>Существующие посты</h3>
+                        <div id="postsList">
+                            <!-- Posts will be listed here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="admin-content" id="events-tab">
+                    <div class="event-form">
+                        <h3>Добавить новое мероприятие</h3>
+                        <form id="addEventForm">
+                            <div class="form-group">
+                                <label for="eventTitle">Название мероприятия</label>
+                                <input type="text" id="eventTitle" class="form-control" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="eventDate">Дата</label>
+                                    <input type="date" id="eventDate" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="eventTime">Время</label>
+                                    <input type="time" id="eventTime" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventLocation">Место проведения</label>
+                                <input type="text" id="eventLocation" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventDescription">Описание</label>
+                                <textarea id="eventDescription" class="form-control" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Добавить мероприятие</button>
+                        </form>
+                    </div>
+                    <div class="events-list">
+                        <h3>Существующие мероприятия</h3>
+                        <div id="adminEventsList">
+                            <!-- Events will be listed here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="admin-content" id="team-tab">
+                    <div class="team-form">
+                        <h3>Добавить члена команды</h3>
+                        <form id="addTeamForm">
+                            <div class="form-group">
+                                <label for="teamName">Имя</label>
+                                <input type="text" id="teamName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="teamRole">Должность</label>
+                                <input type="text" id="teamRole" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="teamDescription">Описание</label>
+                                <textarea id="teamDescription" class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="teamPhoto">URL фото</label>
+                                <input type="text" id="teamPhoto" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Добавить в команду</button>
+                        </form>
+                    </div>
+                    <div class="team-list">
+                        <h3>Члены команды</h3>
+                        <div id="adminTeamList">
+                            <!-- Team members will be listed here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="admin-content" id="gallery-tab">
+                    <div class="gallery-form">
+                        <h3>Добавить изображение в галерею</h3>
+                        <form id="addGalleryForm">
+                            <div class="form-group">
+                                <label for="galleryImage">URL изображения</label>
+                                <input type="text" id="galleryImage" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="galleryTitle">Название</label>
+                                <input type="text" id="galleryTitle" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Добавить в галерею</button>
+                        </form>
+                    </div>
+                    <div class="gallery-list">
+                        <h3>Изображения в галерее</h3>
+                        <div id="adminGalleryList">
+                            <!-- Gallery items will be listed here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="admin-content" id="settings-tab">
+                    <h3>Настройки сайта</h3>
+                    <p>Здесь вы можете настроить основные параметры сайта.</p>
+                    <div class="form-group">
+                        <label for="siteTitle">Название организации</label>
+                        <input type="text" id="siteTitle" class="form-control" value="Прогресс">
+                    </div>
+                    <div class="form-group">
+                        <label for="siteDescription">Описание организации</label>
+                        <textarea id="siteDescription" class="form-control">Мы - молодежная организация, которая объединяет активных и талантливых людей для реализации социальных проектов, развития лидерских качеств и создания позитивных изменений в обществе.</textarea>
+                    </div>
+                    <button class="btn btn-primary" id="saveSettings">Сохранить настройки</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="editable" data-type="text">О нас</h3>
+                    <p class="editable" data-type="text">Молодежная организация "Прогресс" - это сообщество активных молодых людей, стремящихся к самореализации и созданию позитивных изменений в обществе.</p>
+                    <div class="footer-social">
+                        <a href="#" class="editable" data-type="link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="editable" data-type="link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="editable" data-type="link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="editable" data-type="link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="editable" data-type="text">Быстрые ссылки</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about" class="editable" data-type="text">О нас</a></li>
+                        <li><a href="#events" class="editable" data-type="text">Мероприятия</a></li>
+                        <li><a href="#team" class="editable" data-type="text">Команда</a></li>
+                        <li><a href="#gallery" class="editable" data-type="text">Галерея</a></li>
+                        <li><a href="#blog" class="editable" data-type="text">Блог</a></li>
+                        <li><a href="#contact" class="editable" data-type="text">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="editable" data-type="text">Наши проекты</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="editable" data-type="text">Молодежный форум</a></li>
+                        <li><a href="#" class="editable" data-type="text">Волонтерские программы</a></li>
+                        <li><a href="#" class="editable" data-type="text">Образовательные курсы</a></li>
+                        <li><a href="#" class="editable" data-type="text">Карьерные консультации</a></li>
+                        <li><a href="#" class="editable" data-type="text">Культурные мероприятия</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="editable" data-type="text">Контакты</h3>
+                    <ul class="footer-links">
+                        <li class="editable" data-type="text"><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Молодежная, д. 15</li>
+                        <li class="editable" data-type="text"><i class="fas fa-phone"></i> +7 (495) 123-45-67</li>
+                        <li class="editable" data-type="text"><i class="fas fa-envelope"></i> info@progress.org</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="editable" data-type="text">&copy; 2023 Молодежная Организация "Прогресс". Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Edit Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="editModalTitle">Редактирование</h3>
+                <button class="close-modal" id="closeEditModal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="editContent">Содержимое:</label>
+                <textarea id="editContent" class="form-control" rows="6"></textarea>
+            </div>
+            <div class="form-group" id="imageUrlGroup" style="display: none;">
+                <label for="editImageUrl">URL изображения:</label>
+                <input type="text" id="editImageUrl" class="form-control">
+            </div>
+            <div class="form-group" id="linkUrlGroup" style="display: none;">
+                <label for="editLinkUrl">URL ссылки:</label>
+                <input type="text" id="editLinkUrl" class="form-control">
+            </div>
+            <button class="btn btn-primary" id="saveEdit">Сохранить</button>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for events, posts, team and gallery
+        let events = [
+            {
+                id: 1,
+                title: "Форум молодежных лидеров",
+                date: "2023-10-15",
+                time: "10:00",
+                location: "Конференц-зал 'Сфера'",
+                description: "Ежегодный форум для обмена опытом и развития лидерских качеств."
+            },
+            {
+                id: 2,
+                title: "Мастер-класс по публичным выступлениям",
+                date: "2023-10-22",
+                time: "15:00",
+                location: "Актовый зал",
+                description: "Научитесь уверенно выступать перед аудиторией и доносить свои идеи."
+            },
+            {
+                id: 3,
+                title: "Волонтерская акция 'Чистый парк'",
+                date: "2023-11-05",
+                time: "11:00",
+                location: "Центральный парк",
+                description: "Присоединяйтесь к нам для благоустройства городского парка."
+            }
+        ];
+
+        let posts = [
+            {
+                id: 1,
+                title: "Новый сезон проектов начинается!",
+                content: "Мы рады объявить о старте нового сезона проектов и мероприятий. В этом году нас ждут интересные события, образовательные программы и многое другое.",
+                date: "2023-09-01",
+                author: "Анна Иванова"
+            },
+            {
+                id: 2,
+                title: "Итоги летнего волонтерского лагеря",
+                content: "Завершился наш летний волонтерский лагерь, в котором приняли участие более 100 человек. Мы реализовали 5 социальных проектов и провели множество мероприятий.",
+                date: "2023-08-25",
+                author: "Максим Петров"
+            }
+        ];
+
+        let teamMembers = [
+            {
+                id: 1,
+                name: "Анна Иванова",
+                role: "Руководитель организации",
+                description: "Опытный лидер с 10-летним стажем в управлении социальными проектами.",
+                photo: ""
+            },
+            {
+                id: 2,
+                name: "Максим Петров",
+                role: "Координатор мероприятий",
+                description: "Организатор более 50 успешных мероприятий разного масштаба.",
+                photo: ""
+            },
+            {
+                id: 3,
+                name: "Елена Смирнова",
+                role: "Менеджер проектов",
+                description: "Специалист по грантовым заявкам и управлению проектами.",
+                photo: ""
+            },
+            {
+                id: 4,
+                name: "Дмитрий Козлов",
+                role: "Волонтерский координатор",
+                description: "Опыт работы с волонтерами и развитие сообщества.",
+                photo: ""
+            }
+        ];
+
+        let galleryItems = [
+            {
+                id: 1,
+                image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                title: "Форум молодежных лидеров 2023"
+            },
+            {
+                id: 2,
+                image: "https://images.unsplash.com/photo-1532634922-8fe0b757fb13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                title: "Волонтерская акция 'Чистый город'"
+            },
+            {
+                id: 3,
+                image: "https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                title: "Образовательный интенсив"
+            },
+            {
+                id: 4,
+                image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                title: "Молодежный фестиваль искусств"
+            }
+        ];
+
+        // DOM Elements
+        const adminPanel = document.getElementById('adminPanel');
+        const adminToggle = document.getElementById('adminToggle');
+        const closeAdmin = document.getElementById('closeAdmin');
+        const adminTabs = document.querySelectorAll('.admin-tab');
+        const adminContents = document.querySelectorAll('.admin-content');
+        const eventsContainer = document.getElementById('eventsContainer');
+        const blogContainer = document.getElementById('blogContainer');
+        const teamContainer = document.getElementById('teamContainer');
+        const galleryContainer = document.getElementById('galleryContainer');
+        const postsList = document.getElementById('postsList');
+        const adminEventsList = document.getElementById('adminEventsList');
+        const adminTeamList = document.getElementById('adminTeamList');
+        const adminGalleryList = document.getElementById('adminGalleryList');
+        const addPostForm = document.getElementById('addPostForm');
+        const addEventForm = document.getElementById('addEventForm');
+        const addTeamForm = document.getElementById('addTeamForm');
+        const addGalleryForm = document.getElementById('addGalleryForm');
+        const header = document.getElementById('header');
+        const editModeToggle = document.getElementById('editModeToggle');
+        const editModal = document.getElementById('editModal');
+        const closeEditModal = document.getElementById('closeEditModal');
+        const saveEdit = document.getElementById('saveEdit');
+        const editContent = document.getElementById('editContent');
+        const editImageUrl = document.getElementById('editImageUrl');
+        const editLinkUrl = document.getElementById('editLinkUrl');
+        const imageUrlGroup = document.getElementById('imageUrlGroup');
+        const linkUrlGroup = document.getElementById('linkUrlGroup');
+        const saveSettings = document.getElementById('saveSettings');
+
+        let currentEditingElement = null;
+        let isEditMode = false;
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderEvents();
+            renderPosts();
+            renderTeam();
+            renderGallery();
+            renderAdminEvents();
+            renderAdminPosts();
+            renderAdminTeam();
+            renderAdminGallery();
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Load saved settings
+            loadSettings();
+        });
+
+        // Admin panel toggle
+        adminToggle.addEventListener('click', function() {
+            adminPanel.style.display = 'block';
+            window.scrollTo({
+                top: adminPanel.offsetTop - 100,
+                behavior: 'smooth'
+            });
+        });
+
+        closeAdmin.addEventListener('click', function() {
+            adminPanel.style.display = 'none';
+        });
+
+        // Admin tabs
+        adminTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // Remove active class from all tabs and contents
+                adminTabs.forEach(t => t.classList.remove('active'));
+                adminContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to current tab and content
+                this.classList.add('active');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+
+        // Edit mode toggle
+        editModeToggle.addEventListener('click', function() {
+            isEditMode = !isEditMode;
+            document.body.classList.toggle('edit-mode', isEditMode);
+            
+            if (isEditMode) {
+                this.textContent = 'Выключить редактирование';
+                this.classList.remove('btn-outline');
+                this.classList.add('btn-danger');
+            } else {
+                this.textContent = 'Режим редактирования';
+                this.classList.remove('btn-danger');
+                this.classList.add('btn-outline');
+            }
+        });
+
+        // Edit modal functionality
+        document.addEventListener('click', function(e) {
+            if (!isEditMode) return;
+            
+            const editableElement = e.target.closest('.editable');
+            if (editableElement) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                currentEditingElement = editableElement;
+                const elementType = editableElement.getAttribute('data-type');
+                
+                // Set modal title
+                document.getElementById('editModalTitle').textContent = 'Редактирование элемента';
+                
+                // Show/hide appropriate fields
+                imageUrlGroup.style.display = elementType === 'image' ? 'block' : 'none';
+                linkUrlGroup.style.display = elementType === 'link' ? 'block' : 'none';
+                
+                // Set current values
+                if (elementType === 'image') {
+                    editContent.value = editableElement.alt || '';
+                    editImageUrl.value = editableElement.src || '';
+                } else if (elementType === 'link') {
+                    editContent.value = editableElement.textContent || '';
+                    editLinkUrl.value = editableElement.href || '';
+                } else {
+                    editContent.value = editableElement.textContent || '';
+                }
+                
+                // Show modal
+                editModal.style.display = 'flex';
+            }
+        });
+
+        closeEditModal.addEventListener('click', function() {
+            editModal.style.display = 'none';
+            currentEditingElement = null;
+        });
+
+        saveEdit.addEventListener('click', function() {
+            if (currentEditingElement) {
+                const elementType = currentEditingElement.getAttribute('data-type');
+                
+                if (elementType === 'image') {
+                    currentEditingElement.alt = editContent.value;
+                    if (editImageUrl.value) {
+                        currentEditingElement.src = editImageUrl.value;
+                    }
+                } else if (elementType === 'link') {
+                    currentEditingElement.textContent = editContent.value;
+                    if (editLinkUrl.value) {
+                        currentEditingElement.href = editLinkUrl.value;
+                    }
+                } else {
+                    currentEditingElement.textContent = editContent.value;
+                }
+                
+                editModal.style.display = 'none';
+                currentEditingElement = null;
+                
+                // Save changes to localStorage
+                saveAllContent();
+            }
+        });
+
+        // Save all editable content to localStorage
+        function saveAllContent() {
+            const editableElements = document.querySelectorAll('.editable');
+            const contentData = {};
+            
+            editableElements.forEach(element => {
+                const elementType = element.getAttribute('data-type');
+                const elementId = element.id || generateId();
+                if (!element.id) element.id = elementId;
+                
+                if (elementType === 'image') {
+                    contentData[elementId] = {
+                        type: 'image',
+                        alt: element.alt,
+                        src: element.src
+                    };
+                } else if (elementType === 'link') {
+                    contentData[elementId] = {
+                        type: 'link',
+                        text: element.textContent,
+                        href: element.href
+                    };
+                } else {
+                    contentData[elementId] = {
+                        type: 'text',
+                        content: element.textContent
+                    };
+                }
+            });
+            
+            localStorage.setItem('websiteContent', JSON.stringify(contentData));
+        }
+
+        // Load content from localStorage
+        function loadContent() {
+            const contentData = JSON.parse(localStorage.getItem('websiteContent')) || {};
+            
+            for (const [id, data] of Object.entries(contentData)) {
+                const element = document.getElementById(id);
+                if (element) {
+                    if (data.type === 'image') {
+                        if (data.alt) element.alt = data.alt;
+                        if (data.src) element.src = data.src;
+                    } else if (data.type === 'link') {
+                        if (data.text) element.textContent = data.text;
+                        if (data.href) element.href = data.href;
+                    } else {
+                        if (data.content) element.textContent = data.content;
+                    }
+                }
+            }
+        }
+
+        // Generate unique ID
+        function generateId() {
+            return 'editable-' + Math.random().toString(36).substr(2, 9);
+        }
+
+        // Save settings
+        saveSettings.addEventListener('click', function() {
+            const siteTitle = document.getElementById('siteTitle').value;
+            const siteDescription = document.getElementById('siteDescription').value;
+            
+            // Update website title
+            document.querySelector('.logo .editable-text').textContent = siteTitle;
+            
+            // Update hero description
+            document.querySelector('.hero p').textContent = siteDescription;
+            
+            alert('Настройки сохранены!');
+            
+            // Save to localStorage
+            localStorage.setItem('siteSettings', JSON.stringify({
+                title: siteTitle,
+                description: siteDescription
+            }));
+        });
+
+        // Load settings
+        function loadSettings() {
+            const settings = JSON.parse(localStorage.getItem('siteSettings')) || {};
+            
+            if (settings.title) {
+                document.getElementById('siteTitle').value = settings.title;
+                document.querySelector('.logo .editable-text').textContent = settings.title;
+            }
+            
+            if (settings.description) {
+                document.getElementById('siteDescription').value = settings.description;
+                document.querySelector('.hero p').textContent = settings.description;
+            }
+            
+            // Load editable content
+            loadContent();
+        }
+
+        // Render events on the main page
+        function renderEvents() {
+            eventsContainer.innerHTML = '';
+            
+            events.forEach(event => {
+                const eventDate = new Date(event.date);
+                const monthNames = ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"];
+                
+                const eventElement = document.createElement('div');
+                eventElement.className = 'event-card fade-in';
+                eventElement.innerHTML = `
+                    <div class="event-image">
+                        <div class="event-date">
+                            <div class="day">${eventDate.getDate()}</div>
+                            <div class="month">${monthNames[eventDate.getMonth()]}</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <h3>${event.title}</h3>
+                        <div class="event-meta">
+                            <span><i class="far fa-clock"></i> ${event.time}</span>
+                            <span><i class="fas fa-map-marker-alt"></i> ${event.location}</span>
+                        </div>
+                        <p>${event.description}</p>
+                        <a href="#" class="btn btn-outline">Узнать больше</a>
+                    </div>
+                `;
+                
+                eventsContainer.appendChild(eventElement);
+            });
+        }
+
+        // Render blog posts on the main page
+        function renderPosts() {
+            blogContainer.innerHTML = '';
+            
+            posts.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.className = 'blog-post fade-in';
+                postElement.innerHTML = `
+                    <div class="blog-image"></div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-user"></i> ${post.author}</span>
+                            <span><i class="far fa-calendar"></i> ${post.date}</span>
+                        </div>
+                        <h3>${post.title}</h3>
+                        <p>${post.content}</p>
+                        <a href="#" class="btn btn-outline">Читать далее</a>
+                    </div>
+                `;
+                
+                blogContainer.appendChild(postElement);
+            });
+        }
+
+        // Render team members on the main page
+        function renderTeam() {
+            teamContainer.innerHTML = '';
+            
+            teamMembers.forEach(member => {
+                const memberElement = document.createElement('div');
+                memberElement.className = 'team-member fade-in';
+                memberElement.innerHTML = `
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="member-name">${member.name}</h3>
+                    <p class="member-role">${member.role}</p>
+                    <p>${member.description}</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                `;
+                
+                teamContainer.appendChild(memberElement);
+            });
+        }
+
+        // Render gallery items on the main page
+        function renderGallery() {
+            galleryContainer.innerHTML = '';
+            
+            galleryItems.forEach(item => {
+                const galleryElement = document.createElement('div');
+                galleryElement.className = 'gallery-item';
+                galleryElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="gallery-overlay">
+                        <h4>${item.title}</h4>
+                    </div>
+                `;
+                
+                galleryContainer.appendChild(galleryElement);
+            });
+        }
+
+        // Render events in admin panel
+        function renderAdminEvents() {
+            adminEventsList.innerHTML = '';
+            
+            events.forEach(event => {
+                const eventElement = document.createElement('div');
+                eventElement.className = 'event-item';
+                eventElement.innerHTML = `
+                    <div>
+                        <h4>${event.title}</h4>
+                        <p>${event.date} | ${event.time} | ${event.location}</p>
+                    </div>
+                    <div class="event-actions">
+                        <button class="action-btn edit-btn">Редактировать</button>
+                        <button class="action-btn delete-btn" data-id="${event.id}">Удалить</button>
+                    </div>
+                `;
+                
+                adminEventsList.appendChild(eventElement);
+            });
+            
+            // Add event listeners to delete buttons
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const eventId = parseInt(this.getAttribute('data-id'));
+                    deleteEvent(eventId);
+                });
+            });
+        }
+
+        // Render posts in admin panel
+        function renderAdminPosts() {
+            postsList.innerHTML = '';
+            
+            posts.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.className = 'post-item';
+                postElement.innerHTML = `
+                    <div>
+                        <h4>${post.title}</h4>
+                        <p>${post.date} | ${post.author}</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn edit-btn">Редактировать</button>
+                        <button class="action-btn delete-btn" data-id="${post.id}">Удалить</button>
+                    </div>
+                `;
+                
+                postsList.appendChild(postElement);
+            });
+            
+            // Add event listeners to delete buttons
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const postId = parseInt(this.getAttribute('data-id'));
+                    deletePost(postId);
+                });
+            });
+        }
+
+        // Render team in admin panel
