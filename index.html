@@ -1,209 +1,174 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Валерия Уткина — Мастер бровей из Твери</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
-  :root {
-    --color-primary: #c462a1;
-    --color-primary-light: #d48fcf;
-    --color-bg: #fff0f7;
-    --color-text: #3a2a3a;
-    --color-accent: #d98cd9;
-    --transition-speed: 0.3s;
-  }
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  a {
-    color: var(--color-primary);
-    text-decoration: none;
-    transition: color var(--transition-speed);
-  }
-  a:hover {
-    color: var(--color-accent);
-  }
-  header {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-    color: white;
-    padding: 50px 20px 70px;
-    text-align: center;
-    box-shadow: 0 8px 15px rgba(196,98,161,0.5);
-  }
-  header h1 {
-    margin: 0 0 10px;
-    font-weight: 700;
-    font-size: 3.2rem;
-    letter-spacing: 0.05em;
-  }
-  header p {
-    margin: 0;
-    font-weight: 300;
-    font-size: 1.2rem;
-    opacity: 0.85;
-  }
-  main {
-    max-width: 900px;
-    margin: -70px auto 50px;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(196,98,161,0.15);
-    padding: 40px 40px 60px;
-  }
-  section {
-    margin-bottom: 50px;
-  }
-  h2 {
-    font-weight: 700;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: var(--color-primary);
-    border-bottom: 3px solid var(--color-primary-light);
-    padding-bottom: 8px;
-  }
-  p {
-    font-size: 1.1rem;
-    color: #4a3a4a;
-  }
-  ul {
-    padding-left: 20px;
-    margin-top: 15px;
-  }
-  ul li {
-    margin-bottom: 10px;
-    font-size: 1.05rem;
-  }
-  .btn {
-    display: inline-block;
-    padding: 15px 30px;
-    background: var(--color-primary);
-    color: white;
-    font-weight: 700;
-    font-size: 1.1rem;
-    border-radius: 50px;
-    box-shadow: 0 10px 20px rgba(196,98,161,0.3);
-    cursor: pointer;
-    border: none;
-    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
-    text-align: center;
-    text-decoration: none;
-    user-select: none;
-  }
-  .btn:hover {
-    background-color: var(--color-accent);
-    box-shadow: 0 12px 25px rgba(217,140,217,0.5);
-  }
-  .card {
-    background: #fff5fb;
-    border-radius: 15px;
-    box-shadow: 0 6px 18px rgba(196,98,161,0.1);
-    padding: 25px 30px;
-    margin-bottom: 25px;
-    transition: transform 0.3s ease;
-  }
-  .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(196,98,161,0.2);
-  }
-  .card h3 {
-    margin-top: 0;
-    margin-bottom: 12px;
-    color: var(--color-primary);
-  }
-  .grid-2 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-    gap: 20px;
-  }
-  footer {
-    text-align: center;
-    color: #888;
-    margin-top: 40px;
-    font-size: 0.9rem;
-  }
-  @media (max-width: 600px) {
-    header h1 {
-      font-size: 2.4rem;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Дом Москвы в Ереване</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #fff;
+      color: #111;
     }
-    main {
-      margin: -50px 15px 30px;
-      padding: 30px 20px 40px;
+
+    header {
+      background-color: #c00;
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
     }
-    .btn {
-      padding: 13px 25px;
-      font-size: 1rem;
+
+    header img {
+      width: 120px;
+      margin-bottom: 15px;
     }
-  }
-</style>
+
+    h1 {
+      margin: 0;
+      font-size: 2.2em;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      color: #c00;
+      border-bottom: 2px solid #c00;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .leaders span {
+      display: inline-block;
+      background: #f3f3f3;
+      margin: 5px;
+      padding: 8px 14px;
+      border-radius: 8px;
+    }
+
+    .news-item {
+      background: #fafafa;
+      border-left: 4px solid #c00;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      font-size: 1em;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #c00;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #a00;
+    }
+
+    footer {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    a {
+      color: #c00;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <img src="emblem.jpeg" alt="Эмблема Дома Москвы">
+    <h1>Дом Москвы в Ереване</h1>
+    <p>📍 ул. Аргишти, 7</p>
+  </header>
 
-<header>
-  <h1>Валерия Уткина</h1>
-  <p>Мастер бровей из Твери, родилась 24 июля 2008 года</p>
-</header>
+  <div class="container">
+    <section>
+      <p>Добро пожаловать в <b>Молодёжное крыло</b> — пространство идей, встреч и проектов!</p>
+      <p>Здесь студенты и молодые специалисты создают будущее: от культурных вечеров и дискуссий до мастер-классов, форумов и клубов по интересам.</p>
+    </section>
 
-<main>
-  <section id="about">
-    <h2>О себе</h2>
-    <p>Привет! Меня зовут <strong>Валерия Уткина</strong>, и я — молодой и талантливый мастер бровей из города Тверь. Мне 17 лет, и я обожаю помогать людям чувствовать себя увереннее и красивее с помощью идеальных бровей.</p>
-    <p>С детства я увлекалась искусством и стилем, и мое хобби переросло в профессиональную деятельность. Я постоянно учусь новым техникам, посещаю мастер-классы и слежу за трендами в индустрии красоты.</p>
-    <p>Моя миссия — сделать каждую клиентку особенной и подчеркнуть её индивидуальность через стильные и ухоженные брови.</p>
-  </section>
+    <section class="leaders">
+      <h2>Руководители</h2><br>
+      <span>Давид</span>
+      <span>Мери</span>
+      <span>Бабаян Нико Каренович</span>
+      <span>Лена</span>
+      <span>Арамэ</span>
+      <span>Гово</span>
+      <span>Рибэкка</span>
+      <span>Жанна</span>
+    </section>
 
-  <section id="skills">
-    <h2>Навыки и услуги</h2>
-    <ul>
-      <li>Коррекция и оформление бровей</li>
-      <li>Окрашивание хной и краской</li>
-      <li>Ламинирование бровей</li>
-      <li>Консультации по уходу за бровями</li>
-      <li>Использование только качественных и безопасных материалов</li>
-      <li>Индивидуальный подход к каждому клиенту</li>
-    </ul>
-  </section>
-
-  <section id="projects">
-    <h2>Портфолио и отзывы</h2>
-    <div class="grid-2">
-      <div class="card">
-        <h3>Портфолио</h3>
-        <p>Много работ с реальными клиентами, фото до и после, которые доказывают качество моих услуг и профессионализм.</p>
+    <section>
+      <h2>Новости</h2>
+      <div id="news-container">
+        <div class="news-item">✨ Привет! Это первая новость Дома Москвы. Здесь будут публиковаться события, встречи и анонсы.</div>
       </div>
-      <div class="card">
-        <h3>Отзывы</h3>
-        <p>«Валерия — настоящий профессионал! Теперь мои брови выглядят идеально, и я получаю много комплиментов.»</p>
-        <p>«Спасибо за внимательное отношение и отличный результат!»</p>
-      </div>
-    </div>
-  </section>
 
-  <section id="personal">
-    <h2>Личная жизнь</h2>
-    <p>Мой парень — <strong>Нико Бабаян</strong>, digital-предприниматель и творческий человек. Вместе мы поддерживаем друг друга и вдохновляемся на новые свершения.</p>
-  </section>
+      <h3>Добавить новость</h3>
+      <form id="newsForm">
+        <input type="text" id="title" placeholder="Заголовок новости" required>
+        <textarea id="content" placeholder="Текст новости" rows="4" required></textarea>
+        <button type="submit">Опубликовать</button>
+      </form>
+    </section>
 
-  <section id="contacts">
-    <h2>Контакты</h2>
-    <p>Связаться со мной можно через Telegram:</p>
-    <a href="https://t.me/valeriya_utkina" target="_blank" rel="noopener noreferrer" class="btn">Написать Валерии</a>
-  </section>
-</main>
+    <section>
+      <h2>Контакты</h2>
+      <p>Telegram: <a href="https://t.me/davidbs2" target="_blank">@davidbs2</a></p>
+    </section>
+  </div>
 
-<footer>
-  &copy; 2025 Валерия Уткина
-</footer>
+  <footer>
+    <p>© 2025 Дом Москвы в Ереване</p>
+  </footer>
 
+  <script>
+    const form = document.getElementById('newsForm');
+    const container = document.getElementById('news-container');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('title').value;
+      const content = document.getElementById('content').value;
+
+      const div = document.createElement('div');
+      div.classList.add('news-item');
+      div.innerHTML = `<b>${title}</b><br>${content}`;
+      container.prepend(div);
+
+      form.reset();
+    });
+  </script>
 </body>
 </html>
