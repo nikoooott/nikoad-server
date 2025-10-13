@@ -1,49 +1,57 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Дом Москвы в Ереване</title>
   <style>
+    * { box-sizing: border-box; transition: all 0.3s ease; }
     body {
       margin: 0;
       font-family: "Segoe UI", Arial, sans-serif;
-      background-color: #fff;
+      background: #fff;
       color: #111;
     }
 
     header {
-      background-color: #c00;
+      background: #c00;
       color: #fff;
-      padding: 40px 20px;
       text-align: center;
+      padding: 40px 20px;
     }
 
     header img {
       width: 120px;
-      margin-bottom: 15px;
+      border-radius: 10px;
+      margin-bottom: 10px;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 2.2em;
-    }
+    h1 { margin: 0; font-size: 2.3em; }
+    h2 { color: #c00; }
 
     .container {
       max-width: 900px;
-      margin: 0 auto;
+      margin: auto;
       padding: 20px;
     }
 
-    section {
-      margin-bottom: 40px;
+    .btn {
+      background: #c00;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
     }
+    .btn:hover { background: #a00; }
 
-    h2 {
-      color: #c00;
-      border-bottom: 2px solid #c00;
-      display: inline-block;
-      margin-bottom: 15px;
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
     }
 
     .leaders span {
@@ -60,31 +68,7 @@
       padding: 15px;
       margin-bottom: 10px;
       border-radius: 6px;
-    }
-
-    form {
-      margin-top: 20px;
-    }
-
-    input, textarea, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 8px;
-      font-size: 1em;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
-
-    button {
-      background-color: #c00;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #a00;
+      animation: fadeIn 0.5s ease;
     }
 
     footer {
@@ -92,82 +76,152 @@
       color: #fff;
       text-align: center;
       padding: 20px;
+      margin-top: 40px;
     }
 
-    a {
-      color: #c00;
-      text-decoration: none;
+    /* --- Анимации и логин --- */
+    @keyframes fadeIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+
+    #login-page, #main-page { display: none; }
+    #login-page.active, #main-page.active { display: block; }
+
+    .login-box {
+      max-width: 400px;
+      margin: 120px auto;
+      background: #fff;
+      padding: 30px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      animation: fadeIn 0.8s ease;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
+    .login-box h2 { text-align: center; margin-bottom: 20px; }
   </style>
 </head>
 <body>
-  <header>
-    <img src="emblem.jpeg" alt="Эмблема Дома Москвы">
-    <h1>Дом Москвы в Ереване</h1>
-    <p>📍 ул. Аргишти, 7</p>
-  </header>
 
-  <div class="container">
-    <section>
-      <p>Добро пожаловать в <b>Молодёжное крыло</b> — пространство идей, встреч и проектов!</p>
-      <p>Здесь студенты и молодые специалисты создают будущее: от культурных вечеров и дискуссий до мастер-классов, форумов и клубов по интересам.</p>
-    </section>
+  <!-- 🔐 Страница входа -->
+  <div id="login-page" class="active">
+    <div class="login-box">
+      <h2>Вход в Дом Москвы</h2>
+      <input type="text" id="login-username" placeholder="Логин" />
+      <input type="password" id="login-password" placeholder="Пароль" />
+      <button class="btn" id="login-btn">Войти</button>
 
-    <section class="leaders">
-      <h2>Руководители</h2><br>
-      <span>Давид</span>
-      <span>Мери</span>
-      <span>Бабаян Нико Каренович</span>
-      <span>Лена</span>
-      <span>Арамэ</span>
-      <span>Гово</span>
-      <span>Рибэкка</span>
-      <span>Жанна</span>
-    </section>
-
-    <section>
-      <h2>Новости</h2>
-      <div id="news-container">
-        <div class="news-item">✨ Привет! Это первая новость Дома Москвы. Здесь будут публиковаться события, встречи и анонсы.</div>
-      </div>
-
-      <h3>Добавить новость</h3>
-      <form id="newsForm">
-        <input type="text" id="title" placeholder="Заголовок новости" required>
-        <textarea id="content" placeholder="Текст новости" rows="4" required></textarea>
-        <button type="submit">Опубликовать</button>
-      </form>
-    </section>
-
-    <section>
-      <h2>Контакты</h2>
-      <p>Telegram: <a href="https://t.me/davidbs2" target="_blank">@davidbs2</a></p>
-    </section>
+      <p style="text-align:center;margin-top:10px;">Нет аккаунта? <a href="#" id="show-register" style="color:#c00;">Зарегистрироваться</a></p>
+    </div>
   </div>
 
-  <footer>
-    <p>© 2025 Дом Москвы в Ереване</p>
-  </footer>
+  <!-- 🔐 Регистрация -->
+  <div id="register-page" style="display:none;">
+    <div class="login-box">
+      <h2>Регистрация</h2>
+      <input type="text" id="reg-username" placeholder="Логин" />
+      <input type="password" id="reg-password" placeholder="Пароль" />
+      <button class="btn" id="register-btn">Создать аккаунт</button>
+      <p style="text-align:center;margin-top:10px;">Уже есть аккаунт? <a href="#" id="show-login" style="color:#c00;">Войти</a></p>
+    </div>
+  </div>
+
+  <!-- 🌐 Главная страница -->
+  <div id="main-page">
+    <header>
+      <img src="emblem.jpeg" alt="Эмблема Дома Москвы" />
+      <h1>Дом Москвы в Ереване</h1>
+      <p>📍 ул. Аргишти, 7</p>
+    </header>
+
+    <div class="container">
+      <section>
+        <p>Добро пожаловать в <b>Молодёжное крыло</b> — пространство идей, встреч и проектов!</p>
+        <p>Здесь студенты и молодые специалисты создают будущее: от культурных вечеров и дискуссий до мастер-классов, форумов и клубов по интересам.</p>
+      </section>
+
+      <section class="leaders">
+        <h2>Руководители</h2><br>
+        <span>Давид</span><span>Мери</span><span>Бабаян Нико Каренович</span>
+        <span>Лена</span><span>Арамэ</span><span>Гово</span>
+        <span>Рибэкка</span><span>Жанна</span>
+      </section>
+
+      <section>
+        <h2>Новости</h2>
+        <div id="news-container">
+          <div class="news-item">✨ Привет! Это первая новость Дома Москвы.</div>
+        </div>
+
+        <div id="news-form" style="display:none;">
+          <h3>Добавить новость</h3>
+          <input type="text" id="news-title" placeholder="Заголовок" required>
+          <textarea id="news-content" placeholder="Текст новости" rows="4" required></textarea>
+          <button class="btn" id="add-news">Опубликовать</button>
+        </div>
+      </section>
+
+      <section>
+        <h2>Контакты</h2>
+        <p>Telegram: <a href="https://t.me/davidbs2" target="_blank">@davidbs2</a></p>
+      </section>
+    </div>
+
+    <footer>
+      <p>© 2025 Дом Москвы в Ереване</p>
+    </footer>
+  </div>
 
   <script>
-    const form = document.getElementById('newsForm');
-    const container = document.getElementById('news-container');
+    const adminUser = "niko";
+    const adminPass = "12345";
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const title = document.getElementById('title').value;
-      const content = document.getElementById('content').value;
+    const loginPage = document.getElementById('login-page');
+    const registerPage = document.getElementById('register-page');
+    const mainPage = document.getElementById('main-page');
+    const newsForm = document.getElementById('news-form');
+    const newsContainer = document.getElementById('news-container');
 
+    document.getElementById('login-btn').addEventListener('click', () => {
+      const u = document.getElementById('login-username').value.trim();
+      const p = document.getElementById('login-password').value.trim();
+      const stored = JSON.parse(localStorage.getItem('users') || '{}');
+      if ((u === adminUser && p === adminPass) || (stored[u] && stored[u] === p)) {
+        loginPage.classList.remove('active');
+        mainPage.classList.add('active');
+        if (u === adminUser) newsForm.style.display = 'block';
+      } else alert("Неверный логин или пароль");
+    });
+
+    document.getElementById('show-register').onclick = () => {
+      loginPage.style.display = 'none';
+      registerPage.style.display = 'block';
+    };
+    document.getElementById('show-login').onclick = () => {
+      registerPage.style.display = 'none';
+      loginPage.style.display = 'block';
+    };
+
+    document.getElementById('register-btn').addEventListener('click', () => {
+      const u = document.getElementById('reg-username').value.trim();
+      const p = document.getElementById('reg-password').value.trim();
+      if (!u || !p) return alert("Введите логин и пароль");
+      const users = JSON.parse(localStorage.getItem('users') || '{}');
+      users[u] = p;
+      localStorage.setItem('users', JSON.stringify(users));
+      alert("Регистрация успешна! Теперь войдите.");
+      registerPage.style.display = 'none';
+      loginPage.style.display = 'block';
+    });
+
+    document.getElementById('add-news').addEventListener('click', () => {
+      const t = document.getElementById('news-title').value;
+      const c = document.getElementById('news-content').value;
+      if (!t || !c) return;
       const div = document.createElement('div');
-      div.classList.add('news-item');
-      div.innerHTML = `<b>${title}</b><br>${content}`;
-      container.prepend(div);
-
-      form.reset();
+      div.className = 'news-item';
+      div.innerHTML = `<b>${t}</b><br>${c}`;
+      newsContainer.prepend(div);
+      document.getElementById('news-title').value = '';
+      document.getElementById('news-content').value = '';
     });
   </script>
 </body>
