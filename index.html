@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Дом Москвы в Ереване</title>
   <style>
     body {
@@ -10,27 +10,40 @@
       font-family: "Segoe UI", sans-serif;
       background: #fff;
       color: #111;
+      scroll-behavior: smooth;
     }
 
     header {
       background: #b30000;
       color: white;
-      padding: 20px;
+      padding: 30px 20px;
       text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
     header h1 {
+      font-size: 36px;
       margin: 0;
-      font-size: 32px;
+      letter-spacing: 1px;
+      animation: fadeIn 1.5s;
+    }
+
+    header p {
+      margin-top: 5px;
+      font-size: 18px;
+      opacity: 0.9;
     }
 
     nav {
-      background: #f5f5f5;
       display: flex;
       justify-content: center;
-      gap: 20px;
-      padding: 10px 0;
+      gap: 30px;
+      background: #fff;
       border-bottom: 2px solid #b30000;
+      padding: 12px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     nav a {
@@ -41,161 +54,135 @@
     }
 
     nav a:hover {
-      text-decoration: underline;
+      color: #900000;
     }
 
     .container {
-      max-width: 900px;
-      margin: 30px auto;
+      max-width: 1000px;
+      margin: 40px auto;
       padding: 0 20px;
+      animation: fadeIn 0.8s ease;
     }
 
     h2 {
-      border-left: 5px solid #b30000;
-      padding-left: 10px;
-    }
-
-    .login-box, .register-box {
-      max-width: 400px;
-      margin: 40px auto;
-      padding: 20px;
-      border: 2px solid #b30000;
-      border-radius: 10px;
-      background: #fff;
-    }
-
-    input, textarea, button {
-      width: 100%;
-      padding: 10px;
-      margin: 5px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 14px;
+      border-left: 6px solid #b30000;
+      padding-left: 12px;
+      font-size: 26px;
     }
 
     button {
       background: #b30000;
       color: white;
-      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 15px;
       cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
     }
 
     button:hover {
       background: #900000;
     }
 
-    .post {
-      border: 1px solid #ddd;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      background: #fff;
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
 
-    .post img {
+    .post, .leader, .event {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .post:hover, .leader:hover, .event:hover {
+      transform: scale(1.01);
+    }
+
+    .post img, .leader img {
       max-width: 100%;
-      border-radius: 5px;
+      border-radius: 6px;
       margin-top: 10px;
     }
 
     .admin-panel {
       border: 2px solid #b30000;
-      padding: 20px;
-      margin-bottom: 20px;
       border-radius: 10px;
-      background: #fff;
+      padding: 20px;
+      margin-top: 25px;
     }
 
     footer {
       background: #b30000;
       color: white;
       text-align: center;
-      padding: 15px;
-      margin-top: 40px;
+      padding: 20px;
+      margin-top: 50px;
+      font-size: 15px;
     }
 
-    .team {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .hidden {
+      display: none;
     }
 
-    .team-member {
-      flex: 1 1 45%;
-      border: 1px solid #ccc;
-      padding: 10px;
-      border-radius: 8px;
-      background: #fff;
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
-
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>🏠 Дом Москвы в Ереване</h1>
-    <p>📍 ул. Аргишти, 7</p>
-  </header>
+<header>
+  <h1>🏠 Дом Москвы в Ереване</h1>
+  <p>📍 ул. Аргишти, 7</p>
+</header>
 
-  <nav>
-    <a href="#home">Главная</a>
-    <a href="#events">Мероприятия</a>
-    <a href="#team">Руководители</a>
-    <a href="#news">Новости</a>
-    <a href="#login">Вход</a>
-  </nav>
+<nav>
+  <a href="#home">Главная</a>
+  <a href="#leaders">Руководители</a>
+  <a href="#news">Новости</a>
+  <a href="#calendar">Календарь</a>
+  <a href="#admin">Я администратор</a>
+</nav>
 
-  <div class="container" id="home">
-    <h2>Молодёжное крыло</h2>
-    <p>Добро пожаловать в пространство идей, встреч и проектов! Здесь студенты и молодые специалисты создают будущее: от культурных вечеров и дискуссий до мастер-классов, форумов и клубов по интересам.</p>
+<div class="container" id="home">
+  <h2>Молодёжное крыло</h2>
+  <p>Пространство идей, встреч и проектов. Здесь студенты и молодые специалисты создают будущее — от культурных вечеров и форумов до мастер-классов и клубов по интересам.</p>
+</div>
+
+<div class="container" id="leaders">
+  <h2>Руководители</h2>
+  <div id="leadersList"></div>
+</div>
+
+<div class="container" id="news">
+  <h2>Новости</h2>
+  <div id="postList"></div>
+</div>
+
+<div class="container" id="calendar">
+  <h2>Календарь встреч</h2>
+  <div id="eventList"></div>
+</div>
+
+<div class="container" id="admin">
+  <h2>Админ-панель</h2>
+  <div id="adminLogin">
+    <p>Вход только для администрации</p>
+    <input type="password" id="adminPassword" placeholder="Введите пароль">
+    <button onclick="checkAdmin()">Войти</button>
   </div>
 
-  <div class="container" id="events">
-    <h2>Ближайшие мероприятия</h2>
-    <ul id="eventList">
-      <li>Культурный вечер — 20 октября</li>
-      <li>Форум молодых лидеров — 5 ноября</li>
-    </ul>
-  </div>
-
-  <div class="container" id="team">
-    <h2>Руководители</h2>
-    <div class="team" id="teamList">
-      <div class="team-member">Давид</div>
-      <div class="team-member">Мери</div>
-      <div class="team-member">Бабаян Нико Каренович</div>
-      <div class="team-member">Лена</div>
-      <div class="team-member">Арамэ</div>
-      <div class="team-member">Гово</div>
-      <div class="team-member">Рибэкка</div>
-      <div class="team-member">Жанна</div>
-    </div>
-  </div>
-
-  <div class="container" id="news">
-    <h2>Новости</h2>
-    <div id="postList"></div>
-  </div>
-
-  <div class="container" id="login">
-    <h2>Вход для администрации</h2>
-    <div class="login-box" id="loginBox">
-      <input type="text" id="username" placeholder="Логин">
-      <input type="password" id="password" placeholder="Пароль">
-      <button onclick="login()">Войти</button>
-      <p>Нет аккаунта? <a href="#" onclick="showRegister()">Зарегистрироваться</a></p>
-    </div>
-
-    <div class="register-box" id="registerBox" style="display:none;">
-      <input type="text" id="newUsername" placeholder="Логин">
-      <input type="password" id="newPassword" placeholder="Пароль">
-      <button onclick="register()">Создать аккаунт</button>
-      <p><a href="#" onclick="showLogin()">Уже есть аккаунт</a></p>
-    </div>
-  </div>
-
-  <div class="container" id="adminPanel" style="display:none;">
-    <h2>Панель администратора</h2>
+  <div id="adminPanel" class="hidden">
     <div class="admin-panel">
       <h3>Добавить новость</h3>
       <input type="text" id="postTitle" placeholder="Заголовок">
@@ -206,92 +193,145 @@
 
     <div class="admin-panel">
       <h3>Добавить руководителя</h3>
-      <input type="text" id="newLeader" placeholder="Имя руководителя">
+      <input type="text" id="leaderName" placeholder="Имя">
+      <textarea id="leaderDesc" placeholder="Описание"></textarea>
+      <input type="file" id="leaderImage" accept="image/*">
       <button onclick="addLeader()">Добавить</button>
     </div>
+
+    <div class="admin-panel">
+      <h3>Добавить встречу</h3>
+      <input type="date" id="eventDate">
+      <input type="text" id="eventTitle" placeholder="Название встречи">
+      <textarea id="eventDesc" placeholder="Описание встречи"></textarea>
+      <button onclick="addEvent()">Добавить в календарь</button>
+    </div>
   </div>
+</div>
 
-  <footer>
-    Контакты: <a href="https://t.me/davidbs2" style="color:white;">@davidbs2</a> | Дом Москвы © 2025
-  </footer>
+<footer>
+  Контакты: <a href="https://t.me/davidbs2" style="color:white;">@davidbs2</a> | Дом Москвы © 2025
+</footer>
 
-  <script>
-    let loggedIn = false;
+<script>
+let admin = false;
 
-    function showRegister() {
-      document.getElementById('loginBox').style.display = 'none';
-      document.getElementById('registerBox').style.display = 'block';
-    }
+function checkAdmin() {
+  const pass = document.getElementById('adminPassword').value;
+  if (pass === 'крысы') {
+    admin = true;
+    document.getElementById('adminLogin').classList.add('hidden');
+    document.getElementById('adminPanel').classList.remove('hidden');
+    alert('Добро пожаловать, администратор!');
+    renderAll();
+  } else {
+    alert('Неверный пароль');
+  }
+}
 
-    function showLogin() {
-      document.getElementById('loginBox').style.display = 'block';
-      document.getElementById('registerBox').style.display = 'none';
-    }
-
-    function register() {
-      const username = document.getElementById('newUsername').value;
-      const password = document.getElementById('newPassword').value;
-      if (!username || !password) return alert("Заполните все поля!");
-      localStorage.setItem("user_" + username, password);
-      alert("Аккаунт создан!");
-      showLogin();
-    }
-
-    function login() {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      const stored = localStorage.getItem("user_" + username);
-      if (stored === password) {
-        alert("Добро пожаловать, " + username + "!");
-        loggedIn = true;
-        document.getElementById('adminPanel').style.display = 'block';
-      } else {
-        alert("Неверный логин или пароль!");
-      }
-    }
-
-    function addPost() {
-      if (!loggedIn) return alert("Сначала войдите!");
-      const title = document.getElementById('postTitle').value;
-      const content = document.getElementById('postContent').value;
-      const image = document.getElementById('postImage').files[0];
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const posts = JSON.parse(localStorage.getItem("posts") || "[]");
-        posts.unshift({ title, content, image: e.target.result });
-        localStorage.setItem("posts", JSON.stringify(posts));
-        renderPosts();
-        document.getElementById('postTitle').value = '';
-        document.getElementById('postContent').value = '';
-        document.getElementById('postImage').value = '';
-      };
-      if (image) reader.readAsDataURL(image);
-      else reader.onload({target:{result:null}});
-    }
-
-    function addLeader() {
-      const name = document.getElementById('newLeader').value;
-      if (!name) return alert("Введите имя!");
-      const div = document.createElement("div");
-      div.className = "team-member";
-      div.innerText = name;
-      document.getElementById("teamList").appendChild(div);
-      document.getElementById('newLeader').value = '';
-    }
-
-    function renderPosts() {
-      const posts = JSON.parse(localStorage.getItem("posts") || "[]");
-      const postList = document.getElementById("postList");
-      postList.innerHTML = '';
-      posts.forEach(p => {
-        const div = document.createElement("div");
-        div.className = "post";
-        div.innerHTML = `<h3>${p.title}</h3><p>${p.content}</p>` + (p.image ? `<img src="${p.image}">` : '');
-        postList.appendChild(div);
-      });
-    }
-
+function addPost() {
+  const title = postTitle.value.trim();
+  const content = postContent.value.trim();
+  const file = postImage.files[0];
+  if (!title || !content) return alert('Заполните все поля!');
+  const reader = new FileReader();
+  reader.onload = e => {
+    const posts = JSON.parse(localStorage.getItem('posts')||'[]');
+    posts.unshift({title, content, image: e.target.result});
+    localStorage.setItem('posts', JSON.stringify(posts));
     renderPosts();
-  </script>
+  };
+  if (file) reader.readAsDataURL(file); else reader.onload({target:{result:null}});
+}
+
+function renderPosts() {
+  const posts = JSON.parse(localStorage.getItem('posts')||'[]');
+  const box = document.getElementById('postList');
+  box.innerHTML = '';
+  posts.forEach((p,i)=>{
+    const div = document.createElement('div');
+    div.className = 'post';
+    div.innerHTML = `<h3>${p.title}</h3><p>${p.content}</p>`+(p.image?`<img src="${p.image}">`:'');
+    if (admin) {
+      const del = document.createElement('button');
+      del.textContent = 'Удалить';
+      del.onclick = ()=>{posts.splice(i,1);localStorage.setItem('posts',JSON.stringify(posts));renderPosts();};
+      div.appendChild(del);
+    }
+    box.appendChild(div);
+  });
+}
+
+function addLeader() {
+  const name = leaderName.value.trim();
+  const desc = leaderDesc.value.trim();
+  const file = leaderImage.files[0];
+  if (!name) return alert('Введите имя!');
+  const reader = new FileReader();
+  reader.onload = e=>{
+    const leaders = JSON.parse(localStorage.getItem('leaders')||'[]');
+    leaders.push({name,desc,image:e.target.result});
+    localStorage.setItem('leaders', JSON.stringify(leaders));
+    renderLeaders();
+  };
+  if (file) reader.readAsDataURL(file); else reader.onload({target:{result:null}});
+}
+
+function renderLeaders() {
+  const leaders = JSON.parse(localStorage.getItem('leaders')||'[]');
+  const box = document.getElementById('leadersList');
+  box.innerHTML = '';
+  leaders.forEach((l,i)=>{
+    const div = document.createElement('div');
+    div.className = 'leader';
+    div.innerHTML = `<h3>${l.name}</h3><p>${l.desc||''}</p>`+(l.image?`<img src="${l.image}">`:'');
+    if (admin) {
+      const del = document.createElement('button');
+      del.textContent = 'Удалить';
+      del.onclick = ()=>{leaders.splice(i,1);localStorage.setItem('leaders',JSON.stringify(leaders));renderLeaders();};
+      div.appendChild(del);
+    }
+    box.appendChild(div);
+  });
+}
+
+function addEvent() {
+  const title = eventTitle.value.trim();
+  const desc = eventDesc.value.trim();
+  const date = eventDate.value;
+  if (!title || !date) return alert('Введите название и дату!');
+  const events = JSON.parse(localStorage.getItem('events')||'[]');
+  events.push({title,desc,date});
+  localStorage.setItem('events', JSON.stringify(events));
+  renderEvents();
+}
+
+function renderEvents() {
+  const events = JSON.parse(localStorage.getItem('events')||'[]');
+  const box = document.getElementById('eventList');
+  box.innerHTML = '';
+  events.forEach((e,i)=>{
+    const div = document.createElement('div');
+    div.className = 'event';
+    div.innerHTML = `<strong>${e.date}</strong> — ${e.title}<p>${e.desc||''}</p>`;
+    if (admin) {
+      const del = document.createElement('button');
+      del.textContent = 'Удалить';
+      del.onclick = ()=>{events.splice(i,1);localStorage.setItem('events',JSON.stringify(events));renderEvents();};
+      div.appendChild(del);
+    }
+    box.appendChild(div);
+  });
+}
+
+function renderAll() {
+  renderPosts();
+  renderLeaders();
+  renderEvents();
+}
+
+renderAll();
+</script>
+
 </body>
 </html>
