@@ -3,335 +3,211 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Дом Москвы в Ереване</title>
+  <title>ЭРА — Молодёжная организация</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --accent: linear-gradient(135deg, #a000ff, #ff2d2d);
+      --text: #333;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: "Segoe UI", sans-serif;
+      font-family: 'Montserrat', sans-serif;
       background: #fff;
-      color: #111;
+      color: var(--text);
       scroll-behavior: smooth;
     }
 
     header {
-      background: #b30000;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-
-    header h1 {
-      font-size: 36px;
-      margin: 0;
-      letter-spacing: 1px;
-      animation: fadeIn 1.5s;
-    }
-
-    header p {
-      margin-top: 5px;
-      font-size: 18px;
-      opacity: 0.9;
-    }
-
-    nav {
       display: flex;
-      justify-content: center;
-      gap: 30px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 60px;
       background: #fff;
-      border-bottom: 2px solid #b30000;
-      padding: 12px 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+      font-size: 1.5em;
+      color: #e60023;
+    }
+
+    .logo span {
+      background: var(--accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-right: 10px;
     }
 
     nav a {
-      color: #b30000;
+      margin: 0 15px;
       text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
+      color: #333;
+      font-weight: 600;
+      transition: color 0.3s;
     }
 
     nav a:hover {
-      color: #900000;
+      color: #ff2d2d;
     }
 
-    .container {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0 20px;
-      animation: fadeIn 0.8s ease;
-    }
-
-    h2 {
-      border-left: 6px solid #b30000;
-      padding-left: 12px;
-      font-size: 26px;
-    }
-
-    button {
-      background: #b30000;
+    .hero {
+      height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: var(--accent);
       color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 15px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
+      text-align: center;
+      padding: 0 20px;
     }
 
-    button:hover {
-      background: #900000;
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
     }
 
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 6px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+    .hero p {
+      font-size: 1.2em;
+      max-width: 600px;
+      line-height: 1.6;
     }
 
-    .post, .leader, .event {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 15px;
-      margin-bottom: 15px;
-      background: #fff;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
-    }
-
-    .post:hover, .leader:hover, .event:hover {
-      transform: scale(1.01);
-    }
-
-    .post img, .leader img {
-      max-width: 100%;
-      border-radius: 6px;
-      margin-top: 10px;
-    }
-
-    .admin-panel {
-      border: 2px solid #b30000;
-      border-radius: 10px;
-      padding: 20px;
+    .btn {
       margin-top: 25px;
+      background: white;
+      color: #e60023;
+      padding: 12px 28px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: #f2f2f2;
+    }
+
+    .clubs {
+      padding: 80px 60px;
+      background: #fafafa;
+      text-align: center;
+    }
+
+    .clubs h2 {
+      font-size: 2em;
+      margin-bottom: 40px;
+      background: var(--accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .club-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .club {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+
+    .club:hover {
+      transform: translateY(-5px);
+    }
+
+    .club h3 {
+      color: #e60023;
+    }
+
+    .admin-login {
+      text-align: center;
+      margin: 80px 0 40px;
+    }
+
+    .admin-login a {
+      color: #ff2d2d;
+      font-weight: 600;
+      text-decoration: none;
     }
 
     footer {
-      background: #b30000;
-      color: white;
       text-align: center;
-      padding: 20px;
-      margin-top: 50px;
-      font-size: 15px;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
+      padding: 30px;
+      background: #fff;
+      border-top: 1px solid #eee;
+      font-size: 0.9em;
     }
   </style>
 </head>
 <body>
+  <header>
+    <div class="logo"><span>🔥</span>ЭРА</div>
+    <nav>
+      <a href="#about">О нас</a>
+      <a href="#clubs">Клубы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+  </header>
 
-<header>
-  <h1>🏠 Дом Москвы в Ереване</h1>
-  <p>📍 ул. Аргишти, 7</p>
-</header>
+  <section class="hero" id="about">
+    <h1>Добро пожаловать в ЭРУ!</h1>
+    <p>Молодёжная организация, объединяющая активных, творческих и амбициозных людей. Вместе мы создаём новую эпоху развития!</p>
+    <a href="#clubs" class="btn">Наши клубы</a>
+  </section>
 
-<nav>
-  <a href="#home">Главная</a>
-  <a href="#leaders">Руководители</a>
-  <a href="#news">Новости</a>
-  <a href="#calendar">Календарь</a>
-  <a href="#admin">Я администратор</a>
-</nav>
+  <section class="clubs" id="clubs">
+    <h2>Наши клубы</h2>
+    <div class="club-grid">
+      <div class="club">
+        <h3>Клуб Культуры и Искусства</h3>
+        <p>Творческое пространство для самовыражения и развития талантов через искусство, музыку и театральные проекты.</p>
+      </div>
+      <div class="club">
+        <h3>Клуб Лидерства</h3>
+        <p>Формируем новое поколение лидеров, готовых брать ответственность и вдохновлять других на изменения.</p>
+      </div>
+      <div class="club">
+        <h3>Медиа-Клуб</h3>
+        <p>Создаём современный медиаконтент, продвигаем ценности ЭРА и развиваем цифровую грамотность.</p>
+      </div>
+      <div class="club">
+        <h3>Интерактивный Клуб</h3>
+        <p>Объединяем тех, кто любит игры, технологии и креативные активности с элементами геймификации.</p>
+      </div>
+      <div class="club">
+        <h3>Клуб КВН</h3>
+        <p>Развиваем чувство юмора и командный дух через юмористические выступления и фестивали КВН.</p>
+      </div>
+      <div class="club">
+        <h3>Клуб Социальных Инициатив</h3>
+        <p>Реализуем проекты, направленные на помощь обществу, поддержку молодёжи и улучшение окружающего мира.</p>
+      </div>
+    </div>
+  </section>
 
-<div class="container" id="home">
-  <h2>Молодёжное крыло</h2>
-  <p>Пространство идей, встреч и проектов. Здесь студенты и молодые специалисты создают будущее — от культурных вечеров и форумов до мастер-классов и клубов по интересам.</p>
-</div>
-
-<div class="container" id="leaders">
-  <h2>Руководители</h2>
-  <div id="leadersList"></div>
-</div>
-
-<div class="container" id="news">
-  <h2>Новости</h2>
-  <div id="postList"></div>
-</div>
-
-<div class="container" id="calendar">
-  <h2>Календарь встреч</h2>
-  <div id="eventList"></div>
-</div>
-
-<div class="container" id="admin">
-  <h2>Админ-панель</h2>
-  <div id="adminLogin">
-    <p>Вход только для администрации</p>
-    <input type="password" id="adminPassword" placeholder="Введите пароль">
-    <button onclick="checkAdmin()">Войти</button>
+  <div class="admin-login">
+    <p><a href="admin.html">Вход в админ-панель</a></p>
   </div>
 
-  <div id="adminPanel" class="hidden">
-    <div class="admin-panel">
-      <h3>Добавить новость</h3>
-      <input type="text" id="postTitle" placeholder="Заголовок">
-      <textarea id="postContent" placeholder="Текст новости"></textarea>
-      <input type="file" id="postImage" accept="image/*">
-      <button onclick="addPost()">Опубликовать</button>
-    </div>
-
-    <div class="admin-panel">
-      <h3>Добавить руководителя</h3>
-      <input type="text" id="leaderName" placeholder="Имя">
-      <textarea id="leaderDesc" placeholder="Описание"></textarea>
-      <input type="file" id="leaderImage" accept="image/*">
-      <button onclick="addLeader()">Добавить</button>
-    </div>
-
-    <div class="admin-panel">
-      <h3>Добавить встречу</h3>
-      <input type="date" id="eventDate">
-      <input type="text" id="eventTitle" placeholder="Название встречи">
-      <textarea id="eventDesc" placeholder="Описание встречи"></textarea>
-      <button onclick="addEvent()">Добавить в календарь</button>
-    </div>
-  </div>
-</div>
-
-<footer>
-  Контакты: <a href="https://t.me/davidbs2" style="color:white;">@davidbs2</a> | Дом Москвы © 2025
-</footer>
-
-<script>
-let admin = false;
-
-function checkAdmin() {
-  const pass = document.getElementById('adminPassword').value;
-  if (pass === 'крысы') {
-    admin = true;
-    document.getElementById('adminLogin').classList.add('hidden');
-    document.getElementById('adminPanel').classList.remove('hidden');
-    alert('Добро пожаловать, администратор!');
-    renderAll();
-  } else {
-    alert('Неверный пароль');
-  }
-}
-
-function addPost() {
-  const title = postTitle.value.trim();
-  const content = postContent.value.trim();
-  const file = postImage.files[0];
-  if (!title || !content) return alert('Заполните все поля!');
-  const reader = new FileReader();
-  reader.onload = e => {
-    const posts = JSON.parse(localStorage.getItem('posts')||'[]');
-    posts.unshift({title, content, image: e.target.result});
-    localStorage.setItem('posts', JSON.stringify(posts));
-    renderPosts();
-  };
-  if (file) reader.readAsDataURL(file); else reader.onload({target:{result:null}});
-}
-
-function renderPosts() {
-  const posts = JSON.parse(localStorage.getItem('posts')||'[]');
-  const box = document.getElementById('postList');
-  box.innerHTML = '';
-  posts.forEach((p,i)=>{
-    const div = document.createElement('div');
-    div.className = 'post';
-    div.innerHTML = `<h3>${p.title}</h3><p>${p.content}</p>`+(p.image?`<img src="${p.image}">`:'');
-    if (admin) {
-      const del = document.createElement('button');
-      del.textContent = 'Удалить';
-      del.onclick = ()=>{posts.splice(i,1);localStorage.setItem('posts',JSON.stringify(posts));renderPosts();};
-      div.appendChild(del);
-    }
-    box.appendChild(div);
-  });
-}
-
-function addLeader() {
-  const name = leaderName.value.trim();
-  const desc = leaderDesc.value.trim();
-  const file = leaderImage.files[0];
-  if (!name) return alert('Введите имя!');
-  const reader = new FileReader();
-  reader.onload = e=>{
-    const leaders = JSON.parse(localStorage.getItem('leaders')||'[]');
-    leaders.push({name,desc,image:e.target.result});
-    localStorage.setItem('leaders', JSON.stringify(leaders));
-    renderLeaders();
-  };
-  if (file) reader.readAsDataURL(file); else reader.onload({target:{result:null}});
-}
-
-function renderLeaders() {
-  const leaders = JSON.parse(localStorage.getItem('leaders')||'[]');
-  const box = document.getElementById('leadersList');
-  box.innerHTML = '';
-  leaders.forEach((l,i)=>{
-    const div = document.createElement('div');
-    div.className = 'leader';
-    div.innerHTML = `<h3>${l.name}</h3><p>${l.desc||''}</p>`+(l.image?`<img src="${l.image}">`:'');
-    if (admin) {
-      const del = document.createElement('button');
-      del.textContent = 'Удалить';
-      del.onclick = ()=>{leaders.splice(i,1);localStorage.setItem('leaders',JSON.stringify(leaders));renderLeaders();};
-      div.appendChild(del);
-    }
-    box.appendChild(div);
-  });
-}
-
-function addEvent() {
-  const title = eventTitle.value.trim();
-  const desc = eventDesc.value.trim();
-  const date = eventDate.value;
-  if (!title || !date) return alert('Введите название и дату!');
-  const events = JSON.parse(localStorage.getItem('events')||'[]');
-  events.push({title,desc,date});
-  localStorage.setItem('events', JSON.stringify(events));
-  renderEvents();
-}
-
-function renderEvents() {
-  const events = JSON.parse(localStorage.getItem('events')||'[]');
-  const box = document.getElementById('eventList');
-  box.innerHTML = '';
-  events.forEach((e,i)=>{
-    const div = document.createElement('div');
-    div.className = 'event';
-    div.innerHTML = `<strong>${e.date}</strong> — ${e.title}<p>${e.desc||''}</p>`;
-    if (admin) {
-      const del = document.createElement('button');
-      del.textContent = 'Удалить';
-      del.onclick = ()=>{events.splice(i,1);localStorage.setItem('events',JSON.stringify(events));renderEvents();};
-      div.appendChild(del);
-    }
-    box.appendChild(div);
-  });
-}
-
-function renderAll() {
-  renderPosts();
-  renderLeaders();
-  renderEvents();
-}
-
-renderAll();
-</script>
-
+  <footer id="contacts">
+    <p>© 2025 ЭРА — Молодёжная организация. Все права защищены.</p>
+  </footer>
 </body>
 </html>
