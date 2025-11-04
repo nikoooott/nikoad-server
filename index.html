@@ -8,206 +8,345 @@
   <style>
     :root {
       --accent: linear-gradient(135deg, #a000ff, #ff2d2d);
-      --text: #333;
+      --text: #222;
+      --bg: #fff;
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
-      background: #fff;
+      background: var(--bg);
       color: var(--text);
+      overflow-x: hidden;
       scroll-behavior: smooth;
     }
-
     header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 60px;
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 1000;
-    }
-
-    .logo {
+      width: 100%;
+      z-index: 100;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      backdrop-filter: blur(10px);
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      font-weight: 700;
-      font-size: 1.5em;
-      color: #e60023;
+      padding: 15px 50px;
     }
-
-    .logo span {
+    .logo {
+      font-weight: 700;
+      font-size: 1.6em;
       background: var(--accent);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-right: 10px;
     }
-
     nav a {
       margin: 0 15px;
       text-decoration: none;
-      color: #333;
+      color: var(--text);
       font-weight: 600;
-      transition: color 0.3s;
+      transition: 0.3s;
     }
-
     nav a:hover {
       color: #ff2d2d;
     }
 
+    /* HERO */
     .hero {
-      height: 85vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: var(--accent);
+      position: relative;
+      height: 100vh;
       color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 0 20px;
     }
-
-    .hero h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
+    .hero video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.4);
     }
-
-    .hero p {
-      font-size: 1.2em;
-      max-width: 600px;
-      line-height: 1.6;
+    .hero-content {
+      z-index: 1;
+      max-width: 700px;
+      padding: 20px;
+      animation: fadeIn 2s ease;
     }
-
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
     .btn {
-      margin-top: 25px;
       background: white;
       color: #e60023;
       padding: 12px 28px;
       border-radius: 25px;
-      text-decoration: none;
       font-weight: 600;
-      transition: all 0.3s;
+      text-decoration: none;
+      transition: 0.3s;
+      display: inline-block;
+      margin-top: 15px;
     }
-
     .btn:hover {
-      background: #f2f2f2;
+      background: #eee;
     }
 
-    .clubs {
+    /* CLUBS */
+    section {
       padding: 80px 60px;
-      background: #fafafa;
       text-align: center;
     }
-
-    .clubs h2 {
-      font-size: 2em;
-      margin-bottom: 40px;
+    h2 {
+      font-size: 2.2em;
       background: var(--accent);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
     .club-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
+      gap: 25px;
+      margin-top: 40px;
     }
-
     .club {
       background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
       transition: transform 0.3s;
     }
-
     .club:hover {
       transform: translateY(-5px);
     }
 
-    .club h3 {
-      color: #e60023;
+    /* NEWS */
+    .news-form input, .news-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .news-item {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
-    .admin-login {
-      text-align: center;
-      margin: 80px 0 40px;
+    /* GALLERY */
+    .gallery img {
+      width: 100%;
+      max-width: 280px;
+      border-radius: 12px;
+      margin: 10px;
+      transition: transform 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
     }
 
-    .admin-login a {
-      color: #ff2d2d;
-      font-weight: 600;
-      text-decoration: none;
+    /* FORM */
+    form input, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 5px 0 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
     }
 
+    /* CHAT */
+    .chat-box {
+      max-width: 600px;
+      margin: 40px auto;
+      text-align: left;
+    }
+    .message {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    /* FOOTER */
     footer {
+      background: #111;
+      color: #ddd;
       text-align: center;
-      padding: 30px;
-      background: #fff;
-      border-top: 1px solid #eee;
+      padding: 40px 20px;
       font-size: 0.9em;
+    }
+
+    /* BUTTON TO TOP */
+    #toTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 50%;
+      background: #ff2d2d;
+      color: white;
+      cursor: pointer;
+      display: none;
+    }
+
+    /* DARK MODE */
+    .dark-mode {
+      --bg: #1c1c1c;
+      --text: #f2f2f2;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <div class="logo"><span>🔥</span>ЭРА</div>
+    <div class="logo">🔥 ЭРА</div>
     <nav>
       <a href="#about">О нас</a>
       <a href="#clubs">Клубы</a>
-      <a href="#contacts">Контакты</a>
+      <a href="#news">Новости</a>
+      <a href="#events">События</a>
+      <a href="#gallery">Галерея</a>
+      <a href="#join">Присоединиться</a>
     </nav>
+    <button onclick="toggleTheme()" style="border:none;background:none;cursor:pointer;font-weight:700;">🌓</button>
   </header>
 
   <section class="hero" id="about">
-    <h1>Добро пожаловать в ЭРУ!</h1>
-    <p>Молодёжная организация, объединяющая активных, творческих и амбициозных людей. Вместе мы создаём новую эпоху развития!</p>
-    <a href="#clubs" class="btn">Наши клубы</a>
-  </section>
-
-  <section class="clubs" id="clubs">
-    <h2>Наши клубы</h2>
-    <div class="club-grid">
-      <div class="club">
-        <h3>Клуб Культуры и Искусства</h3>
-        <p>Творческое пространство для самовыражения и развития талантов через искусство, музыку и театральные проекты.</p>
-      </div>
-      <div class="club">
-        <h3>Клуб Лидерства</h3>
-        <p>Формируем новое поколение лидеров, готовых брать ответственность и вдохновлять других на изменения.</p>
-      </div>
-      <div class="club">
-        <h3>Медиа-Клуб</h3>
-        <p>Создаём современный медиаконтент, продвигаем ценности ЭРА и развиваем цифровую грамотность.</p>
-      </div>
-      <div class="club">
-        <h3>Интерактивный Клуб</h3>
-        <p>Объединяем тех, кто любит игры, технологии и креативные активности с элементами геймификации.</p>
-      </div>
-      <div class="club">
-        <h3>Клуб КВН</h3>
-        <p>Развиваем чувство юмора и командный дух через юмористические выступления и фестивали КВН.</p>
-      </div>
-      <div class="club">
-        <h3>Клуб Социальных Инициатив</h3>
-        <p>Реализуем проекты, направленные на помощь обществу, поддержку молодёжи и улучшение окружающего мира.</p>
-      </div>
+    <video autoplay muted loop>
+      <source src="https://cdn.coverr.co/videos/coverr-young-people-having-fun-5174/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content">
+      <h1>Молодёжная организация ЭРА</h1>
+      <p>Мы создаём пространство для креатива, лидерства и общественных инициатив. Присоединяйся — создавай будущее вместе с нами!</p>
+      <a href="#join" class="btn">Вступить в ЭРУ</a>
     </div>
   </section>
 
-  <div class="admin-login">
-    <p><a href="admin.html">Вход в админ-панель</a></p>
-  </div>
+  <section id="clubs">
+    <h2>Наши клубы</h2>
+    <div class="club-grid">
+      <div class="club"><h3>Культура и Искусство</h3><p>Музыка, театр, живопись — место для творчества.</p></div>
+      <div class="club"><h3>Лидерство</h3><p>Развиваем навыки управления, вдохновения и командной работы.</p></div>
+      <div class="club"><h3>Медиа</h3><p>Фотография, видео, журналистика, SMM.</p></div>
+      <div class="club"><h3>Интерактивный</h3><p>Игры, VR, технологии, геймификация.</p></div>
+      <div class="club"><h3>КВН</h3><p>Юмор, креатив и позитив в каждой встрече.</p></div>
+      <div class="club"><h3>Социальные инициативы</h3><p>Благотворительность, экология, взаимопомощь.</p></div>
+    </div>
+  </section>
 
-  <footer id="contacts">
-    <p>© 2025 ЭРА — Молодёжная организация. Все права защищены.</p>
+  <section id="news">
+    <h2>Новости</h2>
+    <div class="news-form">
+      <input type="text" id="newsTitle" placeholder="Заголовок новости">
+      <textarea id="newsContent" placeholder="Текст новости"></textarea>
+      <button class="btn" onclick="addNews()">Добавить новость</button>
+    </div>
+    <div id="newsList"></div>
+  </section>
+
+  <section id="events">
+    <h2>Ближайшие события</h2>
+    <ul style="list-style:none;padding:0;">
+      <li>📅 15 ноября — Встреча лидеров клубов</li>
+      <li>🎭 20 ноября — Фестиваль творчества "ЭРА Арт"</li>
+      <li>🎮 28 ноября — Турнир интерактивного клуба</li>
+    </ul>
+  </section>
+
+  <section id="gallery">
+    <h2>Галерея</h2>
+    <div class="gallery">
+      <img src="https://source.unsplash.com/300x200/?youth,art" alt="">
+      <img src="https://source.unsplash.com/300x200/?students,team" alt="">
+      <img src="https://source.unsplash.com/300x200/?event" alt="">
+      <img src="https://source.unsplash.com/300x200/?music,festival" alt="">
+    </div>
+  </section>
+
+  <section id="join">
+    <h2>Присоединиться к ЭРЕ</h2>
+    <form onsubmit="join(event)">
+      <input type="text" id="name" placeholder="Имя" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <textarea id="reason" placeholder="Почему хочешь вступить?" required></textarea>
+      <button class="btn">Отправить заявку</button>
+    </form>
+    <p id="joinMsg"></p>
+  </section>
+
+  <section id="chat">
+    <h2>Чат участников</h2>
+    <div class="chat-box" id="chatBox"></div>
+    <input type="text" id="chatInput" placeholder="Напиши сообщение..." style="width:80%;padding:10px;">
+    <button onclick="sendMessage()">💬</button>
+  </section>
+
+  <button id="toTop" onclick="scrollToTop()">⬆</button>
+
+  <footer>
+    <p>© 2025 ЭРА — Молодёжная организация</p>
   </footer>
+
+  <script>
+    // NEWS
+    function addNews() {
+      const title = document.getElementById('newsTitle').value;
+      const content = document.getElementById('newsContent').value;
+      if (!title || !content) return alert('Заполни поля!');
+      const list = document.getElementById('newsList');
+      const item = document.createElement('div');
+      item.className = 'news-item';
+      item.innerHTML = `<h3>${title}</h3><p>${content}</p>`;
+      list.prepend(item);
+      document.getElementById('newsTitle').value = '';
+      document.getElementById('newsContent').value = '';
+    }
+
+    // JOIN
+    function join(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const reason = document.getElementById('reason').value;
+      const members = JSON.parse(localStorage.getItem('eraMembers') || '[]');
+      members.push({name, email, reason});
+      localStorage.setItem('eraMembers', JSON.stringify(members));
+      document.getElementById('joinMsg').innerText = 'Спасибо за заявку! Мы скоро свяжемся с тобой.';
+      e.target.reset();
+    }
+
+    // CHAT
+    const chatBox = document.getElementById('chatBox');
+    function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const text = input.value.trim();
+      if (!text) return;
+      const msg = document.createElement('div');
+      msg.className = 'message';
+      msg.textContent = text;
+      chatBox.appendChild(msg);
+      input.value = '';
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // TO TOP
+    window.onscroll = () => {
+      document.getElementById('toTop').style.display = window.scrollY > 400 ? 'block' : 'none';
+    };
+    function scrollToTop() {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    // THEME
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
 </body>
 </html>
